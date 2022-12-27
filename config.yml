@@ -130,11 +130,19 @@ menu:
     - identifier: certifications
       name: certifications
       url: /certifications/
+      weight: 4
+    - identifier: Archive
+      name: Archive
+      url: archives
       weight: 1
+    - identifier: Search
+      name: Search
+      url: search
+      weight: 2
     - identifier: CV
       name: CV
       url: https://my-certification-ciarcia.s3.eu-west-1.amazonaws.com/EttoreCiarcia.pdf
-      weight: 1
+      weight: 3
     - identifier: categories
       name: categories
       url: /categories/
@@ -153,3 +161,5 @@ markup:
     # guessSyntax: true
     # lineNos: true
     # style: monokai
+
+#example site https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite
