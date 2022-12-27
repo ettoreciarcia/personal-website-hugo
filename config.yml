@@ -1,5 +1,5 @@
 baseURL: "https://ettoreciarcia.com/"
-title: ExampleSite
+title: Ettore Ciarcia
 paginate: 5
 theme: PaperMod
 
@@ -127,10 +127,10 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: certifications
-      name: certifications
-      url: /certifications/
-      weight: 4
+    # - identifier: certifications
+    #   name: certifications
+    #   url: /certifications/
+    #   weight: 4
     - identifier: Archive
       name: Archive
       url: archives
