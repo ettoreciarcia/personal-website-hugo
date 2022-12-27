@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Tags on Ettore Ciarcia</title>
-    <link>http://ettoreciarcia.com/tags/</link>
-    <description>Recent content in Tags on Ettore Ciarcia</description>
+    <title>Tags on ExampleSite</title>
+    <link>https://examplesite.com/tags/</link>
+    <description>Recent content in Tags on ExampleSite</description>
+    <image>
+      <url>https://examplesite.com/MemeK8s.jpeg</url>
+      <link>https://examplesite.com/MemeK8s.jpeg</link>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://ettoreciarcia.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 27 Dec 2022 16:25:30 +0100</lastBuildDate><atom:link href="https://examplesite.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>just chatting</title>
+      <link>https://examplesite.com/tags/just-chatting/</link>
+      <pubDate>Tue, 27 Dec 2022 16:25:30 +0100</pubDate>
+      
+      <guid>https://examplesite.com/tags/just-chatting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>me</title>
+      <link>https://examplesite.com/tags/me/</link>
+      <pubDate>Tue, 27 Dec 2022 16:25:30 +0100</pubDate>
+      
+      <guid>https://examplesite.com/tags/me/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
