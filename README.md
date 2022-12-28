@@ -1,6 +1,10 @@
 # personal-webiste-hugo
 My new portfolio/blog website with hugo 
 
+## Old Architecture overview
+
+![Architecture](architecture.png)
+
 ## Useful command
 
 ### Test it locally
