@@ -19,7 +19,7 @@ params:
   title: Ettore Ciarcia
   description: "In this public space I'll talk about my Kubernetes and Cloud journey"
   keywords: [Blog, Portfolio, PaperMod]
-  author: Me
+  author: Ettore Ciarcia
   # author: ["Me", "You"] # multiple authors
   images: ["MemeK8s.jpeg"]
   DateFormat: "January 2, 2006"
@@ -52,16 +52,20 @@ params:
     safari_pinned_tab: "<link / abs url>"
 
   label:
-    text: "Home"
+    text: "Ettore Ciarcia"
     icon: /apple-touch-icon.png
     iconHeight: 35
 
   # profile-mode
   profileMode:
     enabled: false # needs to be explicitly set
-    title: ExampleSite
-    subtitle: "This is subtitle"
-    imageUrl: "MemeK8s.jpeg"
+    title: Ettore Ciarcia
+    subtitle: > 
+      Cloud Engineer @**[Epsilon](https://it.linkedin.com/company/epsilon_2)**
+      
+      
+      Focused on Kubernetes, Terraform and AWS
+    imageUrl: "android-chrome-512x512.png"
     imageWidth: 120
     imageHeight: 120
     imageTitle: my image
@@ -76,14 +80,10 @@ params:
     Title: "Hi there \U0001F44B"
     Content: >
         I'm Ettore, a young Cloud Engineer currently working at [Epsilon](https://it.linkedin.com/company/epsilon_2)! 
-        
-        - I'm pursuing a degree in computer engineering 📖  
-        
-        - CyberHackademy Graduated 💻 
 
         - I'm focused on Kubernetes, Terraform and AWS. 
         
-        - If you think you're better than me because I indent YAML be careful, I also indent HCL
+        - If you think you're better than me because I indent YAML be careful, I also indent HCL 🙂
 
   socialIcons:
     - name: twitter
