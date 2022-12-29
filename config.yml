@@ -58,7 +58,7 @@ params:
 
   # profile-mode
   profileMode:
-    enabled: false # needs to be explicitly set
+    enabled: true # needs to be explicitly set
     title: Ettore Ciarcia
     subtitle: > 
       Cloud Engineer @**[Epsilon](https://it.linkedin.com/company/epsilon_2)**
@@ -66,9 +66,9 @@ params:
       
       Focused on Kubernetes, Terraform and AWS
     imageUrl: "android-chrome-512x512.png"
-    imageWidth: 120
-    imageHeight: 120
-    imageTitle: my image
+    imageWidth: 250
+    imageHeight: 250
+    imageTitle: me
     buttons:
       - name: Posts
         url: posts
