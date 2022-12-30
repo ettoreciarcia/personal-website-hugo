@@ -18,13 +18,13 @@ Wait wait, let's take another step back, let's go back to the situation I was in
 
 A year ago I was about to finish my studies at the cyberhackdemy, a cybersecurity academy I was selected for in May 2021. Such a great time those months!
 I was almost quitting the IT world after my very bad experience at Evil Corp (Maybe I'll look into this topic in the future), then came the CyberHackademy.
-There I rediscovered the pleasure of sitting in front of a terminal looking at the shell. I had amazing mentors and met really good people-
+There I rediscovered the pleasure of sitting in front of a terminal looking at the shell. I had amazing mentors and met really good people.
 
 The partner company of the cyberhackademy had offered me a contract, good money. I declined them.
 You must be wondering why I turned down that money.
 Because after leaving Evil Corp I received continuous contacts from recruiters on Linkedin for **that type** of consultancy.
 When I left Evil Corp I promised myself that I would never get into a situation like this again in my life.  
-And those offerings reeked of Evil Corp, but with more money. And it's about money.
+And those offerings reeked of Evil Corp, but with more money. And it's not about money.
 
 So a little over a year ago, I was worried about my job situation. Let me explain: I have no problem finding a job in IT (in 2022 I received more than 130 messages from recruiters on Linkedin), my fear was of ending up in **that type** of consultancy again.
 
