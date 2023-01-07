@@ -25,6 +25,7 @@ params:
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
+  imageDir: "/static"
 
   ShowReadingTime: true
   ShowShareButtons: true
