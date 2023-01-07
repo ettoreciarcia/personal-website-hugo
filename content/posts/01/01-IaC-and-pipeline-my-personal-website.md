@@ -44,7 +44,7 @@ In this phase we will go one step further because we will not manage the status 
 
 Here you will find the repository that contains the Terraform code for this project: [perosona-website-iac](https://github.com/ettoreciarcia/personal-website-iac.git)
 
-![infrastructure](img/infrastructure.png)
+![infrastructure](/blog/01-personal-website-iac/infrastructure.png)
 
 This is the infrastructure this code will provision
 
