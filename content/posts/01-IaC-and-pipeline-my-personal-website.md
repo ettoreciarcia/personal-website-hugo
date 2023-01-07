@@ -3,7 +3,7 @@ title: "How to deploy your own website on AWS with Terraform and Git Hub Actions
 date: 2023-01-06T13:41:''+01:00
 tags: [AWS, Terraform, IaC, Git, Infrastructure, Best Practices]
 categories: [AWS, Terraform, Pipeline]
-draft: false
+draft: true
 ---
 
 One of my resolutions for 2023 was to write constantly on this blog. I thought a lot about what to bring as my first article.
@@ -44,10 +44,32 @@ In this phase we will go one step further because we will not manage the status 
 
 Here you will find the repository that contains the Terraform code for this project: [perosona-website-iac](https://github.com/ettoreciarcia/personal-website-iac.git)
 
-![infrastructure](/blog/01-personal-website-iac/infrastructure.png)
-![test](jokerme.jpg)
+
+The repository is public, you can clone it using the command
+
+```shell
+git clone https://github.com/ettoreciarcia/personal-website-iac.git
+```
+
+The Terraform project has this structure
+
+```shell
+.
+├── .pre-commit-config.yaml
+├── personal-website.auto.tfvars
+├── .github/
+    ├── workflows/
+├── modules/
+│   ├── infra/  <--- Create infra resources here
+│   └── security/ <-- Create IAM reosurce here
+├── static/
+└── themes/
+    └── PaperMod/
+```
 
 This is the infrastructure this code will provision
+
+![infrastructure](../img/infrastructure.png)
 
 ### Continuos Integration/Continous Deployment  CI/CD) -> Git Hub Actions
 

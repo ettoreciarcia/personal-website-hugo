@@ -25,7 +25,8 @@ params:
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
-  imageDir: "/static"
+  imageDir: "content/posts/img"
+
 
   ShowReadingTime: true
   ShowShareButtons: true
