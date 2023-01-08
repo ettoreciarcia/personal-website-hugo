@@ -4,7 +4,8 @@ summary: "In this article we will build the infrastructure that our site needs b
 date: 2023-01-06T13:41:''+01:00
 tags: [AWS, Terraform, IaC, Git, Infrastructure, Best Practices]
 categories: [AWS, Terraform, Pipeline]
-weight: "1"
+weight: "999"
+showToc: true
 draft: false
 ---
 
@@ -15,17 +16,18 @@ In this article we will cover the following topics:
 
 1. Setup the infrastructrue of our website using Terraform, Terraform Cloud and Git Hub Actions 
 2. Setup our website using HUGO and configuring Git Hub Actions for CI/CD
-
-### Prerequisites
+---
+## 1. Prerequisites
 
 - A [Git Hub Account](https://github.com/)
 - An [AWS Account](https://aws.amazon.com/it/account/)
 - A [Terraform Cloud Account](https://app.terraform.io/session)
 
-
 Let's begin!
 
-### 1 Setup the infrastructrue of our website using Terraform, Terraform Cloud and Git Hub Actions
+---
+## 2. Setup the infrastructrue of our website using Terraform, Terraform Cloud and Git Hub Actions
+
 
 Why should we use all these tools? Couldn't we just do some *Click Ops* and build what we needed directly from the AWS interface?
 
@@ -37,7 +39,7 @@ But we are Cloud Engineers, we like to **scale**. Right?
 
 Let's try to spend a few words to describe the goals I wanted to achieve and the choices I made to achieve them
 
-### 1.1 Infrastructure as Code (IaC) -> Terraform
+### 2.1 Infrastructure as Code (IaC) -> Terraform
 
 I needed something that would allow me to describe my infrastructure as code, as I said above I wanted to avoid *Click Ops*. 
 Of all the tools available on the market, I chose Terraform to achieve this goal. What the hell is **Terraform** and why should I use it?
@@ -48,7 +50,7 @@ With Terraform, you can define infrastructure as code (IaC) and use configuratio
 
 Here you will find the repository that contains the Terraform code for this project: [perosonal-website-iac](https://github.com/ettoreciarcia/personal-website-iac.git)
 
-#### Infrastructure Overview
+### 2.2 Infrastructure Overview
 
 ![architecture](../img/infrastructure.png)
 
@@ -104,7 +106,7 @@ At this point you might be tempted to set up terraform locally and run a ```terr
 
 But why do it? If everyone on a team worked with local state, **chaos would reign**.
 
-### 1.2 Terraform Cloud
+### 2.3 Terraform Cloud
 
 In this phase we will go one step further because we will not manage the status of our Terraform project locally, but we will use **Terraform Cloud**, a web-based application that provides collaboration, governance, and automation features for teams using Terraform. It is designed to make it easier to use Terraform in a collaborative environment by providing features such as remote state management, version control, and a private module registry.
 
@@ -126,7 +128,7 @@ Finally, go to the [Tokens page](https://app.terraform.io/app/settings/tokens?ut
 
 We're done on Terraform Cloud!
 
-### 1.3 Continuos Integration/Continous Deployment  CI/CD) -> Git Hub Actions
+### 2.4 Continuos Integration/Continous Deployment  CI/CD) -> Git Hub Actions
 
 Here the choice was almost forced as my IaC repository is on Git Hub and I have a Premium account which gives me access to free minutes of calculation using GH Actions.
 Automating Terraform with CI/CD enforces configuration best practices, promotes collaboration and automates the Terraform workflow.
@@ -190,7 +192,10 @@ The output of the plan is in line with what we expected, so we can proceed with 
 
 Here we are! Our changes have finally arrived on AWS, our bucket has been created!
 
-### 2. Setup our website using HUGO
+---
+## 3 Setup our website using HUGO and configuring Git Hub Actions for CI/CD
+
+### 3.1 Application Code Repository
 
 Hugo is a fast and modern static site generator written in Go.
 
@@ -201,6 +206,7 @@ git clone https://github.com/ettoreciarcia/personal-website-hugo.git
 In this phase we will deploy our website on the infrastructure created in the previous point.
 What do we need? The infrastructure is already in place, all that remains is to create the pipeline for automatic deployment.
 
+### 3.2 Authenticate github actions against AWS
 The GitHub Actions will make API calls to AWS, in particular on our s3 bucket and on the CDN to invalidate its cache. To carry out this operation they will therefore have to authenticate themselves.
 
 In the previous point, within the security module, we created:
@@ -252,7 +258,7 @@ resource "aws_iam_user_policy_attachment" "github_actions_policy_attachment" {
 Now we can generate *AWS_ACCESS_KEY* and *AWS_SECRET_ACCESS_KEY* from AWS console and insert this value in Git Hub Action secret in our applicaiton repository.
 We also need to configure *BUCKET_NAME* and *DISTRIBUTION*
 
-
+### 3.3 GitHub Actions Configuration
 
 This is the file that will create our Git Hub Acction:
 
@@ -312,12 +318,16 @@ As you can see our pipeline will perform 3 main operations when some code reache
 2. Deploy to S3
 3. CDN Invalidation
 
+### 3.4 Let's go for a run
+
 Let's see our pipeline at work, let's push something to the main branch!
 
 ![website-pipeline](../img/website-pipeline.gif)
 
 Less than 30 seconds after pushing the code our changes are already "in production"!
-### Costs
+
+---
+## 4. Costs
 The total costs of the infrastructure:
 -  $ 0.50 per month 
 -  $ 12 per year for the purchase of the *ettoreciarcia.com* domain.
@@ -328,7 +338,8 @@ To these must be added the taxes which bring us to $22.14
 
 I know there are cheaper solutions (Sometimes even free) that allow you to host static websites, but in this case my goal was to have fun with AWS during the Christmas holidays
 
-### Conclusions
+___
+## 5. Conclusion
 
 Today I presented my solution, my Terraform code and some automation.
 
@@ -336,3 +347,15 @@ This is also my first official "technical" article on this blog. I am very excit
 
 If you have followed me here I hope that what you have read has been useful to you!
 If you see errors and have more elegant solutions than the one I proposed, don't hesitate to contact me on Linkedin or by mail 
+
+___
+## 6. Useful link
+
+[Hosting a static website using Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html)
+[Use CloudFront to serve a static website hosted on S3](https://aws.amazon.com/it/premiumsupport/knowledge-center/cloudfront-serve-static-website/)
+[Get Started - Terraform Cloud](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started)
+[Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart)
+[Automate Terraform with GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions)
+[Troubleshoot Terraform](https://developer.hashicorp.com/terraform/tutorials/configuration-language/troubleshooting-workflow)
+[HUGO](https://gohugo.io/)
+[Template of my website](https://github.com/adityatelange/hugo-PaperMod)
