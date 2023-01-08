@@ -3,7 +3,7 @@ title: "How to deploy your own website on AWS with Terraform and Git Hub Actions
 date: 2023-01-06T13:41:''+01:00
 tags: [AWS, Terraform, IaC, Git, Infrastructure, Best Practices]
 categories: [AWS, Terraform, Pipeline]
-draft: true
+draft: false
 ---
 
 One of my resolutions for 2023 was to write constantly on this blog. I thought a lot about what to bring as my first article.
@@ -11,9 +11,8 @@ What better topic than what is behind this site?
 
 In this article we will cover the following topics:
 
-1. Setup the infrastructrue of our website using Terraform, Terraform Cluod and Git Hub Actions 
-1. Create a repository for our website using HUGO
-2. Create a CI/CD pipeline for our website using Git Hub Actions
+1. Setup the infrastructrue of our website using Terraform, Terraform Cloud and Git Hub Actions 
+2. Setup our website using HUGO and configuring Git Hub Actions for CI/CD
 
 #### Prerequisites
 
@@ -24,7 +23,7 @@ In this article we will cover the following topics:
 
 Let's begin!
 
-### 1 Setup the infrastructrue of our website using Terraform, Terraform Cluod and Git Hub Actions
+### 1 Setup the infrastructrue of our website using Terraform, Terraform Cloud and Git Hub Actions
 
 Why should we use all these tools? Couldn't we just do some *Click Ops* and build what we needed directly from the AWS interface?
 
@@ -94,6 +93,8 @@ domain_name         = "YOUR_DOMAIN_NAME"
 route53_zone_id     = "YOUR_ROUTE_53_ZONE_ID"
 ```
 
+This Terraform code does not create the domain name on Route53 and the ACM, I had already created these two resources previously and I limited myself to inserting them into the project as input variables (*route53_zone_id* and *acm_certificate_arn*)
+
 You can make sure the configuration is ok by moving to the ```environment/prod``` folder and running 
 
 ```terraform init```
@@ -127,7 +128,7 @@ Finally, go to the [Tokens page](https://app.terraform.io/app/settings/tokens?ut
 
 We're done on Terraform Cloud!
 
-### Continuos Integration/Continous Deployment  CI/CD) -> Git Hub Actions
+### 1.3 Continuos Integration/Continous Deployment  CI/CD) -> Git Hub Actions
 
 Here the choice was almost forced as my IaC repository is on Git Hub and I have a Premium account which gives me access to free minutes of calculation using GH Actions.
 Automating Terraform with CI/CD enforces configuration best practices, promotes collaboration and automates the Terraform workflow.
@@ -141,80 +142,6 @@ At this point you can fork my [repository](https://github.com/ettoreciarcia/pers
 
 ![import-token](../img/import-token.gif)
 
-This file define all action in the workflow
-
-```yaml
-name: "Terraform"
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-
-jobs:
-  terraform:
-    name: "Terraform"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          # terraform_version: 0.13.0:
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-      - name: Terraform Format
-        id: fmt
-        run: terraform fmt -check
-
-      - name: Terraform Init
-        id: init
-        run: terraform init
-      
-      - name: Terraform Validate
-        id: validate
-        run: terraform validate -no-color
-
-      - name: Terraform Plan
-        id: plan
-        if: github.event_name == 'pull_request'
-        run: terraform plan -no-color -input=false
-        continue-on-error: true
-
-      - uses: actions/github-script@v6
-        if: github.event_name == 'pull_request'
-        env:
-          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
-            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
-            <details><summary>Show Plan</summary>
-            \`\`\`\n
-            ${process.env.PLAN}
-            \`\`\`
-            </details>
-            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: output
-            })
-      - name: Terraform Plan Status
-        if: steps.plan.outcome == 'failure'
-        run: exit 1
-
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
-```
 
 This is what happens when your freshly baked code arrives on this repository
 
@@ -239,5 +166,152 @@ resource "aws_s3_bucket" "bucket_gh_actions" {
 
 You can push your code to the newly created branch and open a Pull Request!
 
+![PR](../img/PR.gif)
 
-![PF](../img/PR.gif)
+As you can see the GitHub Actions were activated when we created the PR and a preliminary check was performed on the code involved in the PR
+
+![pr-after](../img/pr-after.png)
+
+
+They performed the following operations
+
+- Code Format and Style
+- Run ```Terraform init```
+- Run ```Terraform validate```
+- Run ```Terraform plan```
+
+At this point we want to check the output of the ```terraform plan``` command, to verify that the test bucket we requested is created as we expect.
+
+![check-plan](../img/check-plan.gif)
+
+These changes will become effective when we merge our PR within the main branch.
+
+The output of the plan is in line with what we expected, so we can proceed with the merge!
+
+![apply](../img/apply.gif)
+
+Here we are! Our changes have finally arrived on AWS, our bucket has been created!
+
+### 2. Setup our website using HUGO
+
+Hugo is a fast and modern static site generator written in Go.
+
+You can clone my website code using
+```shell
+https://github.com/ettoreciarcia/personal-website-hugo.git
+```
+In this phase we will deploy our website on the infrastructure created in the previous point.
+What do we need? The infrastructure is already in place, all that remains is to create the pipeline for automatic deployment.
+
+The GitHub Actions will make API calls to AWS, in particular on our s3 bucket and on the CDN to invalidate its cache. To carry out this operation they will therefore have to authenticate themselves.
+
+In the previous point, within the security module, we created:
+- A user
+```HCL
+resource "aws_iam_user" "github_actions" {
+  name = "github-actions-${local.application_name}-${local.environment}"
+}
+```
+- A policy for this user whuch grants this user all privileges on only the affected bucket and the powers to invalidate the CDN serving this bucket
+```HCL
+resource "aws_iam_policy" "github_actions_policy" {
+  name = "${local.application_name}-${local.environment}-github-actions-policy"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": [
+        "${var.bucket_arn}",
+        "${var.bucket_arn}/*"
+      ],
+      "Action": [
+        "s3:*"
+      ]
+    },
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": "cloudfront:CreateInvalidation",
+      "Resource": "${var.cloudfront_distribution_arn}"
+    }
+  ]
+}
+POLICY
+}
+```
+
+then we attacched this policy to our users
+```HCL
+resource "aws_iam_user_policy_attachment" "github_actions_policy_attachment" {
+  user       = aws_iam_user.github_actions.name
+  policy_arn = aws_iam_policy.github_actions_policy.arn
+}
+```
+
+Now we can generate *AWS_ACCESS_KEY* and *AWS_SECRET_ACCESS_KEY* from AWS console and insert this value in Git Hub Action secret in our applicaiton repository.
+We also need to configure *BUCKET_NAME* and *DISTRIBUTION*
+
+
+
+This is the file that will create our Git Hub Acction:
+
+```yaml
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Set a branch to deploy
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.91.2"
+          # extended: true
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: Deploy
+        run: aws s3 sync ./public s3://${{ secrets.BUCKET_NAME }}
+
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
+          PATHS: "/*"
+          AWS_REGION: "us-west-1"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+```
+
+
+As you can see our pipeline will perform 3 main operations when some code reaches the main branch:
+
+1. Build the code
+2. Deploy to S3
+3. CDN Invalidation
+
+Let's see our pipeline at work, let's push something to the main branch!
