@@ -48,9 +48,7 @@ Here you will find the repository that contains the Terraform code for this proj
 
 #### Infrastructure Overview
 
-<p align="center">
-<img src="../img/infrastructure.png" alt="drawing" width="600"/>
-</p>
+![architecture](../img/infrastructure.png)
 
 The repository is public, you can clone it using the command
 
