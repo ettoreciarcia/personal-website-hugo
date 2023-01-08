@@ -48,8 +48,9 @@ Here you will find the repository that contains the Terraform code for this proj
 
 #### Infrastructure Overview
 
-![infrastructure](../img/infrastructure.png)
-
+<p align="center">
+<img src="../img/infrastructure.png" alt="drawing" width="600"/>
+</p>
 
 The repository is public, you can clone it using the command
 
@@ -198,7 +199,7 @@ Hugo is a fast and modern static site generator written in Go.
 
 You can clone my website code using
 ```shell
-https://github.com/ettoreciarcia/personal-website-hugo.git
+git clone https://github.com/ettoreciarcia/personal-website-hugo.git
 ```
 In this phase we will deploy our website on the infrastructure created in the previous point.
 What do we need? The infrastructure is already in place, all that remains is to create the pipeline for automatic deployment.
@@ -315,3 +316,25 @@ As you can see our pipeline will perform 3 main operations when some code reache
 3. CDN Invalidation
 
 Let's see our pipeline at work, let's push something to the main branch!
+
+![website-pipeline](../img/website-pipeline.gif)
+
+### Costs
+The total costs of the infrastructure:
+-  $ 0.50 per month 
+-  $ 12 per year for the purchase of the *ettoreciarcia.com* domain.
+
+The total annual cost is approximately $18
+
+To these must be added the taxes which bring us to $22.14
+
+I know there are cheaper solutions (Sometimes even free) that allow you to host static websites, but in this case my goal was to have fun with AWS during the Christmas holidays :)
+
+### Conclusion
+
+Today I presented my solution, my Terraform code and some automation.
+
+This is also my first official "technical" article on this blog. I am very excited
+
+If you have followed me here I hope that what you have read has been useful to you!
+If you see errors and have more elegant solutions than the one I proposed, don't hesitate to contact me on Linkedin or by mail :)
