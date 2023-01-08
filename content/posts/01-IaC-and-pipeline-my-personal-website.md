@@ -16,7 +16,7 @@ In this article we will cover the following topics:
 1. Setup the infrastructrue of our website using Terraform, Terraform Cloud and Git Hub Actions 
 2. Setup our website using HUGO and configuring Git Hub Actions for CI/CD
 
-#### Prerequisites
+### Prerequisites
 
 - A [Git Hub Account](https://github.com/)
 - An [AWS Account](https://aws.amazon.com/it/account/)
@@ -328,7 +328,7 @@ To these must be added the taxes which bring us to $22.14
 
 I know there are cheaper solutions (Sometimes even free) that allow you to host static websites, but in this case my goal was to have fun with AWS during the Christmas holidays
 
-### Conclusion
+### Conclusions
 
 Today I presented my solution, my Terraform code and some automation.
 
