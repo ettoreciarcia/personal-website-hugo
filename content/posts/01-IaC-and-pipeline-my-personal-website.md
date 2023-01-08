@@ -1,8 +1,10 @@
 ---
 title: "How to deploy your own website on AWS with Terraform and Git Hub Actions!"
+summary: "In this article we will build the infrastructure that our site needs by managing site releases with CI/CD pipelines"
 date: 2023-01-06T13:41:''+01:00
 tags: [AWS, Terraform, IaC, Git, Infrastructure, Best Practices]
 categories: [AWS, Terraform, Pipeline]
+weight: "1"
 draft: false
 ---
 
@@ -44,7 +46,7 @@ Terraform is a tool for building, changing, and versioning infrastructure safely
 
 With Terraform, you can define infrastructure as code (IaC) and use configuration files to create and manage infrastructure resources. This makes it easier to version control your infrastructure and collaborate with others. Terraform also provides a number of helpful features, such as dependency management, resource targeting, and the ability to roll back changes.
 
-Here you will find the repository that contains the Terraform code for this project: [perosona-website-iac](https://github.com/ettoreciarcia/personal-website-iac.git)
+Here you will find the repository that contains the Terraform code for this project: [perosonal-website-iac](https://github.com/ettoreciarcia/personal-website-iac.git)
 
 #### Infrastructure Overview
 
@@ -60,19 +62,16 @@ The Terraform project has this structure
 
 ```shell
 .
-
 ├── .github/
     ├── workflows/
         ├── terraform.yml <-- For Git Hub Actions 
 ├── modules/
 │   ├── infra/  <--- Create infra resources here
 │   └── security/ <-- Create IAM reosurce here
-├── environemnt/
-    ├── prod/
-      ├── main.tf <-- Here we call the infra and security modules for resource creation
-      ├── variables.tf
-      ├── output.tf
-      ├── personal-website.auto.tfvars
+├── main.tf <-- Here we call the infra and security modules for resource creation
+├── variables.tf
+├── output.tf
+├── personal-website.auto.tfvars
 ├── .pre-commit-config.yaml <-- Pre commit check on HCL (fmt)
 ├── personal-website.auto.tfvars
 ├── README.md
@@ -94,7 +93,7 @@ route53_zone_id     = "YOUR_ROUTE_53_ZONE_ID"
 
 This Terraform code does not create the domain name on Route53 and the ACM, I had already created these two resources previously and I limited myself to inserting them into the project as input variables (*route53_zone_id* and *acm_certificate_arn*)
 
-You can make sure the configuration is ok by moving to the ```environment/prod``` folder and running 
+You can make sure the configuration is ok by moving to root path in folder and running 
 
 ```terraform init```
 
@@ -123,7 +122,7 @@ Next, add the following as Environment Variables for your workspace with their r
 
 Finally, go to the [Tokens page](https://app.terraform.io/app/settings/tokens?utm_source=learn) in your Terraform Cloud User Settings. Click on "Create an API token" and generate an API token named GitHub Actions.
 
-![Token](img/token.gif)
+![Token](../img/token.gif)
 
 We're done on Terraform Cloud!
 
@@ -317,6 +316,7 @@ Let's see our pipeline at work, let's push something to the main branch!
 
 ![website-pipeline](../img/website-pipeline.gif)
 
+Less than 30 seconds after pushing the code our changes are already "in production"!
 ### Costs
 The total costs of the infrastructure:
 -  $ 0.50 per month 
@@ -326,7 +326,7 @@ The total annual cost is approximately $18
 
 To these must be added the taxes which bring us to $22.14
 
-I know there are cheaper solutions (Sometimes even free) that allow you to host static websites, but in this case my goal was to have fun with AWS during the Christmas holidays :)
+I know there are cheaper solutions (Sometimes even free) that allow you to host static websites, but in this case my goal was to have fun with AWS during the Christmas holidays
 
 ### Conclusion
 
@@ -335,4 +335,4 @@ Today I presented my solution, my Terraform code and some automation.
 This is also my first official "technical" article on this blog. I am very excited
 
 If you have followed me here I hope that what you have read has been useful to you!
-If you see errors and have more elegant solutions than the one I proposed, don't hesitate to contact me on Linkedin or by mail :)
+If you see errors and have more elegant solutions than the one I proposed, don't hesitate to contact me on Linkedin or by mail 
