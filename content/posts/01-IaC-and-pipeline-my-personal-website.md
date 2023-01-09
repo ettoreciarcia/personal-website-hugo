@@ -7,6 +7,7 @@ categories: [AWS, Terraform, Pipeline]
 weight: "999"
 showToc: true
 draft: false
+
 ---
 
 One of my resolutions for 2023 was to write constantly on this blog. I thought a lot about what to bring as my first article.
@@ -15,7 +16,7 @@ What better topic than what is behind this site?
 In this article we will cover the following topics:
 
 1. Setup the infrastructrue of our website using Terraform, Terraform Cloud and Git Hub Actions 
-2. Setup our website using HUGO and configuring Git Hub Actions for CI/CD
+2. Setup our website using HUGO and configuring GitHub Actions for CI/CD
 ---
 ## 1. Prerequisites
 
@@ -255,7 +256,7 @@ resource "aws_iam_user_policy_attachment" "github_actions_policy_attachment" {
 }
 ```
 
-Now we can generate *AWS_ACCESS_KEY* and *AWS_SECRET_ACCESS_KEY* from AWS console and insert this value in Git Hub Action secret in our applicaiton repository.
+Now we can generate *AWS_ACCESS_KEY* and *AWS_SECRET_ACCESS_KEY* from AWS console and insert this value in GitHub Action secret in our applicaiton repository.
 We also need to configure *BUCKET_NAME* and *DISTRIBUTION*
 
 ### 3.3 GitHub Actions Configuration
@@ -349,7 +350,7 @@ If you have followed me here I hope that what you have read has been useful to y
 If you see errors and have more elegant solutions than the one I proposed, don't hesitate to contact me on Linkedin or by mail 
 
 ___
-## 6. Useful link
+## 6. Useful links
 
 [Hosting a static website using Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html)
 [Use CloudFront to serve a static website hosted on S3](https://aws.amazon.com/it/premiumsupport/knowledge-center/cloudfront-serve-static-website/)
