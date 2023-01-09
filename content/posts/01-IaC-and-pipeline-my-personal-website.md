@@ -353,10 +353,16 @@ ___
 ## 6. Useful links
 
 [Hosting a static website using Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html)
+
 [Use CloudFront to serve a static website hosted on S3](https://aws.amazon.com/it/premiumsupport/knowledge-center/cloudfront-serve-static-website/)
+
 [Get Started - Terraform Cloud](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started)
+
 [Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart)
+
 [Automate Terraform with GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions)
+
 [Troubleshoot Terraform](https://developer.hashicorp.com/terraform/tutorials/configuration-language/troubleshooting-workflow)
+
 [HUGO](https://gohugo.io/)
 [Template of my website](https://github.com/adityatelange/hugo-PaperMod)
