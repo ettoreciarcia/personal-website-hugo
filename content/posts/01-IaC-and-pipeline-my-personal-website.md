@@ -7,6 +7,9 @@ categories: [AWS, Terraform, Pipeline]
 weight: "999"
 showToc: true
 draft: false
+#featured_image: "../img/flow.png"
+cover:
+  image: "../img/01/cover2.jpeg"
 
 ---
 
