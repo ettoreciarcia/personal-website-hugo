@@ -1,17 +1,18 @@
 ---
 title: "How to deploy your own website on AWS with Terraform and Git Hub Actions!"
 summary: "In this article we will build the infrastructure that our site needs by managing site releases with CI/CD pipelines"
-date: 2023-01-06T13:41:''+01:00
+date: 2023-01-06T16:51:02+01:00
 tags: [AWS, Terraform, IaC, Git, Infrastructure, Best Practices]
 categories: [AWS, Terraform, Pipeline]
 weight: "999"
 showToc: true
 draft: false
-#featured_image: "../img/flow.png"
+#featured_image: "../img/01/flow.png"
 cover:
-  image: "../img/01/cover.jpeg"
-
+  image: "../img/01/01/cover.jpeg"
 ---
+
+![cover](../img/01/cover.jpeg)
 
 One of my resolutions for 2023 was to write constantly on this blog. I thought a lot about what to bring as my first article.
 What better topic than what is behind this site?
@@ -56,7 +57,7 @@ Here you will find the repository that contains the Terraform code for this proj
 
 ### 2.2 Infrastructure Overview
 
-![architecture](../img/infrastructure.png)
+![architecture](../img/01/infrastructure.png)
 
 The repository is public, you can clone it using the command
 
@@ -119,7 +120,7 @@ If you don't have a Terraform Cloud account yet, you can sign up [here](https://
 
 Then you can create your first workspace! 
 
-![workspace-creation](../img/assets.gif)
+![workspace-creation](../img/01/assets.gif)
 
 Next, add the following as Environment Variables for your workspace with their respective values from the access credentials file you downloaded from AWS.
 
@@ -128,7 +129,7 @@ Next, add the following as Environment Variables for your workspace with their r
 
 Finally, go to the [Tokens page](https://app.terraform.io/app/settings/tokens?utm_source=learn) in your Terraform Cloud User Settings. Click on "Create an API token" and generate an API token named GitHub Actions.
 
-![Token](../img/token.gif)
+![Token](../img/01/token.gif)
 
 We're done on Terraform Cloud!
 
@@ -144,12 +145,12 @@ But trust me, in case multiple people from the same team or even different teams
 
 At this point you can fork my [repository](https://github.com/ettoreciarcia/personal-website-iac) and import the token created in the previous step
 
-![import-token](../img/import-token.gif)
+![import-token](../img/01/import-token.gif)
 
 
 This is what happens when your freshly baked code arrives on this repository
 
-![flow-terraform](../img/flow.png)
+![flow-terraform](../img/01/flow.png)
 
 
 Now you can try working on a new branch and then make a Pull Request and see the flow of Git Hub Actions!
@@ -170,11 +171,11 @@ resource "aws_s3_bucket" "bucket_gh_actions" {
 
 You can push your code to the newly created branch and open a Pull Request!
 
-![PR](../img/PR.gif)
+![PR](../img/01/PR.gif)
 
 As you can see the GitHub Actions were activated when we created the PR and a preliminary check was performed on the code involved in the PR
 
-![pr-after](../img/pr-after.png)
+![pr-after](../img/01/pr-after.png)
 
 
 They performed the following operations
@@ -186,13 +187,13 @@ They performed the following operations
 
 At this point we want to check the output of the ```terraform plan``` command, to verify that the test bucket we requested is created as we expect.
 
-![check-plan](../img/check-plan.gif)
+![check-plan](../img/01/check-plan.gif)
 
 These changes will become effective when we merge our PR within the main branch.
 
 The output of the plan is in line with what we expected, so we can proceed with the merge!
 
-![apply](../img/apply.gif)
+![apply](../img/01/apply.gif)
 
 Here we are! Our changes have finally arrived on AWS, our bucket has been created!
 
@@ -326,7 +327,7 @@ As you can see our pipeline will perform 3 main operations when some code reache
 
 Let's see our pipeline at work, let's push something to the main branch!
 
-![website-pipeline](../img/website-pipeline.gif)
+![website-pipeline](../img/01/website-pipeline.gif)
 
 Less than 30 seconds after pushing the code our changes are already "in production"!
 
