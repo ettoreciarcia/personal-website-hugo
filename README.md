@@ -1,9 +1,9 @@
 # personal-webiste-hugo
 My new portfolio/blog website with hugo 
 
-## Old Architecture overview
+## Architecture Overview
 
-![Architecture](architecture.png)
+![Architecture](infrastructure.png)
 
 ## Useful command
 

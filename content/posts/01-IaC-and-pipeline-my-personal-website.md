@@ -9,7 +9,7 @@ showToc: true
 draft: false
 #featured_image: "../img/flow.png"
 cover:
-  image: "../img/01/cover2.jpeg"
+  image: "../img/01/cover.jpeg"
 
 ---
 
