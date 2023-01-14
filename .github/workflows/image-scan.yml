@@ -19,7 +19,12 @@ jobs:
       - name: Scan Docker Image
         uses: aquasecurity/trivy-action@0.8.0
         with:
-          args: --exit-code 1 --severity HIGH
+          image-ref: 'docker.io/hecha00/personal-website:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
 
 
       - name: Set up QEMU
