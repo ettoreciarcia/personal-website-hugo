@@ -17,7 +17,7 @@ jobs:
           docker build -t docker.io/hecha00/personal-website:${{ github.sha }} .
 
       - name: Scan Docker Image
-        uses: aquasecurity/trivy-scan-action@v1
+        uses: aquasecurity/trivy-action@0.8.0
         with:
           args: --exit-code 1 --severity HIGH
 
