@@ -16,18 +16,12 @@ jobs:
         run: |
           docker build -t docker.io/hecha00/personal-website:${{ github.sha }} .
 
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
+      - name: Scan Docker Image
+        uses: aquasecurity/trivy-scan-action@v1
         with:
-          image-ref: 'docker.io/hecha00/personal-website:${{ github.sha }}'
-          format: 'sarif'
-          output: 'trivy-results.sarif'
+          args: --exit-code 1 --severity HIGH
 
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: 'trivy-results.sarif'
-          
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
