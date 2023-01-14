@@ -111,7 +111,7 @@ params:
   cover:
     hidden: false # hide everywhere but not in structured data
     hiddenInList: false # hide on list pages and home
-    hiddenInSingle: true # hide on single page
+    hiddenInSingle: false # hide on single page
 
   editPost:
     URL: "https://github.com/ettoreciarcia/personal-website-hugo/tree/main/content/"

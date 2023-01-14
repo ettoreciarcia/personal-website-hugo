@@ -7,12 +7,10 @@ categories: [AWS, Terraform, Pipeline]
 weight: "999"
 showToc: true
 draft: false
-#featured_image: "../img/01/flow.png"
 cover:
-  image: "../img/01/01/cover.jpeg"
+  image: "../img/01/cover.jpeg"
 ---
 
-![cover](../img/01/cover.jpeg)
 
 One of my resolutions for 2023 was to write constantly on this blog. I thought a lot about what to bring as my first article.
 What better topic than what is behind this site?
