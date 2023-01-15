@@ -1,7 +1,7 @@
 ---
+date: 2023-01-06T16:51:02+01:00
 title: "How to deploy your own website on AWS with Terraform and Git Hub Actions!"
 summary: "In this article we will build the infrastructure that our site needs by managing site releases with CI/CD pipelines"
-date: 2023-01-06T16:51:02+01:00
 tags: [AWS, Terraform, IaC, Git, Infrastructure, Best Practices]
 categories: [AWS, Terraform, Pipeline]
 weight: "999"

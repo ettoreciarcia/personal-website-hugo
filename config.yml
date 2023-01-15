@@ -34,7 +34,7 @@ params:
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowWordCount: true
-  ShowRssButtonInSectionTermList: true
+  ShowRssButtonInSectionTermList: false
   UseHugoToc: true
   disableSpecial1stPost: false
   disableScrollToTop: false
@@ -137,23 +137,27 @@ menu:
     - identifier: Archive
       name: Archive
       url: archives
-      weight: 1
-    - identifier: Search
-      name: Search
-      url: search
       weight: 2
+    # - identifier: Search
+    #   name: Search
+    #   url: search
+      # weight: 3
     - identifier: CV
       name: CV
       url: https://my-certification-ciarcia.s3.eu-west-1.amazonaws.com/EttoreCiarcia.pdf
-      weight: 3
-    - identifier: categories
-      name: categories
-      url: /categories/
       weight: 10
-    - identifier: tags
-      name: tags
-      url: /tags/
+    - identifier: Categories
+      name: Categories
+      url: /categories/
       weight: 20
+    - identifier: Tags
+      name: Tags
+      url: /tags/
+      weight: 30
+    - identifier: Posts
+      name: Posts
+      url: /posts/
+      weigth: 40
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
