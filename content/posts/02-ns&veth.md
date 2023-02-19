@@ -127,7 +127,7 @@ The answer is **Virtual Ethernet devices!**
 
 ## 3. What is a Virtual Ethernet device (veth) and why we need it
 
-The VETH (virtual Ethernet) device is a local Ethernet tunnel. Devices are created in pairs, as shown in the diagram below.
+The VETH (virtual Ethernet) device is a local Ethernet tunnel. Devices are created in pairs, as shown in the diagram below
 
 Packets transmitted on one device in the pair are immediately received on the other device. When either device is down, the link state of the pair is down.
 
@@ -146,13 +146,13 @@ And we can list our veth
 
 ![link-list](../img/02/veth-list.png)
 
-As you can see our veth pair is in DOWN.
+As you can see our veth pair is down.
 
 Start up the veth *root_rs* 
 
 ```sudo ip link set dev veth_root_ns up```
 
-And we can then start up and move the other termiation of veth to *blue_ns* 
+And we can then start up and move the other termination of veth to *blue_ns* 
 
 ```sudo ip link set veth_blue_ns netns blue_ns```
 
@@ -177,7 +177,9 @@ This is our scenario:
 We can finally reach the web server in the root namespace from blue_ns and vice versa!
 
 ![viceversa](../img/02/viceversa.png)
+
 ## 5. Communication between blue namespace and host (via host's ip)
+
 If from the *blue_ns* we try to reach the web server running in the root namespace using the host's ip address as an endpoint, we will not be able to reach it.
 
 This happens because the *blue_ns* doesn't know how to reach the subnet where the ip address of our host is located.
