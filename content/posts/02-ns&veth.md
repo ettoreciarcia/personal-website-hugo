@@ -1,14 +1,14 @@
 ---
-title: "Kubernetes: genesis of pod IP addresses"
+title: "Networking behind container: network namespaces"
 date: 2023-01-15T00:03:07+01:00
 summary: "Containers and Network Namespaces"
-tags: [Container, Kubernetes, Networking]
-categories: [AWS, Git, Pipeline]
+tags: [Container, Kubernetes, Networking, Vagrant]
+categories: [Container, Networking, Docker, Kubernetes, Vagrant]
 weight: "998"
 showToc: true
-draft: true
+draft: false
 cover:
-  image: "../img/02/cover.jpeg"
+  image: "../img/02/cover02.jpeg"
 ---
 
 ## 0. Introduction and goals
@@ -138,7 +138,7 @@ Veth device pairs are useful for combining the network facilities of the kernel 
 
 Let's try to connect our host namespace to the *blue_ns* we just created using a veth pair!
 
-```sudo ip link add dev veth_blue type veth peer name veth_ns_blue```
+```sudo ip link add dev veth_root type veth peer name veth_ns_blue```
 
 And we can list our veth 
 
@@ -196,4 +196,18 @@ Our host's ip 192.168.0.194
 
 ![webserver-host](../img/02/webserver-host.png)
 
-## 6. Communication across multiple network namespace
+## 6 What is a bridge
+
+A Linux bridge behaves like a network switch. It forwards packets between interfaces that are connected to it. It's usually used for forwarding packets on routers, on gateways, or between VMs and network namespaces on a host. It also supports STP, VLAN filter, and multicast snooping
+
+![bridge](../img/02/bridge.png)
+
+## 7. Useful links
+
+[Linux Interfaces](https://developers.redhat.com/blog/2018/10/22/introduction-to-linux-interfaces-for-virtual-networking)
+
+[Network namespaces](https://www.youtube.com/watch?v=_WgUwUf1d34&t=1183s)
+
+[What is a veth](https://man7.org/linux/man-pages/man4/veth.4.html#:~:text=The%20veth%20devices%20are%20virtual,always%20created%20in%20interconnected%20pairs.)
+
+[What is a bridge](https://developers.redhat.com/articles/2022/04/06/introduction-linux-bridging-commands-and-features#)
