@@ -1,6 +1,6 @@
 ---
 title: "Networking behind container: network namespaces"
-date: 2023-01-15T00:03:07+01:00
+date: 2023-02-21T00:09:08+01:00
 summary: "Containers and Network Namespaces"
 tags: [Container, Kubernetes, Networking, Vagrant]
 categories: [Container, Networking, Docker, Kubernetes, Vagrant]
