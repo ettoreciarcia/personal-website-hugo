@@ -39,16 +39,28 @@ Amazon Elastic Kubernetes Service (EKS) is a fully managed Kubernetes service of
 
 With EKS, AWS manages the underlying infrastructure and Kubernetes control plane, allowing developers to focus on building and deploying their applications. EKS integrates with other AWS services, such as Elastic Load Balancing, Auto Scaling, and Amazon S3, to provide a seamless and scalable platform for running containerized applications.
 
-EKS also offers several security features, including role-based access control (RBAC), network isolation, and encryption, to ensure that applications are secure and compliant with industry standards.
-
-Overall, EKS is an ideal choice for organizations looking to adopt Kubernetes and modernize their application infrastructure. It provides a reliable and scalable platform for running containerized applications, backed by the expertise and experience of AWS
 
 ![EKS](../img/03-EKS/EKS.png)
 
 ## 2. Main differences between Kubernetes on premise and EKS
+
+The main difference between the two is that with Kubernetes on-prem, you have full control over the deployment and management of your Kubernetes cluster, including the hardware it runs on, networking configuration, and security. However, this also means you are responsible for managing and maintaining the underlying infrastructure, which can be complex and time-consuming.
+
+- Control plane
+
+![control-plane-eks](../img/03-EKS/eks-data-plane-connectivity.jpeg)
+
+EKS architecture is designed to eliminate any single points of failure that may compromise the availability and durability of the Kubernetes control plane.
+The Kubernetes control plane managed by EKS runs inside an EKS managed VPC. The EKS control plane comprises the Kubernetes API server nodes, etcd cluster. Kubernetes API server nodes that run components like the API server, scheduler, and kube-controller-manager run in an auto-scaling group. EKS runs a minimum of two API server nodes in distinct Availability Zones (AZs) within in AWS region. Likewise, for durability, the etcd server nodes also run in an auto-scaling group that spans three AZs. EKS runs a NAT Gateway in each AZ, and API servers and etcd servers run in a private subnet. This architecture ensures that an event in a single AZ doesn’t affect the EKS cluster's availability.
+
+You can configure whether your Kubernetes cluster’s API server is reachable from the public internet (using the public endpoint) or through your VPC (using the EKS-managed ENIs) or both.
+
+
 
 ## 3. EKS integration with AWS services
 
 ## 4. AWS VPC CNI
 
 ## 5. Monitoring 
+
+## 6. How can i start?
