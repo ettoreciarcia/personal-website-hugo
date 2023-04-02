@@ -4,7 +4,7 @@ date: 2023-03-31T10:41:01+02:00
 draft: false
 weight: "996"
 showToc: true
-summary: "Some optimization method to reduce your container image size! "
+summary: "An overview of what happens when we create a deployment in a Kubernetes cluster"
 tags: [Kubernetes, Container]
 categories: [Container, Kubernetes]
 cover:
