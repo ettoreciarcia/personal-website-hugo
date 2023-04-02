@@ -8,7 +8,7 @@ weight: "998"
 showToc: true
 draft: false
 cover:
-  image: "../img/02/cover02.jpeg"
+  image: "../img/02/cover-container-networking.jpeg"
 ---
 
 ## 0. Introduction and goals
