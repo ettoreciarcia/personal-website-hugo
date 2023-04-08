@@ -64,7 +64,7 @@ params:
     enabled: true # needs to be explicitly set
     title: Ettore Ciarcia
     subtitle: > 
-      Cloud Engineer @**[Epsilon](https://it.linkedin.com/company/epsilon_2)**
+      Kubernetes & Cloud Engineer @**[SIGHUP](https://sighup.io/)**
       
       
       Focused on Kubernetes, Container Technologies, Terraform and AWS
@@ -82,9 +82,9 @@ params:
   homeInfoParams:
     Title: "Hi there \U0001F44B"
     Content: >
-        I'm Ettore, a young Cloud Engineer currently working at [Epsilon](https://it.linkedin.com/company/epsilon_2)! 
+        I'm Ettore, a young Cloud Engineer currently working at [SIGHUP](https://sighup.io/)! 
 
-        - I'm focused on Kubernetes, Terraform and AWS. 
+        - I'm focused on Kubernetes, Container Technologies, Terraform and AWS. 
         
         - If you think you're better than me because I indent YAML be careful, I also indent HCL 🙂
 
