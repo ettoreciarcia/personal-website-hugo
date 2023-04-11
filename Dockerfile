@@ -1,4 +1,4 @@
-FROM klakegg/hugo as build-step
+FROM klakegg/hugo:0.107.0-ubuntu as build-step
 WORKDIR /app
 COPY . .
 RUN hugo && echo ls
