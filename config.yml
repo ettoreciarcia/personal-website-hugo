@@ -146,10 +146,10 @@ menu:
       name: CV
       url: https://my-certification-ciarcia.s3.eu-west-1.amazonaws.com/EttoreCiarcia.pdf
       weight: 10
-    - identifier: Categories
-      name: Categories
-      url: /categories/
-      weight: 20
+    # - identifier: Categories
+    #   name: Categories
+    #   url: /categories/
+      # weight: 20
     - identifier: Tags
       name: Tags
       url: /tags/
@@ -158,6 +158,10 @@ menu:
       name: Posts
       url: /posts/
       weigth: 40
+    # - identifier: Certifications
+    #   name: Certifications
+    #   url: /certifications/
+    #   weigth: 50
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
