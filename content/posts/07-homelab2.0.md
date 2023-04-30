@@ -85,7 +85,7 @@ We will have fun and learn together!
 
 ## **5 How to apply**
 
-At the moment I'm in contact with other homelab lovers on Reddit, if you want to share part of this journey with me you can contact me on Linkedin or send an email to ettoreciarcia.tech@gmail.com with "KUBERNELLO IS TOO BEAUTIFUL" as subject :)
+At the moment I'm in contact with other homelab lovers on Reddit, if you want to share part of this journey with me you can contact me on Linkedin or send an email to ettoreciarcia.tech@gmail.com with "KUBERNELLO È TROPPO BELLO " as subject :)
 
 I hope to find someone, this homelab is waiting for you!
 
