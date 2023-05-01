@@ -59,11 +59,12 @@ Working in groups will push us to make better use of code versioning systems and
 
 I posted something on Reddit to find people who share the same goal as me
 
-This is the post
-
-![post](../img/07/reddit.png)
+![post](../img/07/reddit2.png)
 
 
+I received more than 15 homelab sharing requests in less than 24 hours.
+
+It seems that Kubernetes is a very hot topic right now!
 
 ## **4 The application we will manage**
 
