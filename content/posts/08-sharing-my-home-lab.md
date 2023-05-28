@@ -83,7 +83,7 @@ At this point we felt like we were done. Tailscale gave us everything we needed.
 
 We realized we can't use Taiscale for free. At the moment there are 7 of us, almost all with our own homelab. Panic mode [ON]
 
-[TO DO] GIF BARBERO SPUTI SULLA CROCE https://www.youtube.com/watch?v=39yk28RlXfw
+![barbero](../img/08/si-fa-cosi-alessandro.gif)
 
 ## **2 The revelation: Headscale**
 
@@ -328,7 +328,7 @@ Now move into ```/headscale/development``` and run
 make ping
 ```
 
-to check that everything is ok. If it's not ok, you have probkemi with your configuration of ansible or I can't reach the ec2 instance.
+to check that everything is ok. If it's not ok, you have problem with your configuration of ansible or I can't reach the ec2 instance.
 
 Now you can finally run 
 
@@ -348,6 +348,12 @@ Now you can ssh into your instance and interact with your headscale server
 sudo headscale namespace create <NAMESPACE>
 ```
 
+and create a user:
+
+```
+sudo headscale users create myfirstuser
+```
+
 2. Then, from nodes
 
 ```
@@ -356,37 +362,50 @@ curl -fsSL https://tailscale.com/install.sh | sh
 
 ```
 
-sudo tailscale up --login-server=http://<YOUR_DOMAIN>:8080/
+sudo tailscale up --login-server=http://<YOUR_DOMAIN>:8080/ --accept-routes
 ```
 
 3. This will prompt a link on the node
 
 ```
-	http://127.0.0.1:8080/register/nodekey:<xxx>
-
-Success.
+http://127.0.0.1:8080/register/nodekey:<xxx>
 
 ```
 
-4. Visit this page from the server
-```
-curl http://127.0.0.1:8080/register/nodekey:<xxx>
+4. On your headscale server run 
 
-```
-
-5. You will find 
-
-```
-headscale -n NAMESPACE nodes register --key nodekey:<xxx>
+```shell
+sudo headscale  nodes register --key nodekey:<YOUR_MACHINE_KEY>
 ```
 
+5. Check your node list to verify that everything is ok! 
 
-Useful
+```shell
+sudo headscale nodes list
+```
 
-```headscale nodes list```
+![node-list](../img/08/node-list.png)
+
+We can now ping one instance from another on our network overlay
+
+![ping](../img/08/ping.png)
+
+6. To delete a node
+
+```sudo headscale node delete -i [ID]```
+
+## **7 Conclusions**
+
+We then set up our headscale server by automating infrastructure provisioning using terraform and configuration management using ansible.
+
+We solved the problem of sharing our homelabs via headscale and all for 0$, nothing will be billed to your AWS account.
+
+We're in the free tier, baby!
 
 
-## **7 Useful links**
+JustYamlGuys guys say hello, see you next time!
+
+## **8 Useful links**
 
 [S3 backend type Terraform](https://developer.hashicorp.com/terraform/language/settings/backends/s3)
 
