@@ -1,17 +1,17 @@
 ---
-title: "How to setup an Headscale server for free via Terraform and Ansible"
+title: "How to setup an Headscale server for free on AWS via Terraform and Ansible"
 date: 2023-05-09T23:21:07+02:00
-draft: true
+draft: false
 summary: "How to setup an Headscale server for free via Terraform and Ansible"
 tags: [Terraform, Ansible, Networking, AWS, Homelab]
 categories: [Terraform, Ansible, Networking, AWS, Homelab]
 weight: "995"
 showToc: true
 cover:
-  image: "../img/07/cover.png"
+  image: "../img/08/cover.png"
 ---
 
-## **0 Updates on homelab journey**
+## **0 Updates on my homelab journey**
 
 
 As you may have read in my previous article, I was looking for someone to keep me company on this very long journey.
@@ -79,7 +79,9 @@ Tailscale is different from a traditional VPN as it operates on a mesh network a
 
 At this point we felt like we were done. Tailscale gave us everything we needed. We could have considered the case closed. But then...
 
-[TO DO] ADD ZOOM EFFECT ON TAILSCALE'S PRICING
+![pricing-tailscale](../img/08/pricing.gif)
+
+We realized we can't use Taiscale for free. At the moment there are 7 of us, almost all with our own homelab. Panic mode [ON]
 
 [TO DO] GIF BARBERO SPUTI SULLA CROCE https://www.youtube.com/watch?v=39yk28RlXfw
 
@@ -104,7 +106,7 @@ We could have achieved the goal with any cloud provider. We chose Amazon because
 
 Move into ```/cloud``` and you will find this structure
 
-```
+```bash
 .
 ├── .pre-commit-config.yaml
 ├── .terraform.lock.hcl
@@ -192,7 +194,7 @@ provider "aws" {
 This time we will use a ```.envrc``` file to store our credentials. You can find an example file called envrc-example, 
 Change the values ​​it contains according to your aws account credentials and rename the file ```.envrc```
 
-```
+```bash
 export AWS_SECRET_ACCESS_KEY=<YOUR_SECRET_ACCESS_KEY>
 export AWS_ACCESS_KEY_ID=<YOUR_ACCESS_KEY_ID>
 export region=<YOUR_REGION>
@@ -215,4 +217,175 @@ terraform plan
 terraform apply
 ```
 
-### 3.5 Bonus point: script to copy ssh key of my teammates directly in ec2 during instance's boostrap
+### 3.5 Bonus point: script to copy ssh key of my teammates directly in ec2 during instance's boostrap (user_data)
+
+Within the terraform project, at the path ```cloud/aws/headscacale/server```
+
+you will find the bash script that hp used to copy our public keys taken directly from github in the authorized_keys file of our ec2 instance
+
+```bash
+#!/bin/bash
+# Check if Go is installed
+if ! command -v go &> /dev/null; then
+    echo "Go is not installed. Installing Go..."
+
+    # Download the Go binary archive
+    wget https://golang.org/dl/go1.17.5.linux-amd64.tar.gz
+
+    # Extract the archive
+    sudo tar -C /usr/local -xzf go1.17.5.linux-amd64.tar.gz
+
+    # Add Go binaries to the PATH environment variable
+    echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee -a /etc/profile.d/go.sh
+
+    # Reload the profile
+    source /etc/profile.d/go.sh
+
+    rm go1.17.5.linux-amd64.tar.gz
+    
+    echo "Go has been installed."
+fi
+
+
+# Clone the repository
+echo "Cloning the repository..."
+git clone https://github.com/JustYAMLGuys/utility.git /tmp/app
+cd /tmp/app/utility/ssh-key-from-gh/app || exit 1
+
+# Build and run the Go program
+echo "Building and running the program..."
+sudo -u ubuntu /usr/local/go/bin/go run main.go
+
+# Cleanup: Remove the cloned repository
+echo "Cleaning up..."
+cd ../..
+rm -rf /tmp/app
+
+echo "Script completed successfully."
+```
+
+
+This script takes the list of users of our github organization and for each user fetches the public ssh keys via the API call on the endpoint ```https://api.github.com/users/$ORGANIZATION_NAME/keys```
+
+You can clone the repo and do something similar with your organization or just your account.
+
+### 3.6 Our infrastracture after "terraform apply"
+
+![architecture.png](../img/08/architecture.png)
+
+
+## 4 Ansible: time to configure our headscale server
+
+We have an Ansible playbook for installing Headscale on our server. You can clone it locally using
+
+```git clone https://github.com/JustYAMLGuys/ansible-roles```
+
+
+At this point we just have to run the ansible playbook against the public ip address of the ec2 instance to get everything&running!
+
+
+Edit the ```hosts.ini``` file in ```headscale/development``` with the public ip address of your ec2 instance (you can easily retrieve it from console)
+
+Ans change default vars if you want. If you don't, the playbook will configure your instance with this default value:
+
+```yaml
+---
+headscale_become: true
+headscale_become_user: root
+
+headscale_version: v0.18.0
+headscale_binary: headscale_0.18.0_linux_amd64
+# yamllint disable-line rule:line-length
+headscale_tarball_sha256: eedaff1af1e79b10a2ab7256118600b3b6528604be1c8c32d851a32bf3c48cea
+
+# yamllint disable-line rule:line-length
+headscale_download_url: "https://github.com/juanfont/headscale/releases/download/{{ headscale_version }}/{{ headscale_binary }}"
+
+headscale_dir: /srv/headscale
+headscale_server_url: http://127.0.0.1:8080
+headscale_listen_addr: 0.0.0.0:8080
+headscale_nameservers: ['1.1.1.1']
+headscale_base_domain: example.org
+```
+
+Now move into ```/headscale/development``` and run 
+
+```
+make ping
+```
+
+to check that everything is ok. If it's not ok, you have probkemi with your configuration of ansible or I can't reach the ec2 instance.
+
+Now you can finally run 
+
+```
+make headacale
+```
+
+to install headscale and its dependencies on your server!
+
+## 5 Create your overlay network and add hosts to it
+
+Now you can ssh into your instance and interact with your headscale server
+
+1. On the headscale server:
+
+```
+sudo headscale namespace create <NAMESPACE>
+```
+
+2. Then, from nodes
+
+```
+curl -fsSL https://tailscale.com/install.sh | sh
+```
+
+```
+
+sudo tailscale up --login-server=http://<YOUR_DOMAIN>:8080/
+```
+
+3. This will prompt a link on the node
+
+```
+	http://127.0.0.1:8080/register/nodekey:<xxx>
+
+Success.
+
+```
+
+4. Visit this page from the server
+```
+curl http://127.0.0.1:8080/register/nodekey:<xxx>
+
+```
+
+5. You will find 
+
+```
+headscale -n NAMESPACE nodes register --key nodekey:<xxx>
+```
+
+
+Useful
+
+```headscale nodes list```
+
+
+## 6. Useful links
+
+[S3 backend type Terraform](https://developer.hashicorp.com/terraform/language/settings/backends/s3)
+
+[Virtual Private Network](https://en.wikipedia.org/wiki/Virtual_private_network)
+
+[How tailscale works](https://tailscale.com/blog/how-tailscale-works/)
+
+[How NAT traversal works](https://tailscale.com/blog/how-nat-traversal-works/)
+
+[How Ansible works](https://www.ansible.com/overview/how-ansible-works)
+
+[What is asdf](https://asdf-vm.com/)
+
+[What is direnv](https://direnv.net/)
+
+[What is pre-commit](https://pre-commit.com/)
