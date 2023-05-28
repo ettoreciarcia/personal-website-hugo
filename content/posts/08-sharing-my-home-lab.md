@@ -85,14 +85,14 @@ We realized we can't use Taiscale for free. At the moment there are 7 of us, alm
 
 [TO DO] GIF BARBERO SPUTI SULLA CROCE https://www.youtube.com/watch?v=39yk28RlXfw
 
-## 2 The revelation: Headscale
+## **2 The revelation: Headscale**
 
 
 Tailscale has an open source version called [Headscale](https://github.com/juanfont/headscale). Of course, this open-source version requires some elbow grease for self-hosting.
 
 And we are DevOps. Let's dive in
 
-## 3 Setup Headscale on Ec2 instance via Terraform
+## **3 Setup Headscale on Ec2 instance via Terraform**
 
 This part is perhaps the most inflated.
 We need a server to run our headscale on.
@@ -143,17 +143,19 @@ We then have the module that creates the ec2 instance on which we will install h
 This is what you're going to create using this form
 
 
-### 3.1 A few tools to make our life easier
+### **3.1 A few tools to make our life easier**
 
 As you can see from the tree of the previous chapter this project contains some dotfiles
 
 **.tool-versions** : is typically used to specify the versions of different tools or dependencies required for that specific project or environment. It is commonly used in development setups, especially with tools that support version managers. We are using it in combination with [**asdf**](https://asdf-vm.com/)
 
-**.envrc** : we are using it in combination with asdf to create a local environment for this project. 
+**.envrc** : we are using it in combination with asdf to create a local environment for this project.
+
+**.pre-commit**:  the pre-commit file is a Git hook that is automatically executed before making a commit. Its main purpose is to run scripts, checks, or custom actions before committing changes to the repository. This hook can be used to automate verification processes or ensure that the code in the repository meets specific criteria or standards before being recorded as part of the project's history.
 
 Follow this article to install asdf and envrc on your client -> [How to manage multiple CLI tool versions with ease: direnv + asdf on macOS (SIGHUP)](https://blog.sighup.io/manage-tools-with-ease-direnv-asdf/)
 
-### 3.2 Setup your Terraform's backend
+### **3.2 Setup your Terraform's backend**
 
 
 This time we can't use Terraform Cloud for several reasons:
@@ -189,7 +191,7 @@ provider "aws" {
 }
 ```
 
-### 3.3 Setup your AWS profile
+### **3.3 Setup your AWS profile**
 
 This time we will use a ```.envrc``` file to store our credentials. You can find an example file called envrc-example, 
 Change the values ​​it contains according to your aws account credentials and rename the file ```.envrc```
@@ -201,7 +203,7 @@ export region=<YOUR_REGION>
 ```
 
 
-### 3.4 Everything is ready, let's provision our infrastructure
+### **3.4 Everything is ready, let's provision our infrastructure**
 
 Move into ```infra/cloud``` and run 
 
@@ -217,7 +219,7 @@ terraform plan
 terraform apply
 ```
 
-### 3.5 Bonus point: script to copy ssh key of my teammates directly in ec2 during instance's boostrap (user_data)
+### **3.5 Bonus point: script to copy ssh key of my teammates directly in ec2 during instance's boostrap (user_data)**
 
 Within the terraform project, at the path ```cloud/aws/headscacale/server```
 
@@ -269,12 +271,24 @@ This script takes the list of users of our github organization and for each user
 
 You can clone the repo and do something similar with your organization or just your account.
 
-### 3.6 Our infrastracture after "terraform apply"
+### **3.6 Our infrastracture after "terraform apply"**
 
 ![architecture.png](../img/08/architecture.png)
 
 
-## 4 Ansible: time to configure our headscale server
+## **4 Mapping your public IP on your third level domain**
+
+This step is optional, you are not forced to use a domain name in order to reach your headscale server.
+
+For simplicity we have preferred to do so, so that it will be easier for everyone to remember.
+
+This step is very simple, just log into your domain register dashboard and map the public IP address of the ec2 instance to your domain.
+
+For example, we have imported the domain on cloudflare and created a third-level domain
+
+![cloudflare](../img/08/cloudflare.png)
+
+## **5 Ansible: time to configure our headscale server**
 
 We have an Ansible playbook for installing Headscale on our server. You can clone it locally using
 
@@ -324,7 +338,7 @@ make headacale
 
 to install headscale and its dependencies on your server!
 
-## 5 Create your overlay network and add hosts to it
+## **6 Create your overlay network and add hosts to it**
 
 Now you can ssh into your instance and interact with your headscale server
 
@@ -372,7 +386,7 @@ Useful
 ```headscale nodes list```
 
 
-## 6. Useful links
+## **7 Useful links**
 
 [S3 backend type Terraform](https://developer.hashicorp.com/terraform/language/settings/backends/s3)
 

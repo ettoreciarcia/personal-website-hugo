@@ -1,6 +1,6 @@
 baseURL: "https://ettoreciarcia.com/"
 title: Ettore Ciarcia
-paginate: 5
+paginate: 10
 theme: PaperMod
 
 enableRobotsTXT: true
