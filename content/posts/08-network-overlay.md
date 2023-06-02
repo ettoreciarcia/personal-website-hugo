@@ -2,7 +2,7 @@
 title: "How to setup an Headscale server for free on AWS via Terraform and Ansible"
 date: 2023-05-09T23:21:07+02:00
 draft: false
-summary: "How to setup an Headscale server for free via Terraform and Ansible"
+summary: "In this article we will see how to create a network overlay shared by some servers around the world"
 tags: [Terraform, Ansible, Networking, AWS, Homelab]
 categories: [Terraform, Ansible, Networking, AWS, Homelab]
 weight: "995"
@@ -338,6 +338,11 @@ make headacale
 
 to install headscale and its dependencies on your server!
 
+Now you just have to wait for the ansible playbook to do its job
+
+[TO DO] Add Magic! Gif
+
+
 ## **6 Create your overlay network and add hosts to it**
 
 Now you can ssh into your instance and interact with your headscale server
@@ -375,7 +380,7 @@ http://127.0.0.1:8080/register/nodekey:<xxx>
 4. On your headscale server run 
 
 ```shell
-sudo headscale  nodes register --key nodekey:<YOUR_MACHINE_KEY>
+sudo headscale -n $NAMESPACE nodes register --key nodekey:<YOUR_MACHINE_KEY>
 ```
 
 5. Check your node list to verify that everything is ok! 
