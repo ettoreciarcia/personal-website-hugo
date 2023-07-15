@@ -74,7 +74,7 @@ Assuming that the IP address of the DNS server is 192.168.0.2, add the following
 
 NOTE: If you want to ensure that it works, remember to remove the entry added to the ```/etc/hosts```  file. If that entry is present in the hosts file, your Linux system will not attempt to resolve it using the DNS server since the /etc/hosts file takes precedence. To change the order of DNS resolution, we need to do changes into the ``` /etc/nsswitch.conf```  file.
 
-Proviamdo quindi a lanciare lo stesso comando di prima e vediamo cosa è cambiato:
+So let's try running the same command as before and see what happened
 
 ![dig-secco-dns](../img/09/dig-secco-dns.png)
 
@@ -102,3 +102,6 @@ This allows you to access hosts within the "example.com" and "office.example.com
 NOTE: the order of the search domains is significant, as the system will try to resolve the hostname using each domain in the specified order.
 
 We now know enough to dive into how DNS works in Kubernetes!
+
+## 2. DNS in Kubernetes
+
