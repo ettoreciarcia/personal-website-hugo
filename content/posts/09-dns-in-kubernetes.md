@@ -105,3 +105,286 @@ We now know enough to dive into how DNS works in Kubernetes!
 
 ## 2. DNS in Kubernetes
 
+We will use a test cluster set up with minikube
+
+```
+minikube start --vm-driver=parallels --kubernetes-version v1.25.0 --memory=4096m --cpus=2
+```
+
+For our example we don't need particularly large clusters as we are not going to analyze the functioning of the DNS outside the cluster.
+
+In the case of multiple nodes we could have had a DNS server external to the cluster that would have taken care of the resolution of the DNS names of our instances.
+For our example, one node is sufficient
+
+```
+NAME           STATUS   ROLES           AGE     VERSION
+minikube       Ready    control-plane   2m51s   v1.25.0
+```
+
+So how does Kubernetes resolve names to addresses within the Cluster?
+It does so with a DNS server that is automatically deployed within our cluster (CoreDNS in our example).
+
+Let's create some objects within our cluster and try to understand what happens under the hood.
+
+In the previous example, we played with names and addresses using Zerocalcare and Secco. Let's try to do the same thing again, but with Kubernetes..
+
+Here are the resources for Zerocalcare, a simple deployment with one replica and a Service to expose it within the cluster.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zerocalcare
+  namespace: dns-playground
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zerocalcare
+  template:
+    metadata:
+      labels:
+        app: zerocalcare
+    spec:
+      containers:
+        - name: zerocalcare
+          image: nginx:stable-alpine3.17-slim
+          ports:
+            - containerPort: 80
+          env:
+            - name: MESSAGE
+              value: "I'm Zerocalcare!"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zerocalcare
+  namespace: dns-playground
+spec:
+  type: ClusterIP
+  selector:
+    app: zerocalcare
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+```
+
+And here are the resources for Secco. Once again, it's a Deployment with one replica and a ClusterIP service to expose this pod within the cluster.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secco
+  namespace: dns-playground
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secco
+  template:
+    metadata:
+      labels:
+        app: secco
+    spec:
+      containers:
+        - name: secco
+          image: nginx:stable-alpine3.17-slim
+          ports:
+            - containerPort: 80
+          env:
+            - name: MESSAGE
+              value: "Hello! I'm Secco"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: secco
+  namespace: dns-playground
+spec:
+  type: ClusterIP
+  selector:
+    app: secco
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+```
+
+Here is a graphical representation of what we have created inside the cluster.
+
+[Insert a picture of Services and pods with Zerocalcare and Secco]
+
+And here are our lovely pods inside the cluster!
+
+```
+NAME                           READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+secco-cff76b474-kzqcp          1/1     Running   0          71s   10.244.0.8   minikube   <none>           <none>
+zerocalcare-64d8bbfcf8-j2fjf   1/1     Running   0          75s   10.244.0.7   minikube   <none>           <none>
+```
+
+At this point, it's good to remember three fundamental rules of networking in Kubernetes:
+
+1. A pod in the cluster should be able to freely communicate with any other pod without the use of Network Address Translation (NAT).
+2. Any program running on a cluster node should communicate with any pod on the same node without using NAT.
+3. Each pod has its own IP address (IP-per-Pod), and every other pod can reach it at that same address.
+
+As mentioned before, the Zerocalcare pod can reach the Secco pod using the IP address of the Secco pod. 
+
+But we don't trust it; let's verify if it really works. Let's try to reach the Secco pod with a simple ```ping``` command.
+
+
+```bash
+kubectl exec -it zerocalcare-64d8bbfcf8-j2fjf -n dns-playground -- ping 10.244.0.8
+```
+
+```
+PING 10.244.0.8 (10.244.0.8): 56 data bytes
+64 bytes from 10.244.0.8: seq=0 ttl=64 time=0.141 ms
+64 bytes from 10.244.0.8: seq=1 ttl=64 time=0.121 ms
+64 bytes from 10.244.0.8: seq=2 ttl=64 time=0.122 ms
+```
+
+
+It works!
+
+However, we know that pods are ephemeral units within a Kubernetes cluster. Trying to reach a pod directly using its IP address is not a good idea. Pods are like the stairs of Hogwarts; they like to change.
+
+The most deterministic way to reach a pod is through the Service resource that exposes it. So, let's try to reach the Secco pod through the previously created service.
+
+Get the IP address of our service with the command
+
+```kubectl get svc -n dns-playgorund```
+
+```
+NAME          TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+secco         ClusterIP   10.101.195.184   <none>        80/TCP    95s
+zerocalcare   ClusterIP   10.104.214.95    <none>        80/TCP    37s
+```
+
+And let's try to run the same command as before, but this time replace the pod's IP address with the service's IP:
+
+```kubcetl exec -it zerocalcare-64d8bbfcf8-j2fjf -n dns-playground -- ping 10.101.195.184```
+
+This time, we don't receive any pong. Why? Is the service broken? Did we do something wrong?
+
+No, the service is working correctly, but...
+
+The Service has a virtual IP address, and we can't ping it!
+
+So how can we reach the pod that this service exposes?
+
+We can do it with the wget command (you would achieve the same result using the curl command, but our container image is lightweight and doesn't have curl installed by default)
+
+
+>k exec -it zerocalcare-64d8bbfcf8-j2fjf -n dns-playground -- wget -O - 10.101.195.184
+
+```bash
+Connecting to 10.101.195.184 (10.101.195.184:80)
+writing to stdout
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+-                    100% |****************************************************************************************************************************************************************************|   615  0:00:00 ETA
+written to stdout
+```
+
+It works!
+
+But do we really want to use the IP address of a service to reach the pods it exposes?
+
+Perhaps it would be better to use a hostname!
+
+Well, in this case, our resources are in the same namespace (dns-playground). So, we can reach their respective services by using only the service name.
+
+Let's try to perform a wget on the service name instead of the IP:
+
+```kubectl exec -it zerocalcare-64d8bbfcf8-j2fjf -n dns-playground -- wget -O - secco```
+
+It still works!
+
+How is this possible?
+
+Let's go for a walk inside the pods and see who resolved this name into an IP address!
+
+The pod we will use as a guinea pig is the Zerocalcare pod. To get a shell in that pod, we'll use the command:
+
+```kubectl exec -it zerocalcare-64d8bbfcf8-j2fjf -n dns-playground -- /bin/ash```
+
+Now we can freely navigate with the terminal and explore!
+
+Before we proceed, let's install a tool that is always useful when troubleshooting DNS, dig.
+
+Inside the container, run the command:
+
+```bash
+apk update && apk add bind-tools
+```
+
+Let's see who resolved the name of the Secco service into an IP address.
+
+```
+dig secco
+```
+
+```
+; <<>> DiG 9.18.16 <<>> secco
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 58120
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: f0c0ad9d8f158e8a (echoed)
+;; QUESTION SECTION:
+;secco.				IN	A
+
+;; AUTHORITY SECTION:
+.			30	IN	SOA	a.root-servers.net. nstld.verisign-grs.com. 2023071600 1800 900 604800 86400
+
+;; Query time: 46 msec
+;; SERVER: 10.96.0.10#53(10.96.0.10) (UDP)
+;; WHEN: Sun Jul 16 16:48:06 UTC 2023
+;; MSG SIZE  rcvd: 12
+```
+
+We found it! The DNS server that resolved our name into an IP address has the IP 10.96.0.10.
+
+So, this means that our /etc/resolv.conf file will have an entry like:
+
+
+```nameserver 10.96.0.10```
+
+Let's take a look at this file!
+
+>cat /etc/resolv.conf
+
+```
+nameserver 10.96.0.10
+search dns-playground.svc.cluster.local svc.cluster.local cluster.local
+options ndots:5
+```
+
+Do you feel the circle closing?
