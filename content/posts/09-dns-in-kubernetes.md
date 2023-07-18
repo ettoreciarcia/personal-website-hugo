@@ -105,6 +105,9 @@ We now know enough to dive into how DNS works in Kubernetes!
 
 ## 2. DNS in Kubernetes
 
+
+### 2.1 Cluster setup
+
 We will use a test cluster set up with minikube
 
 ```
@@ -123,6 +126,8 @@ minikube       Ready    control-plane   2m51s   v1.25.0
 
 So how does Kubernetes resolve names to addresses within the Cluster?
 It does so with a DNS server that is automatically deployed within our cluster (CoreDNS in our example).
+
+### 2.2 Application setup
 
 Let's create some objects within our cluster and try to understand what happens under the hood.
 
@@ -224,6 +229,10 @@ secco-cff76b474-kzqcp          1/1     Running   0          71s   10.244.0.8   m
 zerocalcare-64d8bbfcf8-j2fjf   1/1     Running   0          75s   10.244.0.7   minikube   <none>           <none>
 ```
 
+### 2.3 Discovering Services
+
+### 2.3.1 DNS mode
+
 At this point, it's good to remember three fundamental rules of networking in Kubernetes:
 
 1. A pod in the cluster should be able to freely communicate with any other pod without the use of Network Address Translation (NAT).
@@ -232,7 +241,7 @@ At this point, it's good to remember three fundamental rules of networking in Ku
 
 As mentioned before, the Zerocalcare pod can reach the Secco pod using the IP address of the Secco pod. 
 
-But we don't trust it; let's verify if it really works. Let's try to reach the Secco pod with a simple ```ping``` command.
+But we don't trust it. Let's verify if it really works. Let's try to reach the Secco pod with a simple ```ping``` command.
 
 
 ```bash
@@ -249,7 +258,7 @@ PING 10.244.0.8 (10.244.0.8): 56 data bytes
 
 It works!
 
-However, we know that pods are ephemeral units within a Kubernetes cluster. Trying to reach a pod directly using its IP address is not a good idea. Pods are like the stairs of Hogwarts; they like to change.
+However, we know that pods are **ephemeral units** within a Kubernetes cluster. Trying to reach a pod directly using its IP address is not a good idea. Pods are like the stairs of Hogwarts, they like to change.
 
 The most deterministic way to reach a pod is through the Service resource that exposes it. So, let's try to reach the Secco pod through the previously created service.
 
@@ -271,14 +280,14 @@ This time, we don't receive any pong. Why? Is the service broken? Did we do some
 
 No, the service is working correctly, but...
 
-The Service has a virtual IP address, and we can't ping it!
+The Service has a virtual IP address, and we can't ping it! (Maybe I ll write an article on that in the near future)
 
 So how can we reach the pod that this service exposes?
 
 We can do it with the wget command (you would achieve the same result using the curl command, but our container image is lightweight and doesn't have curl installed by default)
 
 
->k exec -it zerocalcare-64d8bbfcf8-j2fjf -n dns-playground -- wget -O - 10.101.195.184
+```kubectl exec -it zerocalcare-64d8bbfcf8-j2fjf -n dns-playground -- wget -O - 10.101.195.184```
 
 ```bash
 Connecting to 10.101.195.184 (10.101.195.184:80)
@@ -338,15 +347,14 @@ Before we proceed, let's install a tool that is always useful when troubleshooti
 
 Inside the container, run the command:
 
-```bash
-apk update && apk add bind-tools
-```
+```apk update && apk add bind-tools``` 
+
 
 Let's see who resolved the name of the Secco service into an IP address.
 
-```
-dig secco
-```
+
+``` dig secco``` 
+
 
 ```
 ; <<>> DiG 9.18.16 <<>> secco
@@ -372,14 +380,14 @@ dig secco
 
 We found it! The DNS server that resolved our name into an IP address has the IP 10.96.0.10.
 
-So, this means that our /etc/resolv.conf file will have an entry like:
+So, this means that our ```/etc/resolv.conf``` file will have an entry like:
 
 
 ```nameserver 10.96.0.10```
 
 Let's take a look at this file!
 
->cat /etc/resolv.conf
+```cat /etc/resolv.conf``` 
 
 ```
 nameserver 10.96.0.10
@@ -387,4 +395,78 @@ search dns-playground.svc.cluster.local svc.cluster.local cluster.local
 options ndots:5
 ```
 
-Do you feel the circle closing?
+By default, a client Pod's DNS search list includes the Pod's own namespace and the cluster's default domain.
+
+
+This was the file we discussed in the explanation of DNS outside of Kubernetes.
+
+Someone populates this file with the entry of the service for the internal DNS server in our Kubernetes cluster.
+
+But who does the IP 10.96.0.10 belong to? Well, this is the IP of the service associated with our default installed CoreDNS deployment in the cluster!
+
+You can verify it using the command:
+
+```kubectl get svc -n kube-system```
+
+```
+NAME       TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   2d4h
+```
+
+At this point, we have two questions:
+
+1. Who populated the entry in the /etc/resolv.conf file inside our pods?
+2. Who inserted the DNS record for the services that expose our pods inside the DNS server?
+
+### 2.3.2 Who populated the /etc/resolv.conf file?
+Kubelet configures the Pods' DNS so that running containers can look up Services by name rather than IP.
+
+### 2.4 Environment variable mode
+
+Environment variables
+When a Pod is run on a Node, the kubelet adds a set of environment variables for each active Service. It adds {SVCNAME}_SERVICE_HOST and {SVCNAME}_SERVICE_PORT variables, where the Service name is upper-cased and dashes are converted to underscores.
+
+Let's take a look at zerocalcare's environment variable
+
+```
+SECCO_SERVICE_HOST=10.101.195.184
+KUBERNETES_SERVICE_PORT=443
+KUBERNETES_PORT=tcp://10.96.0.1:443
+HOSTNAME=zerocalcare-64d8bbfcf8-j2fjf
+SHLVL=1
+HOME=/root
+SECCO_PORT=tcp://10.101.195.184:80
+SECCO_SERVICE_PORT=80
+PKG_RELEASE=1
+ZEROCALCARE_SERVICE_HOST=10.104.214.95
+SECCO_PORT_80_TCP_ADDR=10.101.195.184
+SECCO_PORT_80_TCP_PORT=80
+SECCO_PORT_80_TCP_PROTO=tcp
+TERM=xterm
+ZEROCALCARE_PORT=tcp://10.104.214.95:80
+ZEROCALCARE_SERVICE_PORT=80
+KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1
+NGINX_VERSION=1.24.0
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+KUBERNETES_PORT_443_TCP_PORT=443
+KUBERNETES_PORT_443_TCP_PROTO=tcp
+ZEROCALCARE_PORT_80_TCP_ADDR=10.104.214.95
+SECCO_PORT_80_TCP=tcp://10.101.195.184:80
+ZEROCALCARE_PORT_80_TCP_PORT=80
+ZEROCALCARE_PORT_80_TCP_PROTO=tcp
+KUBERNETES_SERVICE_PORT_HTTPS=443
+KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443
+MESSAGE=I'm Zerocalcare!
+KUBERNETES_SERVICE_HOST=10.96.0.1
+PWD=/
+ZEROCALCARE_PORT_80_TCP=tcp://10.104.214.95:80
+```
+
+We can also use environment variable to achieve the same goal we achieved with DNS mode.
+
+We can use the wget command on the Secco's Services using the environmnet variable that the kubelet has set up for us
+
+
+## 10. Useful links
+
+[DNS for Services and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
