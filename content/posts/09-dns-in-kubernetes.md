@@ -554,7 +554,7 @@ data:
         }
         prometheus :9153
         hosts {
-          79.46.158.18 dns-playground.external
+          <YOUR_PUBLIC_IP> dns-playground.external
           10.211.55.2 host.minikube.internal
           fallthrough
         }
@@ -579,7 +579,7 @@ Last thing is to Remember to add the customdomains.ddns file to the config-volum
 ```kubectl rollout restart -n kube-system deployment/coredn```
 
 
-## **4. Useful links**
+## **7. Useful links**
 
 [DNS for Services and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
 
