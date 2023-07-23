@@ -13,7 +13,9 @@ cover:
 
 Before diving into how DNS works in Kubernetes, let's try to clarify how DNS works outside of Kubernetes.
 
-## 1. **What is a DNS server?**
+## 1. **DNS Overview**
+
+### **1.1 What is a DNS**
 
 `DNS (Domain Name System) is a system that translates human-readable domain names into numerical IP addresses, enabling communication between devices on the internet.`
 
@@ -35,17 +37,15 @@ To contact Secco using his name instead of his IP address, we need a mechanism t
 
 How can we achieve this goal?
 
-The answer is the hosts file located in **/etc/hosts**.
+The answer is the hosts file located in ```/etc/hosts``` .
 
-### 1.1 hosts file
+### **1.2 Hosts file**
 
-We can modify this file and insert the following line:
+We can modify this file and insert the following line in ```/etc/hosts``` file on Zerocalcare client:
 
 ``` 
 192.168.0.21 secco
 ``` 
-
-in Zerocalcare's hosts file.
 
 From now on, Zerocalcare will be able to resolve Secco's hostname with the correct IP address.
 
@@ -55,9 +55,9 @@ Let's verify that name resolution is working with the command
 
 ![dig-secco](../img/09/dig-secco.png)
 
-### 1.2 Nameserver
+### **1.3 Nameserver**
 
-Now let's assume that the number of hosts within the network grows exponentially. If we want each host to be able to resolve the others using their names instead of IP addresses, we would need to modify the /etc/hosts file on every host.
+Now let's assume that the number of hosts within the network grows exponentially. If we want each host to be able to resolve the others using their names instead of IP addresses, we would need to modify the ```/etc/hosts``` file on every host.
 
 And that's not all. Every time a host changes its IP address or a new host joins our network, all the hosts' hosts files would need to be modified.
 
@@ -72,7 +72,7 @@ Assuming that the IP address of the DNS server is 192.168.0.2, add the following
 
 ```nameserver 192.168.0.2``` 
 
-NOTE: If you want to ensure that it works, remember to remove the entry added to the ```/etc/hosts```  file. If that entry is present in the hosts file, your Linux system will not attempt to resolve it using the DNS server since the /etc/hosts file takes precedence. To change the order of DNS resolution, we need to do changes into the ``` /etc/nsswitch.conf```  file.
+NOTE: If you want to ensure that it works, remember to remove the entry added to the ```/etc/hosts```  file. If that entry is present in the hosts file, your Linux system will not attempt to resolve it using the DNS server since the ``` /etc/hosts```  file takes precedence. To change the order of DNS resolution, we need to do changes into the ``` /etc/nsswitch.conf```  file.
 
 So let's try running the same command as before and see what happened
 
@@ -80,7 +80,7 @@ So let's try running the same command as before and see what happened
 
 As you can see in this case the hostname was resolved by the DNS server we set up earlier.
 
-### 1.3 Search domains
+### **1.3 Search domains**
 
 The "search domains" entry in the /etc/resolv.conf file is used to specify a list of domain names that the system should automatically append to any unqualified hostname when attempting to resolve it.
 
@@ -103,10 +103,8 @@ NOTE: the order of the search domains is significant, as the system will try to 
 
 We now know enough to dive into how DNS works in Kubernetes!
 
-## 2. DNS in Kubernetes
 
-
-### 2.1 Cluster setup
+## **2. Cluster setup**
 
 We will use a test cluster set up with minikube
 
@@ -127,7 +125,7 @@ minikube       Ready    control-plane   2m51s   v1.25.0
 So how does Kubernetes resolve names to addresses within the Cluster?
 It does so with a DNS server that is automatically deployed within our cluster (CoreDNS in our example).
 
-### 2.2 Application setup
+## **3 Application setup**
 
 Let's create some objects within our cluster and try to understand what happens under the hood.
 
@@ -229,15 +227,15 @@ secco-cff76b474-kzqcp          1/1     Running   0          71s   10.244.0.8   m
 zerocalcare-64d8bbfcf8-j2fjf   1/1     Running   0          75s   10.244.0.7   minikube   <none>           <none>
 ```
 
-### 2.3 Discovering Services
-
-### 2.3.1 DNS mode
+## **4 DNS in Kubernetes**
 
 At this point, it's good to remember three fundamental rules of networking in Kubernetes:
 
 1. A pod in the cluster should be able to freely communicate with any other pod without the use of Network Address Translation (NAT).
 2. Any program running on a cluster node should communicate with any pod on the same node without using NAT.
 3. Each pod has its own IP address (IP-per-Pod), and every other pod can reach it at that same address.
+
+### **4.1 DNS Mode**
 
 As mentioned before, the Zerocalcare pod can reach the Secco pod using the IP address of the Secco pod. 
 
@@ -415,13 +413,14 @@ kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   2d4h
 
 At this point, we have two questions:
 
-1. Who populated the entry in the /etc/resolv.conf file inside our pods?
-2. Who inserted the DNS record for the services that expose our pods inside the DNS server?
+Who is responsible for populating the entry in the /etc/resolv.conf file inside our pods?
 
-### 2.3.2 Who populated the /etc/resolv.conf file?
 Kubelet configures the Pods' DNS so that running containers can look up Services by name rather than IP.
 
-### 2.4 Environment variable mode
+Who populated the DNS record for the services that expose our pods inside the DNS server?
+
+
+### **4.2 Environment variable mode**
 
 Environment variables
 When a Pod is run on a Node, the kubelet adds a set of environment variables for each active Service. It adds {SVCNAME}_SERVICE_HOST and {SVCNAME}_SERVICE_PORT variables, where the Service name is upper-cased and dashes are converted to underscores.
@@ -464,9 +463,124 @@ ZEROCALCARE_PORT_80_TCP=tcp://10.104.214.95:80
 
 We can also use environment variable to achieve the same goal we achieved with DNS mode.
 
-We can use the wget command on the Secco's Services using the environmnet variable that the kubelet has set up for us
+We can use the wget command on the Secco's Services using the environmnet variable that the kubelet has set up for us.
+
+## **5. Pod-wise solution: managing /etc/hosts file**
+
+In Kubernetes we can add entries to a Pod's ```/etc/hosts```  directly using ```.spec.hostAliases```
+
+Let's try adding an entry to the ```/etc/hosts``` file directly in the Zerocalcare pod and verify that it is present
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zerocalcare-dns-mgmt
+  namespace: dns-playground
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zerocalcare
+  template:
+    metadata:
+      labels:
+        app: zerocalcare
+    spec:
+      hostAliases:
+      - ip: "127.0.0.1"
+        hostnames:
+        - "entry1.local"
+        - "entry2.local"
+      - ip: "10.96.0.1"
+        hostnames:
+        - "kubernello.local"
+        - "kubernello.remote"
+      containers:
+        - name: zerocalcare
+          image: nginx:stable-alpine3.17-slim
+          ports:
+            - containerPort: 80
+          env:
+            - name: MESSAGE
+              value: "I'm Zerocalcare!"
+```
+
+To verify that the new entries are present
+
+```k exec -it zerocalcare-dns-mgmt-65fdcb74cf-hmxrr -n dns-playground -- cat /etc/hosts```
+
+```
+# Kubernetes-managed hosts file.
+127.0.0.1	localhost
+::1	localhost ip6-localhost ip6-loopback
+fe00::0	ip6-localnet
+fe00::0	ip6-mcastprefix
+fe00::1	ip6-allnodes
+fe00::2	ip6-allrouters
+10.244.0.12	zerocalcare-dns-mgmt-65fdcb74cf-hmxrr
+
+# Entries added by HostAliases.
+127.0.0.1	entry1.local	entry2.local
+10.96.0.1	kubernello.local	kubernello.remote
+```
+
+Here they are!
+
+## **6. Cluster-wise solution: Managing DNS entry**
+
+In CoreDNS it's possible to Add an arbitrary entries inside the cluster domain and that way all pods will resolve this entries directly from the DNS without the need to change each and every /etc/hosts file in every pod.
+
+Let's change the coredns ConfigMap and add required changes:
+
+```kubectl edit cm coredns -n kube-system```
+
+```
+apiVersion: v1
+kind: ConfigMap
+data:
+  Corefile: |
+    .:53 {
+        log
+        errors
+        health {
+          lameduck 5s
+        }
+        ready
+        kubernetes cluster.local in-addr.arpa ip6.arpa {
+          pods insecure
+          fallthrough in-addr.arpa ip6.arpa
+          ttl 30
+        }
+        prometheus :9153
+        hosts {
+          79.46.158.18 dns-playground.external
+          10.211.55.2 host.minikube.internal
+          fallthrough
+        }
+        forward . /etc/resolv.conf {
+          max_concurrent 1000
+        }
+        cache  30
+        loop
+        reload
+        loadbalance
+    }
+```
+
+Basically we added two things:
+
+The hosts plugin before the kubernetes plugin and used the fallthrough option of the hosts plugin to satisfy our case.
+
+To shed some more lights on the fallthrough option. Any given backend is usually the final word for its zone - it either returns a result, or it returns NXDOMAIN for the query. However, occasionally this is not the desired behavior, so some of the plugin support a fallthrough option. When fallthrough is enabled, instead of returning NXDOMAIN when a record is not found, the plugin will pass the request down the chain. A backend further down the chain then has the opportunity to handle the request and that backend in our case is kubernetes.
+
+Last thing is to Remember to add the customdomains.ddns file to the config-volume for the CoreDNS pod template:
+
+```kubectl rollout restart -n kube-system deployment/coredn```
 
 
-## 10. Useful links
+## **4. Useful links**
 
 [DNS for Services and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
+
+[Vagrant file to provision Secco and Zerocalcare VMs](https://github.com/ettoreciarcia/homelab2.0/tree/main/vagrant/ubuntu-parallels)
