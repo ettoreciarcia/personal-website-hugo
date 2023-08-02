@@ -13,7 +13,7 @@ cover:
 
 Before diving into how DNS works in Kubernetes, let's try to clarify how DNS works outside of Kubernetes.
 
-## 1. **DNS Overview**
+## **1. DNS Overview**
 
 ### **1.1 What is a DNS**
 
@@ -95,9 +95,9 @@ Let's say your /etc/resolv.conf file contains the following entry:
 Now, if you try to resolve the hostname "secco", the system will automatically append the search domains to it, making the resolved names it tries in order:
 
 1. ice-cream.com
-2. annamoapijaergelato.com
+2. chocolate.com
 
-This allows you to access hosts within the "example.com" and "office.example.com" domains simply by specifying their short hostnames.
+This allows you to access hosts within the "secco.ice-cream.com" and "secco.chocolate.com" domains simply by specifying their short hostnames.
 
 NOTE: the order of the search domains is significant, as the system will try to resolve the hostname using each domain in the specified order.
 
@@ -584,3 +584,7 @@ Last thing is to Remember to add the customdomains.ddns file to the config-volum
 [DNS for Services and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
 
 [Vagrant file to provision Secco and Zerocalcare VMs](https://github.com/ettoreciarcia/homelab2.0/tree/main/vagrant/ubuntu-parallels)
+
+[Kubernetes in Action](https://www.amazon.com/Kubernetes-Action-Marko-Luksa/dp/1617293725)
+
+[Understanding CoreDNS in Kubernetes](https://www.youtube.com/watch?v=qRiLmLACYSY)
