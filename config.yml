@@ -1,6 +1,6 @@
 baseURL: "https://ettoreciarcia.com/"
 title: Ettore Ciarcia
-paginate: 10
+paginate: 5
 theme: PaperMod
 
 enableRobotsTXT: true
@@ -14,11 +14,25 @@ minify:
   disableXML: true
   minifyOutput: true
 
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+markup:
+    goldmark:
+        renderer:
+            unsafe: true
+    highlight:
+
+enableEmoji: true #http://www.emoji-cheat-sheet.com/
+    
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Ettore Ciarcia
   description: "In this public space I'll talk about my Kubernetes and Cloud journey"
-  keywords: [Blog, Portfolio, PaperMod]
+  keywords: [Blog, Portfolio, Kubernetes, Ettore Ciarcia, Cloud]
   author: Ettore Ciarcia
   # author: ["Me", "You"] # multiple authors
   images: ["MemeK8s.jpeg"]
@@ -38,16 +52,16 @@ params:
   UseHugoToc: true
   disableSpecial1stPost: false
   disableScrollToTop: false
-  comments: false
+  comments: true
   hidemeta: false
   hideSummary: false
   showtoc: true
   tocopen: false
-
+  
 
   assets:
-    # disableHLJS: true # to disable highlight.js
-    # disableFingerprinting: true
+    disableHLJS: true # to disable highlight.js
+    disableFingerprinting: true
     favicon: "favicon.ico"
     favicon16x16: "favicon-16x16.png"
     favicon32x32: "favicon-32x32.png"
@@ -55,13 +69,13 @@ params:
     safari_pinned_tab: "<link / abs url>"
 
   label:
-    text: "Home"
+    text: "@ettoreciarcia"
     # icon: /apple-touch-icon.png
     iconHeight: 35
 
   # profile-mode
   profileMode:
-    enabled: true # needs to be explicitly set
+    enabled: false  # needs to be explicitly set
     title: Ettore Ciarcia
     subtitle: > 
       Kubernetes & Cloud Engineer @**[SIGHUP](https://sighup.io/)**
@@ -82,11 +96,12 @@ params:
   homeInfoParams:
     Title: "Hi there \U0001F44B"
     Content: >
-        I'm Ettore, a young Cloud Engineer currently working at [SIGHUP](https://sighup.io/)! 
+        I'm Ettore, a Cloud Engineer currently working at [SIGHUP](https://sighup.io/)! 
 
         - I'm focused on Kubernetes, Container Technologies, Terraform and AWS. 
         
-        - If you think you're better than me because I indent YAML be careful, I also indent HCL 🙂
+        - Do you want know more? [**Here you will find more info!**](/about/)
+
 
   socialIcons:
     - name: twitter
@@ -96,7 +111,8 @@ params:
     - name: github
       url: "https://github.com/ettoreciarcia"
     - name: curriculum
-      url: "https://my-certification-ciarcia.s3.eu-west-1.amazonaws.com/EttoreCiarcia.pdf"
+      url: "/cv/EttoreCiarcia.pdf"
+      # url: "https://my-certification-ciarcia.s3.eu-west-1.amazonaws.com/EttoreCiarcia.pdf"
 
 
 
@@ -109,8 +125,8 @@ params:
       SiteVerificationTag: "XYZabc"
 
   cover:
-    hidden: false # hide everywhere but not in structured data
-    hiddenInList: false # hide on list pages and home
+    hidden: true # hide everywhere but not in structured data
+    hiddenInList: true # hide on list pages and home
     hiddenInSingle: false # hide on single page
 
   editPost:
@@ -130,38 +146,29 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    # - identifier: certifications
-    #   name: certifications
-    #   url: /certifications/
-    #   weight: 4
+    - identifier: About
+      name: About
+      url: about
+      weigth: 2
     - identifier: Archive
       name: Archive
       url: archives
-      weight: 2
+      weight: 1
     # - identifier: Search
     #   name: Search
     #   url: search
-      # weight: 3
-    - identifier: CV
-      name: CV
-      url: https://my-certification-ciarcia.s3.eu-west-1.amazonaws.com/EttoreCiarcia.pdf
-      weight: 10
-    # - identifier: Categories
-    #   name: Categories
-    #   url: /categories/
-      # weight: 20
-    - identifier: Tags
-      name: Tags
-      url: /tags/
-      weight: 30
+    #   weight: 3
+    # - identifier: Tags
+    #   name: Tags
+    #   url: tags
+    #   weight: 3
     - identifier: Posts
       name: Posts
-      url: /posts/
-      weigth: 40
-    # - identifier: Certifications
-    #   name: Certifications
-    #   url: /certifications/
-    #   weigth: 50
+      url: posts
+      weigth: 4
+
+  
+    
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
