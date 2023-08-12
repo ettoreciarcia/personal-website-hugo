@@ -158,10 +158,10 @@ menu:
     #   name: Search
     #   url: search
     #   weight: 3
-    # - identifier: Tags
-    #   name: Tags
-    #   url: tags
-    #   weight: 3
+    - identifier: Tags
+      name: Tags
+      url: tags
+      weight: 3
     - identifier: Posts
       name: Posts
       url: posts
