@@ -14,8 +14,7 @@ Currently, I'm only considering fully remote positions.
 Before contacting me, make sure your message is structured like this:
 
 1. Company Name
-2. Compensation
+2. Salary range
 3. Job Description
-4. Any Additional Notes
 
 Thank you! :blush:
