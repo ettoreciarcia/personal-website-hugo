@@ -1,0 +1,21 @@
+.timeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.timeline-date {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+/* Add more styles based on your design preferences */

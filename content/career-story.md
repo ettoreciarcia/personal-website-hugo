@@ -49,13 +49,14 @@ Long story short: that Cloud branch of my company soon turned into a body rental
 
 _Mistake number two: companies are made up of people. If the same people whose values you don't share in company A, you probably won't share them in company B either. Lesson learned_
 
-My world collapsed. I was very disappointed with that job. So, I started doing interviews to find a new job.
+My world collapsed. I was very disappointed with that job. So, I started doing interviews to find a new one.
 Among the many offers I received, I remember one that I always use as an example to describe how terrible my first company was.
 They offered me THREE times the money, THREE times.
 
 But there's a catch. During the interview, I had bad feelings about the work environment and what I would be doing. 
-As much as I was passionate about computer science, my first experience had almost pushed me to give up on it.
-I declined the offer.
+As much as I was passionate about computer science, my first experience had almost pushed me to give up on it. 
+And having worked in such a place has allowed me to build a radar that sounds as soon as I'm in the presence of toxic environment.
+During the interview the radar blew, I declined the offer.
 
 In the following months, I dedicated my time to university studies, trying to complete my bachelor's degree. I was six exams away from finishing; I passed 3 of them in 4 months.
 Wow, I can still do it. I can still study!
