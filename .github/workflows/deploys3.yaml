@@ -23,7 +23,7 @@ jobs:
       
       - name: Replace Placeholder
         run: |
-          sed -i "s/{{TRACKING_ID}}/${{ secrets.TRACKING_ID }}/g" config.yml
+          sed -i "s/TRACKING_ID/${{ secrets.TRACKING_ID }}/g" config.yml
 
       - name: Build
         run: hugo --minify
