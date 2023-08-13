@@ -6,9 +6,10 @@
     <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
     {{- end }}
     <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+        This website is built with <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a>, hosted on a S3 Bucket deployed with Terraform. CI/CD Automation via Github Actions. <br>
+        Check out the <a href="https://github.com/ettoreciarcia/personal-website-iac">architecture</a>
+        <!-- <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a> -->
     </span>
 </footer>
 {{- end }}

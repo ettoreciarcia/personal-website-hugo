@@ -7,6 +7,8 @@ summary: career-story
 
 Hello, it's me. Ettore!
 
+![me](/aboutImg/me.png)
+
 ## The Very Beginning
 
 As it seems, like everyone in this field, I started tinkering with computers from a young age. Initially, it was just for playing games, but around the age of 15, I began to wonder what was behind the scenes and how things worked under the hood.
@@ -50,15 +52,19 @@ Long story short: that Cloud branch of my company soon turned into a body rental
 _Mistake number two: companies are made up of people. If the same people whose values you don't share in company A, you probably won't share them in company B either. Lesson learned_
 
 My world collapsed. I was very disappointed with that job. So, I started doing interviews to find a new one.
-Among the many offers I received, I remember one that I always use as an example to describe how terrible my first company was.
-They offered me THREE times the money, THREE times.
 
-But there's a catch. During the interview, I had bad feelings about the work environment and what I would be doing. 
-As much as I was passionate about computer science, my first experience had almost pushed me to give up on it. 
-And having worked in such a place has allowed me to build a radar that sounds as soon as I'm in the presence of toxic environment.
-During the interview the radar blew, I declined the offer.
+Until that moment, I hadn't had any other job interviews, and starting to have them opened up a whole new world for me. If I had done it earlier, that tragic work experience would have only lasted a few months.
 
-In the following months, I dedicated my time to university studies, trying to complete my bachelor's degree. I was six exams away from finishing; I passed 3 of them in 4 months.
+_Mistake number three: not knowing one's target market. Lesson learned_
+
+
+I had 5 interviews in the month of February, receiving four offers. But did I really want to get back into work? Up until that point, I had been operating on autopilot.
+
+I had a bad gut feeling about those interviews.
+
+No, I didn't want to go back to working. It was time to sort out my thoughts and refocus on my university studies.
+
+In the following months, I dedicated my time to university studies, trying to complete my bachelor's degree. I was five exams away from finishing; I passed 3 of them in 4 months.
 Wow, I can still do it. I can still study!
 
 ## CyberHackademy
