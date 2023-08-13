@@ -5,6 +5,7 @@ url: "/note-for-recruiters/"
 summary: Note for recruiters
 ShowWordCount: false
 ShowReadingTime: false
+disableShare: true
 ---
 
 Hello! If you want to tell me about some open position you are managing, you can reach me at ettoreciarcia.tech@gmail.com or through [LinkedIn](https://www.linkedin.com/feed/).
