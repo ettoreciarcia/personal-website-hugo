@@ -1,8 +1,12 @@
 ---
-title: "Career story"
-layout: "Career story"
-url: "/career-story/"
-summary: career-story
+title: "History of my career"
+layout: "History of my career"
+url: "/history-of-my-career/"
+summary: History of my career
+ShowWordCount: false
+ShowReadingTime: false
+tocTitle: "On this page"
+disableShare: true
 ---
 
 Hello, it's me. Ettore!
@@ -67,27 +71,26 @@ No, I didn't want to go back to working. It was time to sort out my thoughts and
 In the following months, I dedicated my time to university studies, trying to complete my bachelor's degree. I was five exams away from finishing; I passed 3 of them in 4 months.
 Wow, I can still do it. I can still study!
 
-## CyberHackademy
+## [Cyber Hackademy](https://cyberhackademy.unina.it/)
 
 Meanwhile, the opportunity to attend a cybersecurity academy organized by my university arose. For the top five performers, there was a scholarship up for grabs. Even though I was only studying at that time, I decided to give it a shot.
 The selection process was divided into three phases: evaluation of qualifications, written exam, and oral exam.
 
-I passed the tests and got in. But I didn't make it to the top five for the scholarship.
+I passed the tests and got in.
 
-The months at CyberHackademy were fantastic. Even though some lessons were designed for entry-level participants, I enjoyed it a lot.
+The months at Cyber Hackademy were fantastic. Even though some lessons were designed for entry-level participants, I enjoyed it a lot.
 That experience lasted for 9 months, from May 2021 to January 2022. The last 3 months were dedicated to a project carried out by different teams.
 I was in one of those teams, TEAM DRAGONS.
-Our project was an AWS-based honeynet, set up with Terraform and equipped with logging and monitoring tools to gather information about attackers.
+Our project was an [AWS-based honeynet](https://www.youtube.com/watch?v=DDVL2ZiZcyg), set up with Terraform and equipped with logging and monitoring tools to gather information about attackers.
 
-And here we are on stage that day, presenting our project.
+And here we are on stage that day, presenting our project. 
 
-![CyberHack](/aboutImg/cyberhack.png)
+![Cyber Hack](/aboutImg/cyberhack.png)
 
-I stayed in touch with mentors and some of those students, especially one who's currently pursuing a PhD in cybersecurity at the university.
 
-## Epsilon, Game Changer
+## [Epsilon](https://www.epsilonline.com/): game changer
 
-During the months of CyberHackademy, just before it ended, I started interviewing again. Again, I had bad feelings during the interviews. I passed all of them, but after the first company, I think I developed a radar for toxic workplaces. And that radar went off every time during the interviews—BEEP BEEP BEEP.
+During the months of Cyber Hackademy, just before it ended, I started interviewing again. Again, I had bad feelings during the interviews. I passed all of them, but after the first company, I think I developed a radar for toxic workplaces. And that radar went off every time during the interviews BEEP BEEP BEEP.
 
 Until Epsilon came along.
 
@@ -109,9 +112,9 @@ I can say that the few foundations I have today were built at Epsilon.
 
 "Many say that computer science moves fast, but it's false. Computer science has been the same for thirty years; it's the technologies that move fast."
 
-But even more importantly, Epsilon restored my confidence in the working world. It made me realize that good places exist.
+But even more importantly, Epsilon restored my confidence in the working world. It made me realize that good places exist :heart:
 
-## Kubernetes Time: SIGHUP
+## [SIGHUP](https://sighup.io/): Kubernetes time
 
 During my journey at Epsilon, I was asked to delve into studying a Kubernetes Cluster in an on-premise environment. Until then, I had only seen Kubernetes in its managed AWS version.
 One thing was clear: going into production with a "bare" Kubernetes cluster was unthinkable.
@@ -134,7 +137,7 @@ And then...
 And now, I find myself here, working in the fantastic Team 2 of the Cloud Native Solution Engineer (CNSE). I only see my colleagues at company events; the work is fully remote.
 I'm growing a lot, learning many new things, and others I thought I knew.
 
-And it's through SIGHUP that I had the opportunity to participate in the Kubernetes Community Day Italy for the first time!
+And it's through SIGHUP that I had the opportunity to participate in the [Kubernetes Community Day Italy](https://community.cncf.io/events/details/cncf-kcd-italy-presents-kubernetes-community-days-italy-2023/) for the first time!
 
 ![KCD](/aboutImg/KCD.png)
 
@@ -142,8 +145,25 @@ And it's through SIGHUP that I had the opportunity to participate in the Kuberne
 
 Currently, I'm in SIGHUP, sitting at my comfortable workstation
 
-![KCD](/aboutImg/workstation.png)
+![workstation](/aboutImg/workstation.png)
 
 trying to learn something new every day.
 
-Last update: August 12th, 2023
+The technologies I work with the most are Kubernetes, AWS services related to Kubernetes (VPC, EC2, S3, EKS), Ansible, Terraform, and Kong Gateway.
+
+When I'm not engaged in IT-related activities, I'm probably watching some anime with my super nerdy girlfriend.
+And if we're not doing that, we're probably at a comic book convention.
+This is her pretending to explain to me what a triptych is at an art exhibition.
+
+![mostra](/aboutImg/mostra.png)
+
+The photo is blurry because my girlfriend is elusive.
+
+If you're wondering, a triptych is a single pictorial or sculptural work divided into three parts, which can be joined by side hinges or a pedestal known as a predella. The triptych can be completed by an upper part called a cimasa.
+
+What else can I say? Oh, I also enjoy walking.
+
+And when I say walking, I mean for hours. This is the view from one of my evening strolls.
+I absolutely love this.
+
+![view](/aboutImg/view2.png)

@@ -1,10 +1,10 @@
 {{- if not (.Param "hideFooter") }}
 <footer class="footer">
-    {{- if site.Copyright }}
+    <!-- {{- if site.Copyright }}
     <span>{{ site.Copyright | markdownify }}</span>
     {{- else }}
     <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
-    {{- end }}
+    {{- end }} -->
     <span>
         This website is built with <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a>, hosted on a S3 Bucket deployed with Terraform. CI/CD Automation via Github Actions. <br>
         Check out the <a href="https://github.com/ettoreciarcia/personal-website-iac">architecture</a>

@@ -3,6 +3,9 @@ title: "About Me"
 layout: "about"
 url: "/about/"
 summary: about
+ShowWordCount: false
+ShowReadingTime: false
+disableShare: true
 ---
 
 Hi, I'm Ettore Ciarcia. I'm from Italy :it:
@@ -14,7 +17,7 @@ You can checkout [Archive](/archives) page to get a list of posts or can use [Ta
 
 Few interesting pages:
 
-- [Story of my career](/career-story/)
+- [History of my career](/history-of-my-career)
 
 - [Achievements and Certifications](/certification&achievements)
 
