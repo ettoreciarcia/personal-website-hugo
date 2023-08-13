@@ -20,6 +20,10 @@ jobs:
       - name: Hugo setup
         uses: peaceiris/actions-hugo@v2.6.0
           # extended: true
+      
+      - name: Replace Placeholder
+        run: |
+          sed -i "s/{{TRACKING_ID}}/${{ secrets.TRACKING_ID }}/g" config.yml
 
       - name: Build
         run: hugo --minify
