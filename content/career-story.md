@@ -21,11 +21,11 @@ My first "creation" was a website on Altervista. It was terrible. A simple page 
 
 Then came the first computer science lessons at school. Truth be told, I had chosen a school where computer science wasn't the main focus, but luckily, I had a passionate computer science teacher. During the first two years of high school, we finished the math curriculum a few weeks early, so the teacher gave us basic programming lessons in Pascal. I still remember the IDE's logo we used, Lazarus. In those weeks, we created simple programs (calculator and power calculations). And this is my experience with computer science at school.
 
-## Bachelor's Degree
+## Bachelor's Degree [Skill up]
 
 When it was time to choose which university to attend, I chose Computer Engineering at Federico II in Naples. After a rocky start, I began to enjoy the journey: programming, networks, computer architecture, and a lot of math and physics. During my fourth year (I should have finished the degree the previous year, darn it), I received a job offer from a nearby company that seemed to be involved in IT.
 
-## First Job Experience: SysAdmin
+## There's a new SysAdmin in town! [Job experience] 
 
 This is where my professional life chapter begins. I was still finishing my studies and wanted to do it part-time. That "system administrator" position seemed perfect to start and balance both. I was young and naive, knowing nothing about the working world. 
 Long story short: that job quickly turned into a full-time one.
@@ -71,7 +71,7 @@ No, I didn't want to go back to working. It was time to sort out my thoughts and
 In the following months, I dedicated my time to university studies, trying to complete my bachelor's degree. I was five exams away from finishing; I passed 3 of them in 4 months.
 Wow, I can still do it. I can still study!
 
-## [Cyber Hackademy](https://cyberhackademy.unina.it/)
+## [Cyber Hackademy](https://cyberhackademy.unina.it/) [Skill up]
 
 Meanwhile, the opportunity to attend a cybersecurity academy organized by my university arose. For the top five performers, there was a scholarship up for grabs. Even though I was only studying at that time, I decided to give it a shot.
 The selection process was divided into three phases: evaluation of qualifications, written exam, and oral exam.
@@ -88,7 +88,7 @@ And here we are on stage that day, presenting our project.
 ![Cyber Hack](/aboutImg/cyberhack.png)
 
 
-## [Epsilon](https://www.epsilonline.com/): game changer
+## [Epsilon](https://www.epsilonline.com/): game changer [Job experience]
 
 During the months of Cyber Hackademy, just before it ended, I started interviewing again. Again, I had bad feelings during the interviews. I passed all of them, but after the first company, I think I developed a radar for toxic workplaces. And that radar went off every time during the interviews BEEP BEEP BEEP.
 
@@ -114,7 +114,27 @@ I can say that the few foundations I have today were built at Epsilon.
 
 But even more importantly, Epsilon restored my confidence in the working world. It made me realize that good places exist :heart:
 
-## [SIGHUP](https://sighup.io/): Kubernetes time
+## [DevDreams](https://devdreams.it/) [Skill up]
+
+
+"DevDreams" is a growth path for developers to achieve their goals.
+
+It's an initiative born from [Alfonso Graziano](https://it.linkedin.com/in/alfonso-graziano) and [Alex Prezioso](https://it.linkedin.com/in/alex-prezioso), which I discovered thanks to LinkedIn, managing to join right after its launch.
+
+The concept was as simple as it was ingenious: they had found senior profiles willing to help more junior profiles for free.
+All you needed to do was apply, and after an initial selection, a Mentor who aligned with your career growth was assigned to the Mentee.
+
+And that's where I got lucky.
+
+They paired me with [Gaspare Vitta](https://www.linkedin.com/in/gasparevitta/?original_referer=https%3A%2F%2Fwww.google.com%2F) as my mentor, an engineer specializing in Developer Experience at Qarik Group, a company based in New York, while working remotely from Italy.
+
+And so, I started having weekly appointments with Gaspare, during which we set a goal for the following week and defined what needed improvement in my ongoing work.
+
+It was a highly formative period, the resources and links Gaspare shared with me were like gold. He opened up a world, showing me things I had never seen before, and I realized that what I thought I knew needed deeper exploration.
+
+The meetings I had with Gaspare laid the foundation for what came next.
+
+## [SIGHUP](https://sighup.io/): Kubernetes time [Job experience]
 
 During my journey at Epsilon, I was asked to delve into studying a Kubernetes Cluster in an on-premise environment. Until then, I had only seen Kubernetes in its managed AWS version.
 One thing was clear: going into production with a "bare" Kubernetes cluster was unthinkable.
