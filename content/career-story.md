@@ -15,7 +15,7 @@ Hello, it's me. Ettore!
 
 ## The Very Beginning
 
-As it seems, like everyone in this field, I started tinkering with computers from a young age. Initially, it was just for playing games, but around the age of 15, I began to wonder what was behind the scenes and how things worked under the hood.
+Like many others in this field, I started tinkering with computers from a young age. Initially, it was just for playing games, but around the age of 15, I began to wonder what was behind the scenes and how things worked under the hood.
 
 My first "creation" was a website on Altervista. It was terrible. A simple page made with HTML and CSS, which displayed a playlist whenever it was viewed. But I had a domain like stupidfifteenyearoldname.altervista.org, and I felt like a Sensei.
 
@@ -38,7 +38,7 @@ When I wasn't at work, I played with my homelab: assembling, disassembling, and 
 After a couple of months of this, continuing to work at my first job made no sense anymore. I submitted my resignation.
 The boss then decided to drastically reduce my working hours while keeping the same pay, just to make me stay. I accepted.
 
-_Mistake number one for a young professional: never accept a counteroffer. Lesson learned._
+_My first mistake as a young professional: never accept a counteroffer. Lesson learned._
 
 So, I kept working there, with nothing more to learn. But I had much more time to dedicate to my homelab, so my skills grew elsewhere.
 
@@ -53,13 +53,16 @@ In December, I left my sysadmin job to focus solely on the Cloud part.
 
 Long story short: that Cloud branch of my company soon turned into a body rental on awful technologies, with very low salaries and no one willing to participate.
 
-_Mistake number two: companies are made up of people. If the same people whose values you don't share in company A, you probably won't share them in company B either. Lesson learned_
+
+At that point, I resigned, this time without accepting the counteroffer.
+
+_My second mistake: companies are made up of people. If the same people whose values you don't share in company A, you probably won't share them in company B either. Lesson learned_
 
 My world collapsed. I was very disappointed with that job. So, I started doing interviews to find a new one.
 
 Until that moment, I hadn't had any other job interviews, and starting to have them opened up a whole new world for me. If I had done it earlier, that tragic work experience would have only lasted a few months.
 
-_Mistake number three: not knowing one's target market. Lesson learned_
+_My third mistake: not knowing one's target market. Lesson learned_
 
 
 I had 5 interviews in the month of February, receiving four offers. But did I really want to get back into work? Up until that point, I had been operating on autopilot.
@@ -96,11 +99,9 @@ Until Epsilon came along.
 
 There, I had a great conversation about computer science with the CTO.
 
-The radar didn't sound, and I started working with them.
+The radar didn't sound, and I started working with them. My time at Epsilon was fantastic.
 
-My time at Epsilon was fantastic.
-
-Great colleagues, technical depth, engineering depth. What a wonderful place. At Epsilon, I didn't feel like I had a boss, just people who were technically more knowledgeable than me.
+Great colleagues, very high technical density, engineering depth. What a wonderful place. At Epsilon, I didn't feel like I had a boss, just people who were technically more knowledgeable than me.
 
 For over a year, I commuted to Epsilon twice a week (their office was just over an hour from where I lived). When I went there, I stayed in a hotel paid for by Epsilon and had delicious poke bowls whenever I stayed in Naples. You can't imagine how good it was.
 
@@ -126,7 +127,7 @@ All you needed to do was apply, and after an initial selection, a Mentor who ali
 
 And that's where I got lucky.
 
-They paired me with [Gaspare Vitta](https://www.linkedin.com/in/gasparevitta/?original_referer=https%3A%2F%2Fwww.google.com%2F) as my mentor, an engineer specializing in Developer Experience at Qarik Group, a company based in New York, while working remotely from Italy.
+They paired me with [Gaspare Vitta](https://www.linkedin.com/in/gasparevitta/?original_referer=https%3A%2F%2Fwww.google.com%2F) as my mentor, an engineer specializing in Developer Experience at [Qarik Group](https://qarik.com/), a company based in New York, while working remotely from Italy.
 
 And so, I started having weekly appointments with Gaspare, during which we set a goal for the following week and defined what needed improvement in my ongoing work.
 
@@ -146,7 +147,7 @@ I liked Kubernetes before, but from that moment on, I fell in love with it.
 And as I consumed online resources to understand what people were running in their production clusters, I came across the k8s Fury distribution by SIGHUP.
 At that moment, I thought about how fun it would be to work at a company that had made Kubernetes its core business, but I left it at that.
 
-Months later, I attended a Meetup, where the speakers were from SIGHUP.
+Several months later, I attended a Meetup, where the speakers were from SIGHUP.
 
 Then a position opened up in that company.
 
@@ -163,13 +164,11 @@ And it's through SIGHUP that I had the opportunity to participate in the [Kubern
 
 ## Current state
 
-Currently, I'm in SIGHUP, sitting at my comfortable workstation
+Currently, I work at SIGHUP remotely from my beautiful home office (perhaps in the future, I will dedicate a page to my home office setup).
 
 ![workstation](/aboutImg/workstation.png)
 
-trying to learn something new every day.
-
-The technologies I work with the most are Kubernetes, AWS services related to Kubernetes (VPC, EC2, S3, EKS), Ansible, Terraform, and Kong Gateway.
+The technologies I work with the most are Kubernetes, AWS services related to Kubernetes (VPC, EC2, S3, EKS), Ansible, Terraform and Kong Gateway.
 
 When I'm not engaged in IT-related activities, I'm probably watching some anime with my super nerdy girlfriend.
 And if we're not doing that, we're probably at a comic book convention.
@@ -184,6 +183,7 @@ If you're wondering, a triptych is a single pictorial or sculptural work divided
 What else can I say? Oh, I also enjoy walking.
 
 And when I say walking, I mean for hours. This is the view from one of my evening strolls.
+
 I absolutely love this.
 
 ![view](/aboutImg/view2.png)
