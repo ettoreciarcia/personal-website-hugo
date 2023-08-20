@@ -1,5 +1,5 @@
 ---
-title: "How to manage Terraform state"
+title: "Terraform: local state, remote state on s3 and Terraform Cloud!"
 date: 2023-07-29T13:19:03+02:00
 draft: true
 summary: "Let me show three different way to manage state in Terraform"
@@ -8,10 +8,10 @@ categories: [Terraform, Infrastracture]
 weight: "993"
 showToc: true
 cover:
-  image: "../img/10/cover.png"
+  image: "../img/10/cover1.png"
 ---
 
-## **0 Introduction**
+## 0 Introduction
 
 If you've been working with Terraform recently, you know how delicate the file where the state is stored can be. In this tutorial, we will explore three different ways to manage Terraform state, discussing their respective advantages and disadvantages for each.
 
@@ -37,7 +37,7 @@ Terraform logs information about the resources it has created in a state file. T
 
 [Useful links](https://spacelift.io/blog/terraform-architecture)
 
-### A few words about the Terraform modules we will be discussing
+### A few words about the Terraform modules we will using
 
 We will create the same infrastructure three times, using four different strategies for managing the state. You will find the code examples inside these folders.
 
@@ -293,3 +293,29 @@ What happened to our Terraform state?
 Now it's on Terraform Cloud!
 
 ![state-terraform-cloud](../img/10/remote-state.png)
+
+Terraform Cloud Free Tier can be used with some limitations compared to its Enterprise version:
+
+1. Limited computing power: If, until yesterday, you were using local workers to interact with your infrastructure, you might notice a slower performance when using Terraform Cloud's remote workers. In the Free version of Terraform Cloud, we have only one worker.
+2. The number of users you can create within an organization is limited.
+3. t does not allow the creation of teams.
+4. Since it doesn't support multiple organizations, it lacks features for cross-organization registry sharing.
+5. In terms of logging, the Free version has significantly fewer features compared to the Enterprise version.
+
+## 4 Conclusions
+
+When we use tools like Terraform for "home" purposes, the main strength of Terraform Cloud's free tier compared to an S3 bucket lies in the user interface. The output in Terraform Cloud is much more visually appealing and perhaps more user-friendly for those who are new to Infrastructure as Code (IaC).
+
+Even if we are a company with a few moderately sized projects, and we don't use other tools from HashiCorp's ecosystem (such as Sentinel, for example), we can consider using both an S3 bucket and Terraform Cloud Free Tier.
+
+On the contrary, if we have many projects to manage collaboratively (involving more than one team and more than one organization), a tool like Terraform Cloud Enterprise can assist us in the creation and management of our infrastructure.
+
+## 5 Useful links
+
+- [Backend Configuration](https://developer.hashicorp.com/terraform/language/settings/backends/configuration)
+
+- [Terraform Pricing](https://www.hashicorp.com/products/terraform/pricing)
+
+- [Managing Terraform State - Spacelift](https://spacelift.io/blog/terraform-state)
+
+- [What is Terraform Cloud](https://www.hashicorp.com/products/terraform)

@@ -63,8 +63,6 @@ And that's not all. Every time a host changes its IP address or a new host joins
 
 It is evident that this solution cannot scale, and this is where a DNS server can come to our rescue.
 
-Nel nostro server DNS andremo ad associare all'hostname "secco" l'inridizzo IP di secco e poi utilizzeremo il server DNS da Zerocalcare per risolvere l'indirizzo IP di secco.
-
 In our DNS server, we will associate the IP address of Secco with the hostname "secco," and then we will use the DNS server from Zerocalcare to resolve the IP address of Secco.
 To specify which DNS server to use for name resolution within a Linux system, you need to refer to the ```/etc/resolv.conf```  file.
 
