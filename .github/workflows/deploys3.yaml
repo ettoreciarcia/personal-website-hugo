@@ -23,9 +23,9 @@ jobs:
 
       - name: Replace Placeholder
         env:
-          TID: ${{ secrets.TRACKING_ID }}
+          TRACKING_ID: ${{ secrets.TRACKING_ID }}
         run: |
-          sed -i "s/[TRACKING_ID]/${{ env.TID }}/g" config.yml
+          sed -i "s/TRACKING_ID/$TRACKING_ID/g" config.yml
 
       - name: check output
         run: |
