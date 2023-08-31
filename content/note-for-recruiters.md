@@ -8,7 +8,7 @@ ShowReadingTime: false
 disableShare: true
 ---
 
-Hello! If you want to tell me about some open position you are managing, you can reach me at ettoreciarcia.tech@gmail.com or through [LinkedIn](https://www.linkedin.com/feed/).
+Hello! If you want to tell me about some open position you are managing, you can reach me at ettoreciarcia.tech@gmail.com or through [LinkedIn](https://www.linkedin.com/in/ettoreciarcia/).
 
 You can find my updated resume [here](/cv/EttoreCiarcia.pdf)
 
