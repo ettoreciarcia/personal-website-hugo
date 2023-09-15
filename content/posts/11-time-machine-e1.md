@@ -43,7 +43,17 @@ The primary aim of DevOps, according to the DevOps library history, is to maximi
 
 This has nothing to do with tools, tools are merely the means to achieve this goal
 
-And looking around now, I find myself inundated with tools. Those entering the job market now may start using tools like Docker, Kubernetes, and managed cloud services right away. But all these are nothing but layers of abstraction. Abstraction upon abstraction upon abstraction. Think about it. Containers, one of the biggest software development revolutions of the last 10 years, are just cgroups and namespaces! Kubernetes? Just containers and a lot of networking. Cloud instances? Just a Linux kernel running somewhere! I could give you dozens of examples like these.
+And looking around now, I find myself inundated with tools.
+
+Those entering the job market now may start using tools like Docker, Kubernetes, and managed cloud services right away. 
+
+But all these are nothing but layers of abstraction. Abstraction upon abstraction upon abstraction.
+
+Think about it. 
+ 
+Containers, one of the biggest software development revolutions of the last 10 years, are just cgroups and namespaces! Kubernetes? Just containers and a lot of networking. Cloud instances? Just a Linux kernel running somewhere!
+
+I could give you dozens of examples like these.
 
 
 ## The goal

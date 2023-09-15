@@ -574,7 +574,7 @@ To shed some more lights on the fallthrough option. Any given backend is usually
 
 Last thing is to Remember to add the customdomains.ddns file to the config-volume for the CoreDNS pod template:
 
-```kubectl rollout restart -n kube-system deployment/coredn```
+```kubectl rollout restart -n kube-system deployment/coredns```
 
 
 ## **7. Useful links**
