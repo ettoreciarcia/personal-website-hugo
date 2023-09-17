@@ -11,32 +11,32 @@ cover:
   image: "../img/11/cover1.png"
 ---
 
-## Day 1: basi di HTML
+## Day 1: HTML Basics
 
-Ci siamo.
+It's the early 2000s. You're listening to [Super Bon Bon](https://www.youtube.com/watch?v=TRqP52c0OLU) blasting at full volume from your speakers.
 
-Sono i primi anni 2000s. Stai ascoltando [Super Bon Bon](https://www.youtube.com/watch?v=TRqP52c0OLU) sparata al massimo volume dai tuoi altoparlanti.
+There are no social media, no reels, shorts, or similar nonsense. You're feeling bored.
 
-I social non esistono, nessun reel, shorts o stronzate simili. Ti stai annoiando.
+You boot up your Debian 2.2, Potato version, computer. That computer makes a deafening noise, so you decide to turn up the music.
 
-Accendi il tuo client con Debian 2.2, versione Potato. Quel client fa un rumore assordante, decidi quindi di alzare la musica.
+But the speakers are already at full volume. Compulsive Amazon shopping doesn't exist yet; you can't go to that site and buy more powerful speakers.
 
-Ma gli altoparlanti sono già al massimo. Lo shopping compulsivo da Amazon ancora non esiste, non puoi andare su quel sito e comprare degli altoparlanti più potenti.
+After 5 minutes, your Debian system has finished bootstrapping, and you can start.
 
-Dopo 5 minuti il bootstrap del tuo sistema Debian è finito, puoi cominciare.
+Start doing what? You don't have a goal.
 
-Cominciare a fare cosa? Non hai un'obiettivo.
-
-Digiti semplicementi nel terminale 
+You simply type into the terminal.
 
 ``` vi index.html ```
 
-e cominci a scrivere qualcosa di te all'interno di quella pagina.
+And you begin to write something about yourself within that page.
 
-YouTube non esiste, il web non è pieno di documentazione. Cercare informazioni è una sofferenza.
-Dopo ore passate ad editare quel file, ottieni finalmente la home del tuo sito web.
+YouTube doesn't exist, the web isn't filled with documentation. Searching for information is a pain.
 
-Un semplice file HTML, qualcosa del genere:
+After hours spent editing that file, you finally achieve the homepage of your website.
+
+A simple HTML file, something like this:
+
 
 ```
 <!DOCTYPE html>
@@ -128,71 +128,69 @@ Un semplice file HTML, qualcosa del genere:
 </html>
 ```
 
-riesci a visualizzarla dal tuo computer, ti è costata quasi tutto il pomeriggio.
+You manage to view it from your computer, and it has taken you almost the entire afternoon.
 
-Questo è semplicemente un file sul tuo hard disk, non esistono VCS su cui pusharlo. Vive lì, in locale. 
+This is just a file on your hard disk; there are no version control systems to push it to. It lives there, locally.
 
-Sei felicissimo e la FOMO non ti sta divorando. La FOMO neanche esiste. Chiudi tutto.
+You are ecstatic, and FOMO isn't gnawing at you. FOMO doesn't even exist. It's time to close everything.
 
 ___
 
-## Day 2: Cercando di capire cos'è un webserver
+## Day 2: Trying to understand What a web server ss
 
-È pasata una settimana da quando hai editato quel file con estensione .html. In un negozio acconto casa tua hai comprato una rivista in cui viene spiegato come far vedere il proprio sito web ai propri amici, da qualsiasi parte del mondo.
+It's been a week since you edited that .html file. You bought a magazine at a store near your house, which explains how to make your website accessible to your friends from anywhere in the world.
 
-Quella guida dice che hai bisogno di un webserver, ne esiste uno chiamato Apache. Hai le idee confuse e non sai che pesci prendere. Continui a leggere ma non capisci a cosa serva tutta quella roba. Giornata improduttiva, lasci stare.
+The guide mentions that you need a web server, and there's one called Apache. Your thoughts are muddled, and you're not sure where to start. You keep reading, but you don't quite grasp the purpose of all this stuff. It's an unproductive day, so you decide to leave it for now.
 
 ___
 
 ## Day 3: Webserver I got you!
 
-Mentre parli con un tuo amico della pagina html che hai scritto scopri che anche lui ne ha scritta una. Chiacchierando viene fuori che lui ha capito meglio di te cosa sia un webserver e quel pomeriggio viene a spiegartelo a casa tua.
+While chatting with your friend about the HTML page you wrote, you discover that he has also created one. As you talk, it becomes apparent that he has a better understanding of what a web server is, and he offers to explain it to you at your home that afternoon.
 
-He said:
+He explains:
 
-" Un web server è un software che gestisce le richieste e le risposte tra client e server su Internet. La sua funzione principale è quella di distribuire pagine web e altri contenuti web agli utenti che ne fanno richiesta attraverso i loro browser web. Ecco come funziona un web server:
+"A web server is software that manages requests and responses between clients and servers on the Internet. Its main function is to distribute web pages and other web content to users who request them through their web browsers. Here's how a web server works:
 
-1. Ricezione delle richieste: Quando un utente digita un URL (Uniform Resource Locator) nel suo browser web e preme Invio, il browser invia una richiesta HTTP (Hypertext Transfer Protocol) al web server corrispondente per ottenere la pagina web associata all'URL. La richiesta HTTP contiene informazioni su cosa l'utente sta cercando e come il server dovrebbe rispondere.
+Receiving Requests: When a user enters a URL (Uniform Resource Locator) into their web browser and hits Enter, the browser sends an HTTP (Hypertext Transfer Protocol) request to the corresponding web server to fetch the web page associated with the URL. The HTTP request contains information about what the user is looking for and how the server should respond.
 
-2. Elaborazione della richiesta: Il web server riceve la richiesta HTTP e inizia a elaborarla. Questo può includere il controllo dell'URL richiesto, la verifica dei permessi di accesso, la gestione delle sessioni degli utenti e altre operazioni necessarie per soddisfare la richiesta.
+Request Processing: The web server receives the HTTP request and begins processing it. This may involve checking the requested URL, verifying access permissions, managing user sessions, and other operations necessary to fulfill the request.
 
-3. Recupero dei dati: Se la richiesta richiede l'accesso a file, come pagine HTML, immagini, fogli di stile o altri contenuti multimediali, il web server recupera questi dati dai suoi archivi o dai file system del server.
+Data Retrieval: If the request requires access to files, such as HTML pages, images, style sheets, or other multimedia content, the web server retrieves this data from its storage or server file systems.
 
-4. Generazione di risposta: Una volta ottenuti i dati richiesti, il web server genera una risposta HTTP che include i dati e le informazioni di intestazione. Le informazioni di intestazione contengono metadati sulla risposta, come il tipo di contenuto, la data di creazione, la lunghezza del contenuto e altro ancora.
+Response Generation: Once the requested data is obtained, the web server generates an HTTP response that includes the data and header information. The header information contains metadata about the response, such as content type, creation date, content length, and more.
 
-5. Invio della risposta: Il web server invia la risposta HTTP al browser dell'utente attraverso Internet. Il browser riceve la risposta e la interpreta per visualizzare la pagina web o il contenuto richiesto."
+Sending the Response: The web server sends the HTTP response to the user's browser over the Internet. The browser receives the response and interprets it to display the requested web page or content."
 
-
-Ora le cose ti sembrano molto più chiare. Il tuo amico butta già anche un disegno:
+Now things seem much clearer to you. Your friend even draws a diagram:
 
 ![client-server](../img/12/client-server.png)
 
-Le idee cominciano a riordinarsi, stai capendo come mettere in piedi il tuo primo sito web. 
+Your thoughts are starting to come together; you're understanding how to set up your first website.
 
-Sia tu che il tuo amico volete approfondire come un webserver funziona e cominciate a leggere insieme quella rivista
+Both you and your friend want to delve deeper into how a web server works and begin reading that magazine.
 
-Cosa succede esattamente quando fate una richiesta ad un webserver?
+You discover exactly what happens when you make a request to a web server:
 
-Scoprite che quando effettuate una richiesta di tipo GET al server state utilizzando il protocollo HTTP e che oltre alla GET esistono altre chiamate dette metodi: DELETE, POST, PUT, HEAD, CONNECT, PATCH, TRACE, OPTIONS. Avete le idee un po' confuse al riguardo ma vi p chiaro che i metodo di cui farete uso voi saranno GET E POST.
+You find out that when you make a GET request to the server, you are using the HTTP protocol. Besides GET, you learn that there are other calls known as methods: DELETE, POST, PUT, HEAD, CONNECT, PATCH, TRACE, OPTIONS. You are a bit confused about these methods, but you are clear that you will mainly use GET and POST.
 
-Scoprite che il protocollo HTTP funziona "on top" ad un altro protocollo chiamato TCP (Transmission Control Protocol). 
-A quanto pare il TCP permette a client e server di stabilire una connessione bidirezionale.
+You discover that the HTTP protocol operates "on top" of another protocol called TCP (Transmission Control Protocol). Apparently, TCP allows clients and servers to establish a bidirectional connection.
 
-Quindi la prima cosa che succede quando effettuamo la chiamata GET per avere la nostra index non è la risposta immediata del server, viene prima stabilita una connessione TCP tra client e server. E quando questa connessione TCP viene stabilita il server riserva un piccolissima parte della sua memoria per creare una socket TCP per il client che ha effettuato la richiesta.
+So, the first thing that happens when you make a GET call to get your index is not an immediate response from the server. First, a TCP connection is established between the client and server. When this TCP connection is established, the server reserves a tiny portion of its memory to create a TCP socket for the client that made the request.
 
-Una volta ottenuta una socket sul server abbiamo un thread e sarà questo thread ad evadere la nostra richiesta. E le richieste possono essere evase una alla volta.
+Once a socket is obtained on the server, you have a thread, and this thread will handle your request. Requests can be processed one at a time.
 
-Se entrambi gli amici si collegassero allo stesso server facendo la stessa richiesta, il webserver riserverebbe loro due socket TCP che evaderebbero le richieste una alla volta ma non contemporanemante.
+If both friends were to connect to the same server, making the same request, the web server would reserve two TCP sockets for them, handling the requests one at a time but not simultaneously.
 
-Ok, per far vedere il tuo sito al mondo hai bisogno di un webserver e hai capito a grandi linee come funziona. È il momento di installarlo!
+Okay, to showcase your website to the world, you need a web server, and you have a rough understanding of how it works. It's time to install it!
 
-Trovi una guida su come installare Apache, sembra una buona soluzione al tuo problema.
+You find a guide on how to install Apache, which seems like a good solution to your problem.
 
-Finalmente hai il tuo web server up & running.
+Finally, you have your web server up and running.
 
-Non ti resta che configurarlo.
+Now, all that's left is to configure it.
 
-Questo è il file di configurazione
+This is the configuration file.
 
 ```
 DefaultRuntimeDir ${APACHE_RUN_DIR}
@@ -240,94 +238,88 @@ IncludeOptional conf-enabled/*.conf
 IncludeOptional sites-enabled/*.conf
 ```
 
-Ora non ti resta che effettuare la prima chiamata GET sul tuo sito web. Ma a chi dovresti farla? Non hai ancora una DNS.
+Now, all that's left is to make the first GET request to your website. But to whom should you make it? You don't have a DNS yet.
 
-Scopri dell'esistenza di **localhost** .The loopback interface is associated with the IP address 127.0.0.1. This IP address is reserved for loopback testing and is commonly used to access services running on the local machine.
+You discover the existence of localhost. The loopback interface is associated with the IP address 127.0.0.1. This IP address is reserved for loopback testing and is commonly used to access services running on the local machine.
 
-Ci siamo, digiti nella barra di ricerca del tuo browser
+Here you go, you type into your browser's address bar:
 
 http://localhost:80
 
-sì, ci aggiungi anche la porta perché non sai che di default la chiamata sarebbe stata fatta alla porta 80 in HTPP.
+Yes, you even add the port because you don't know that the default call would have been made to port 80 in HTTP.
 
-Lo vedi.
+You see it.
 
-[TO DO, INSERIRE FOTO SITO]
-
-
-A questo punto il sito potete vederlo solo voi e il vostro amico, ma volete conndividere il lavoro fatto con altri.
-
+At this point, only you and your friend can view the site. But you want to share the work you've done with others.
 ___
 
-## Day 4 Primo incontro con FTP
+## Day 4: First encounter with FTP
 
-Parli di quanto fatto con un amico più grande che frequenta l'università. Lui ha accesso ad hardware più performante e conosce le reti di calcolatori meglio di te
+You discuss what you've done with an older friend who attends university. He has access to more powerful hardware and a better understanding of computer networks than you do.
 
-Ti spiega che per rendere accessibile quel sito all'esterno hai bisogno di esporlo su Internet e per essere visto su Internet hai bisogno di un indirizzo IP pubblico.
+He explains that to make your website accessible from the outside, you need to expose it on the Internet, and to be seen on the Internet, you need a public IP address.
 
-Nella sua facoltà lui ha qualcosa che può fare al caso tuo. Un server FTP che fa anche da webserver.
+In his department, he has something that might be useful for your case: an FTP server that also serves as a web server.
 
-Ti spiega che puoi caricare la index.html sul server dell'università tramite FTP e poi penserà lui ad esporla su Internt con il Webserver e uno degli indirizzi IP pubblici appartenenti all'università.
+He explains that you can upload the index.html file to the university's server via FTP, and then he will take care of exposing it on the Internet using the web server and one of the university's public IP addresses.
 
-FTP? Indirizzi IP pubblici? Di cosa sta parlando?
+FTP? Public IP addresses? What is he talking about?
 
-Ti dice di non preuccuparti e che l'unica cosa di cui ha bisogno è il tuo file index all'interno del server dell'università.
+He tells you not to worry and that all he needs is your index file inside the university's server.
 
-Ti fornisce delle credenziali pr accedere in FTP al server e ti spiega come caricare quel file tramite FTP.
+He provides you with credentials to access the FTP server and explains how to upload the file via FTP.
 
-Sembra semplice, hai solo bisogno di un client FTP sul tuo client e di digitare
+It seems simple; you just need an FTP client on your computer and to type
 
-```ftp 1.1.1.1``` 
+```ftp 1.1.1.1```
 
-all'interno del tuo terminale e
+in your terminal and
 
-```put index.html``` 
+```put index.html```
 
-per caricare il tuo file all'interno del server.
+to upload your file to the server.
 
-In un paio di giorni puoi visitare l'indirizzo IP pubblico che ti ha fornito per visualizzare la tua pagina web da casa tua
+In a couple of days, you can visit the public IP address he provided to view your web page from your home.
 
-## DAY 6: scopri il TCP/IP
+## DAY 5: Discovering TCP/IP
 
-Carico di speranza effettui una chiamata GET all'indirizzo IP pubblico del server FTP che ti ha fornito. Non ricevi nesssuna risposta, pensi di aver sbagliato qualcosa.
-Effettuoi novamente il login in FTP e vedi che il tuo file index.html è ancora dove lo hai lasciato.
+Full of hope, you make a GET request to the public IP address of the FTP server your friend provided. However, you receive no response, and you begin to think you've done something wrong. You log in to FTP again and notice that your index.html file is still where you left it.
 
-Nel frattempo hai comprato un'altra rivista in  cui si toccano argomenti di reti di calcolaori e trovi delle note che subito catturano la tua attenzione: "FTP e HTTP sono protocolli di livello applicativo".
-FTP e HTTP sono i protocolli che hai incontrato anche tu durante l'avventuroso viaggio per esporre il tuo webserver! Decidi di andare più a fondo e continui con la lettura
+In the meantime, you've purchased another magazine that covers computer network topics, and you find some notes that immediately catch your attention: "FTP and HTTP are application layer protocols." FTP and HTTP are the same protocols you encountered during your adventurous journey to expose your web server! You decide to delve deeper and continue reading.
 
-Scopri che esitono due modelli di riferimento per le reti di calcolatori:
+You discover that there are two reference models for computer networks:
 
-- ISO/OSI composto da 7 livelli, più teorico
+ISO/OSI, composed of 7 layers, more theoretical.
 
-- TCP/IP composto da 4 livelli, più pratico
+TCP/IP, composed of 4 layers, more practical.
 
-Decidi di approfondire la lettura del modello TCP/IP
+You decide to further explore the TCP/IP model.
 
-I livelli coinvolti sono (dal basso verso l'alto):
+The layers involved are (from bottom to top):
 
-- L1 Fisico: gestisce l'infrastruttura fisica che consente ai computer di comunicare tra loro in Internet. Si applica a cavi Ethernet, reti wireless, schede di interfaccia di rete, driver nel computer e così via. Il livello di accesso alla rete include anche l'infrastruttura tecnica, come il codice che converte i dati digitali in segnali trasmissibili, che rende possibile la connessione di rete. Pensi a qualcosa riconducibile a questo livello, il cavo Ethernet per esempio
+- Layer 1 Physical: Manages the physical infrastructure that allows computers to communicate with each other on the Internet. It applies to Ethernet cables, wireless networks, network interface cards, drivers in computers, and so on. The network access layer also includes technical infrastructure, like the code that converts digital data into transmittable signals, enabling network connectivity. You think of something related to this layer, like Ethernet cables, for example.
 
-- L2 Rete: controlla il flusso e l'instradamento del traffico per garantire che i dati vengano inviati in modo rapido e accurato. Questo livello è anche responsabile del riassemblaggio dei pacchetti di dati a destinazione. In caso di traffico intenso, il livello Internet potrebbe impiegare più tempo per inviare un file, ma con minori possibilità che un errore lo danneggi.
+- Layer 2 Network: Controls the flow and routing of traffic to ensure that data is sent quickly and accurately. This layer is also responsible for reassembling data packets at their destination. In cases of heavy traffic, the Internet layer might take longer to send a file but with a lower likelihood of damaging it.
 
-- L3 Trasporto: Il livello di trasporto consente una connessione dati affidabile tra due dispositivi comunicanti. È come spedire un pacco assicurato: il livello di trasporto suddivide i dati in pacchetti, riconosce i pacchetti ricevuti dal mittente e garantisce che il destinatario riconosca i pacchetti ricevuti.
+- Layer 3 Transport: The transport layer enables reliable data connections between two communicating devices. It's like sending a secure package: the transport layer breaks down data into packets, acknowledges received packets from the sender, and ensures the receiver acknowledges the received packets.
 
-- L4 Applicazione:  consiste nel gruppo di applicazioni che consentono all'utente di accedere alla rete. Per la maggior parte questo si traduce in email, app di messaggistica e programmi di archiviazione cloud. Si tratta sostanzialmente di quel che l'utente finale vede e con cui interagisce durante l'invio e la ricezione dei dati.
+- Layer 4 Application: It consists of the group of applications that allow users to access the network. For the most part, this translates into email, messaging apps, and cloud storage programs. It's essentially what the end user sees and interacts with while sending and receiving data.
 
-C'è anche un bel disegno che rende più semplice capire quali sono gli attori coinvolti nel modello TCP/IP:
+There's also a helpful diagram that makes it easier to understand the actors involved in the TCP/IP model.
 
 ![TCP-IP](../img/12/TCP-IP.png)
 
-## DAY 7: your website is online!
 
-Effettui di nuovo una chiamata GET all'indirizzo IP pubblico che ti ha fornito il tuo amico. Questa richiesta rimbalza da router a router finchè non ti arriva una risposta.
+## DAY 6: Your Website Is Online!
 
-Eccolo. È il tuo sito web. 
+You make another GET request to the public IP address your friend provided. This request bounces from router to router until you finally receive a response.
+
+There it is. It's your website: 
 
 ![website](../img/12/website.png)
 
 
-Ci è voluta una settimana. Sono state coinvolte 3 persone, 2 riviste e un po' di hardware dell'università ma ne è assolutamente valsa la pena. Non hai ancora un dominio tutto tuo, ma su questo ci lavorerai. Per ora va bene così
+It took a week. Three people, two magazines, and a bit of university hardware were involved, but it was absolutely worth it. You don't have your own domain yet, but you'll work on that. For now, it's just fine.
 
-Riordini le idee su tutte le nozioni che hai acquisito con un semplice progetto che ti ha visto selfhostare il tuo sito web. Hai imparato molto e pensi che sarebbe proprio figo fare questo per lavoro quando sarai grande.
-
+You organize your thoughts on all the knowledge you've gained from a simple project that saw you self-hosting your website. You've learned a lot, and you think it would be really cool to do this for a living when you grow up.
 
