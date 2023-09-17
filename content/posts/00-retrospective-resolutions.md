@@ -82,11 +82,11 @@ I would like to learn Go, write my first Kubernetes operator and improve my IaaC
 
 The goal for the end of the year is to understand and be understood by others when you talk about non-technical topics
 
-- **I want workout regularly**
+- **I want to workout regularly**
 
 This goal is the same, I hope I don't get injured this year
 
-- **I want take some certifications**
+- **I want to take some certifications**
 
 The plan is to take AWS Devops Professional and the CKA. If there is time left I would also like to take some Hashicorp certifications (Terraform maybe)
 
