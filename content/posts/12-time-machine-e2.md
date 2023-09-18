@@ -1,14 +1,14 @@
 ---
 title: "How to deploy your website, but it’s the early 2000s [Time Machine-E2]"
 date: 2023-09-01T19:32:29+02:00
-draft: true
-summary: "An informal chat about DevOps Philosophy and a DeLorean ready to embark on a Time Travel Adventure"
+draft: false
+summary: "Article traces early 2000s web journey: HTML basics, web server, FTP, TCP/IP, and successful website hosting. Learning adventure unveiled."
 tags: [Time Machine]
 categories: [Time Machine]
 weight: "992"
 showToc: true
 cover:
-  image: "../img/11/cover1.png"
+  image: "../img/12/cover.png"
 ---
 
 ## Day 1: HTML Basics
@@ -136,7 +136,7 @@ You are ecstatic, and FOMO isn't gnawing at you. FOMO doesn't even exist. It's t
 
 ___
 
-## Day 2: Trying to understand What a web server ss
+## Day 2: Trying to understand what a web server is
 
 It's been a week since you edited that .html file. You bought a magazine at a store near your house, which explains how to make your website accessible to your friends from anywhere in the world.
 
@@ -310,7 +310,7 @@ There's also a helpful diagram that makes it easier to understand the actors inv
 ![TCP-IP](../img/12/TCP-IP.png)
 
 
-## DAY 6: Your Website Is Online!
+## DAY 6: Your Website Is Online!
 
 You make another GET request to the public IP address your friend provided. This request bounces from router to router until you finally receive a response.
 
@@ -319,7 +319,7 @@ There it is. It's your website:
 ![website](../img/12/website.png)
 
 
-It took a week. Three people, two magazines, and a bit of university hardware were involved, but it was absolutely worth it. You don't have your own domain yet, but you'll work on that. For now, it's just fine.
+It took a week, three people, two magazines, and a bit of university hardware were involved, but it was absolutely worth it. You don't have your own domain yet, but you'll work on that. For now, it's just fine.
 
 You organize your thoughts on all the knowledge you've gained from a simple project that saw you self-hosting your website. You've learned a lot, and you think it would be really cool to do this for a living when you grow up.
 
