@@ -163,9 +163,11 @@ To the code we've seen before, we need to add:
 ```
 terraform {
   backend "s3" {
-    bucket = "terraform-state-remote-s3-sdf2"
-    key    = "resources"
-    region = "eu-west-1"
+    bucket         = "terraform-state-remote-s3-sdf2"
+    key            = "terraform.tfstate"
+    region         = "eu-west-1"
+    dynamodb_table = "terraform_locks"
+    encrypt        = true
   }
   required_providers {
     aws = {
