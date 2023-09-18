@@ -250,7 +250,7 @@ Let's analyze our new backend configuration:
 - **organization**: specifies the name of the organization on Terraform Cloud. This is the organization to which your project belongs
 - **workspace**: this section defines the Terraform Cloud workspace where the remote state will be managed
 
-For more information on configuring Terraform Cloud, you can refer to my previous article: https://[How to deploy your own website on AWS with Terraform and Git Hub Actions!](ettoreciarcia.com/posts/01-iac-and-pipeline-my-personal-website/#23-terraform-cloud)
+For more information on configuring Terraform Cloud, you can refer to my previous article [How to deploy your own website on AWS with Terraform and Git Hub Actions!](https://ettoreciarcia.com/posts/01-iac-and-pipeline-my-personal-website/#23-terraform-cloud)
 
 
 Now, you can proceed as before to initialize your Terraform project
