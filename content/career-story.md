@@ -51,7 +51,7 @@ For months, I continued with my sysadmin job, my homelab, and doing small projec
 
 In December, I left my sysadmin job to focus solely on the Cloud part.
 
-Long story short: that Cloud branch of my company soon turned into a body rental on awful technologies, with very low salaries and no one willing to participate.
+Long story short: the Cloud branch of my company quickly turned into an environmet with very low salaries and no regular contracts for the people working alongside me. Even today, I am amazed that such a place is not monitored by the relevant authorities
 
 
 At that point, I resigned, this time without accepting the counteroffer.
