@@ -6,7 +6,7 @@ tags: [Best Prsactices, Container]
 categories: [Just chatting]
 weight: "991"
 showToc: true
-draft: true
+draft: false
 cover:
   image: "../img/13/cover.jpeg"
 ---
@@ -14,9 +14,12 @@ cover:
 ## Intro
 
 Thanks to SIGHUP, this year I had the opportunity to participate in Container Day and DevSecOps Day in Bologna on October 12th and 13th, respectively. Both events were organized by Grusp.
+
 Working fully remote, this was one of those occasions when I had the chance to meet my colleagues in person, and I'm always happy when that happens. 
 
-In the same month, I also had the opportunity to speak at the Linux Day in Benevento on October 28th. In this article, I'll try to summarize these days, discussing some of the talks I attended and what I was able to take away from the
+In the same month, I also had the opportunity to speak at the Linux Day in Benevento on October 28th. 
+
+In this article, I'll try to summarize these days, discussing some of the talks I attended and what I was able to take away from the
 
 ## Container Day
 
@@ -49,6 +52,8 @@ But every operator adds a complexity factor, and all these complexity factors mu
 Great, you've set up a Postgres DB using the Zalando operator! You can do it by passing just a few variables to a Helm chart. But do you have the skills to troubleshoot in case something goes wrong?
 Perhaps deploying something like operators for Stateful services in production should not be underestimated.
 
+Unfortunately, I wasn't able to listen to all the talks at the event. SIGHUP had a booth as a sponsor, and I spent some time talking to the attendees about what we do and about Fury.
+
 One of the things I like most about these events is being able to see people live whom I can usually only watch on YouTube channels.
 
 This time, I saw Paolo Carta live, the creator of the first Kubernetes course in Italian that I followed. It was 2020, and I purchased his course on Udemy. I've launched so many kubectl commands since that day.
@@ -61,6 +66,14 @@ ___
 
 This event gathered slightly fewer participants compared to Container Day, but for its first edition, the numbers were still impressive.
 
+
+I spent most of the day at the booth today. The only talk I attended in its entirety was Luca Bandini's presentation titled ['From Development to Release: Securing the Software Supply Chain The Cloud Native Way'](https://2023.devsecopsday.it/talks_speakers/) 
+
+It's always great to listen to someone's talk and realize how much we have to learn about certain topics.
+
+One of the topics I'd like to delve into in the coming months is precisely this one: DevSecOps pipelines in cloud environments. 
+
+They seem like a lot of fun!
 ___
 
 ## Linux Day Benevento
