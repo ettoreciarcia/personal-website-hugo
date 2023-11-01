@@ -19,6 +19,6 @@ Few interesting pages:
 
 - [History of my career](/history-of-my-career)
 
-- [Achievements and Certifications](/certification&achievements)
+- [Certification and Talks](/certification&talks)
 
 - [Note for recruiters](/note-for-recruiters/)
