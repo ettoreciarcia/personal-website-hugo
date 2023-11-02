@@ -19,7 +19,7 @@ Working fully remote, this was one of those occasions when I had the chance to m
 
 In the same month, I also had the opportunity to speak at the Linux Day in Benevento on October 28th. 
 
-In this article, I'll try to summarize these days, discussing some of the talks I attended and what I was able to take away from the
+In this article, I'll try to summarize these days, discussing some of the talks I attended and what I was able to take away from the insightful discussions and presentations.
 
 ## Container Day
 
@@ -37,7 +37,7 @@ Kubernetes is still the elephant in the room. I can't see any production-grade a
 
 But are we overdoing it? Kubernetes is a fantastic tool and solves a real problem, which is container orchestration, BUT it can't solve your process problems. In fact, it might amplify them.
 
-Taking a step back and looking at the Italian reality, very few companies are truly ready to adopt Kubernetes. Kubernetes is not just taking a Dockerfile, building it, and deploying the image in a pod; there's a whole world behind it.
+Taking a step back and looking at the Italian reality, very few companies are truly ready to adopt Kubernetes. Kubernetes is not just taking a Dockerfile, building it, and deploying the image in a pod, there's a whole world behind it.
 
 A few days ago, I read about someone who wanted to know how to connect to a pod via FTP for deployment.
 
@@ -78,6 +78,8 @@ ___
 
 ## Linux Day Benevento
 
+![YAML-Guy](../img/13/yaml-guy.png)
+
 On October 29th, I participated as a speaker at the Linux Day in Benevento. It's fantastic that in a small community like the one where I live, organizations like LILiS (Laboratory for Libre Informatics Sannita) have survived and continue to organize events like these.
 
 The talk I presented was titled "Kubernetes, Kubernauts, and Kubeinvaders."
@@ -100,6 +102,11 @@ Of course, as usual, I collected a bunch of stickers at this event. And as a spe
 
 ![tshirt](../img/13/tshirt.jpg)
 
-If you're interested in watching my presentation, you can find it at this link -> [Kubernetes, Kubernauts, and Kubeinvaders - Linux Day Benevento 2023](https://www.youtube.com/watch?t=2142&v=1tHkEfbGjgE&feature=youtu.be)
+If you're interested in watching my presentation, you can find it at this link -> [Kubernetes, Kubernauts, and Kubeinvaders - Linux Day Benevento 2023](https://www.youtube.com/watch?t=655&v=1tHkEfbGjgE&feature=youtu.be)
+
+
+[Here](https://www.lilis.it/gear/uploads/2023/10/Ettore-Ciarcia-Kubernetes-Kubernauti-Kubeinvaders.pdf) you can find the slides of my talk, and on my [GitHub profile](https://github.com/ettoreciarcia/talks/tree/main/linux-day-28-10-2023) you can find the code used for the demo.
+
+Until the next article, fellow Kubernaut!
 
 As always, any feedback is much appreciated!
