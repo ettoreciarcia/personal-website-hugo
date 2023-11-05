@@ -1,8 +1,8 @@
 ---
-title: "Community month"
+title: "(Continer,DevSecOps, Linux)Day!"
 date: 2023-10-29T13:43:43+01:00
 summary: "A conversation about Container Day, DevSecOps Day, and Linux Day"
-tags: [Best Prsactices, Container]
+tags: [Just chatting, events]
 categories: [Just chatting]
 weight: "991"
 showToc: true
@@ -107,6 +107,7 @@ If you're interested in watching my presentation, you can find it at this link -
 
 [Here](https://www.lilis.it/gear/uploads/2023/10/Ettore-Ciarcia-Kubernetes-Kubernauti-Kubeinvaders.pdf) you can find the slides of my talk, and on my [GitHub profile](https://github.com/ettoreciarcia/talks/tree/main/linux-day-28-10-2023) you can find the code used for the demo.
 
+As always, any feedback is much appreciated!
+
 Until the next article, fellow Kubernaut!
 
-As always, any feedback is much appreciated!
