@@ -1,5 +1,5 @@
 ---
-title: "(Continer,DevSecOps, Linux)Day!"
+title: "(Container,DevSecOps, Linux)Day!"
 date: 2023-10-29T13:43:43+01:00
 summary: "A conversation about Container Day, DevSecOps Day, and Linux Day"
 tags: [Just chatting, events]
