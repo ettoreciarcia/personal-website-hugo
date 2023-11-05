@@ -96,7 +96,7 @@ params:
   homeInfoParams:
     Title: "Hi there \U0001F44B"
     Content: >
-        I'm Ettore, a Cloud Engineer currently working at [SIGHUP](https://sighup.io/)! 
+        I'm Ettore, a Cloud Engineer currently working at **[SIGHUP](https://sighup.io/)**! 
 
         - I'm focused on Kubernetes, Container Technologies, Terraform and AWS. 
         
