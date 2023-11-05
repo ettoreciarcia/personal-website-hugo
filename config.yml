@@ -104,8 +104,8 @@ params:
 
 
   socialIcons:
-    - name: twitter
-      url: "https://twitter.com/ciarcia_ettore"
+    # - name: twitter
+    #   url: "https://twitter.com/ciarcia_ettore"
     - name: linkedin
       url: "https://www.linkedin.com/in/ettoreciarcia/"
     - name: github
