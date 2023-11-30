@@ -1,9 +1,9 @@
 ---
-title: "How to deploy your website but it's 2010 - [Time Machine-E3]"
+title: "How to deploy your website, but it's 2010 - Time Machine Ep3"
 date: 2023-11-14T21:48:59+01:00
 summary: "In this article, we will deploy our website as if it were 2010. We will use virtual machines, web servers and some old tools to hammer things out"
-tags: [Time machine]
-categories: [Just chatting]
+tags: [Time machine, Virtual Machine]
+categories: [Time Machine, Virtual Machine]
 weight: "990"
 showToc: true
 draft: true
