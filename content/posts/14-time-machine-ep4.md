@@ -6,7 +6,7 @@ tags: [Time machine]
 categories: [Container]
 weight: "889"
 showToc: true
-draft: false
+draft: true
 cover:
   image: "../img/14/cover.png"
 ---
@@ -115,9 +115,6 @@ You ponder and rethink: what's a use case where you can employ a technology like
 
 Finally, the lightbulb moment: hosting your website! Currently, it's on a virtual machine, served to the world through Nginx. The goal is to take that architecture and convert it into something that allows you to use Docker.
 
-The architecture serving your website and those of your friends currently looks like this:
-
-[TO DO: insert architecture]
 
 Your website is on a virtual machine.
 
