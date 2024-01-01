@@ -78,7 +78,7 @@ So I achieved a 3/24, with an overall of 159/180 for my degree
 
 I would like to learn Go, write my first Kubernetes operator and improve my IaaC and pipeline skills
 
-- **I want improve my English**
+- **I want to improve my English**
 
 The goal for the end of the year is to understand and be understood by others when you talk about non-technical topics
 
