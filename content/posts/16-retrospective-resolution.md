@@ -1,8 +1,8 @@
 ---
 title: "Retrospective on 2023 and Resolution for 2024"
 date: 2023-12-26T20:51:43+01:00
-summary: "Un riepilogo di quanto successo nel 2022 e i miei obiettivi per il 2024"
-draft: true
+summary: "A summary of what happened in 2023 and my goals for 2024"
+draft: false
 cover:
   image: "../img/16/cover1.jpg"
 tags: [Chatting]
@@ -10,7 +10,7 @@ categories: [Chatting]
 weight: "887"
 ---
 
-## Tiriamo le somme
+## Let's recap!
 
 The year 2023 has been a very intense year for me. I wouldn't even know where to begin to take stock of the situation; so many things have happened.
 
