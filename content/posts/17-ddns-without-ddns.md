@@ -4,7 +4,7 @@ date: 2024-01-06T16:33:30+01:00
 summary: "Your public IP address changes, and you need a way to fix it, but your router doesn't support DDNS? No problem!"
 tags: ["How to"]
 categories: ["How to"]
-draft: true
+draft: false
 weight: "886"
 cover:
   image: "../img/17/cover.png"
