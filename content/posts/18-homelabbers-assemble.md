@@ -15,7 +15,7 @@ cover:
 
 A few days ago, the first component of my new homelab arrived. I already had a makeshift homelab set up with mostly old laptops that I no longer used.
 
-However, after spending countless hours on subreddits like r/homelab or r/homelabprn, among many others, the homelab bug got to me, and I decided to build a new one.
+However, after spending countless hours on subreddits like [r/homelab](https://www.reddit.com/r/homelab/comments/198jn6q/to_those_asking_how_i_powered_the_tesla_p40_and/) or [r/homelabprn](https://www.reddit.com/r/HomeLabPorn/), among many others, the homelab bug got to me, and I decided to build a new one.
 
 For months, I searched for the perfect hardware on numerous websites, and it was genuinely challenging to choose from all those fantastic components. In the end, I realized that the perfect homelab for me should be modular, quiet, and not consume too much power.
 
@@ -46,7 +46,7 @@ I would like to have an entire platform by the end of the year (an ambitious goa
 
 Enough talking for now, or we'll waste CPU clock cycles; let's start virtualizing!
 
-## 1 Hypervisor Selection
+## 1 Hypervisor
 
 Having chosen the mini-server, I needed a hypervisor that would allow me to virtualize the hardware I had just purchased.
 
