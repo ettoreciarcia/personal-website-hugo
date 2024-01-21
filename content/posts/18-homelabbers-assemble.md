@@ -1,6 +1,6 @@
 ---
-title: "18 Homelabbers Assemble: Proxmox and Terraform"
-date: 2024-01-16T21:57:02+01:00
+title: "Homelabbers Assemble: Proxmox and Terraform"
+date: 2024-02-01T21:57:02+01:00
 summary: "IaC in your Homelab with Proxmox & Terraform!"
 draft: false
 weight: 885
