@@ -1,8 +1,8 @@
 ---
 title: "Homelabbers Assemble: Proxmox and Terraform"
-date: 2024-02-01T21:57:02+01:00
+date: 2024-01-01T21:57:02+01:00
 summary: "IaC in your Homelab with Proxmox & Terraform!"
-draft: false
+draft: true
 weight: 885
 tags: ["How to", "Homelab", "Proxmox", "IaC"]
 categories: ["How to", "Homelab", "Proxmox", "IaC"]
@@ -58,7 +58,6 @@ The hypervisor needed to meet the following requirements:
 
 ### Proxmox VE
 
-
 Proxmox Virtual Environment (Proxmox VE) is an open-source virtualization solution that integrates the KVM hypervisor, LXC containers, storage functionality, and networking into a single platform.
 
 - Open source
@@ -91,10 +90,65 @@ The template creation process seemed too prone to errors for my liking; I hadn't
 
 If you're unsure where to start with templates in Proxmox, I recommend this [video](https://www.youtube.com/watch?v=MJgIm03Jxdo), where a template is created from scratch using an image with Cloud Init.
 
+## Enable SSL on the Proxmox node
 
-## 4 Terraform code
+Don't you find it a bit annoying that the connection to Proxmox is not secure?
 
-### 4.1 Let's clarify what we aim to create
+At this point, we can follow two paths to enable SSL on Proxmox:
+
+1. Generate a self-signed SSL certificate from our internal CA and import the certificate into our browser to access Proxmox via HTTPS
+2. Obtain a certificate signed by a public CA
+
+Here, I'll demonstrate the second approach. In my case, with the domain ```ettoreciarcia.com``` registered on Route53, it's straightforward because Proxmox has a plugin for Route53.
+
+All I did was create a new user in my AWS account, to which I associated the following policy:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "route53:GetChange",
+            "Resource": "arn:aws:route53:::change/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "route53:ChangeResourceRecordSets",
+                "route53:ListResourceRecordSets"
+            ],
+            "Resource": "arn:aws:route53:::hostedzone/<HOSTED_ZONE_ID"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "route53:ListHostedZonesByName",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "route53:ListHostedZones",
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+Remember to modify the variable HOSTED_ZONE_ID!
+
+So, I created a new user with this policy associated, then generated credentials for programmatic access (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+
+Having done this, the next step is to move to our Proxmox server and select the ACME option to create a user and configure the right plugin from the DNS API list (there are many; if your domain is registered with a different registrar, ensure that the plugin is available).
+
+Once the plugin is configured, go to the node you want to access via HTTPS and navigate to System -> Certificates. Choose DNS as the Challenge and enter the domain for which you are obtaining the certificate (in my case, proxmox.internal.ettoreciarccia.com).
+
+That's it!
+
+![HTTPS](../img/18/HTTPS.png)
+
+## 5 Terraform code
+
+### 5.1 Let's clarify what we aim to create
 
 Before diving into the Terraform code, let's clarify the architecture we are going to create.
 
@@ -108,7 +162,7 @@ The architecture we aim to achieve looks like this
 
 ![architecture](../img/18/architecture.png)
 
-### 4.2 Remote state on S3 and locking with DynamoDB
+### 5.2 Remote state on S3 and locking with DynamoDB
 
 For this project, I will be working alone, but I still want to simulate an environment as close as possible to what I would set up if the infrastructure were critical, especially when the cost of doing so is very close to free.
 
@@ -180,7 +234,7 @@ Remember to properly populate the values:
 
 Once you have created the policy, all that's left is to associate it with an account and then create an access key for programmatic access!
 
-### 4.3 Managing secrets and environment variables
+### 5.3 Managing secrets and environment variables
 
 But what are the secrets for this Terraform project? For now, we are simply creating virtual machines that don't have a password; access is provided through SSH.
 
@@ -206,7 +260,7 @@ In this case, I created a file called  ```.envrc``` and I'm using the [direnv](h
 
 To prevent these secrets from being accidentally pushed to Git, I added the ```.envrc``` file to the project's ```.gitignore```
 
-### 4.4 Terraform Code
+### 5.4 Terraform Code
 
 The Terraform code used for provisioning the architecture I mentioned earlier can be found at this [link](https://github.com/ettoreciarcia/homelab3.0/releases/tag/v0.0.1)
 
@@ -255,8 +309,7 @@ In Proxmox, we will have our beautiful virtual machines.
 ![proxmox-panel](../img/18/proxmox-panel.png)
 
 
-## 5 Cost
-
+## 6 Cost
 
 Let's talk about money! Recently, the costs of all VPSs in the Cloud have increased. One of the best deals I found was the one on Contabo, which offered a VPS with 6 vCPU, 16 GB RAM, 400 GB of storage, and a public IP address for a modest amount of 11.60 euros, including VAT. However, for the first month, I would have to pay a setup fee of 7.32 euros.
 
@@ -275,7 +328,7 @@ If you want to skip reading everything that follows, I'll try to summarize it be
 | Monthly Cost(Euro)        | 2.26                         | 11.50                         |
 
 
-### 5.1 Detailed costs
+### 6.1 Detailed costs
 
 I tracked the kilowatt-hours (kWh) with a power consumption meter, and the result after 24 hours and 40 minutes was 0.407 kWh.
 
@@ -318,7 +371,7 @@ The calculations I made do not take into account any potential increases in elec
 I hope the mini PC doesn't fail before 18 months! :skull:
 
 
-## 6 Conclusions 
+## 7 Conclusions 
 
 
 In this article, we've seen how to create virtual machines on Proxmox using Terraform as an Infrastructure as Code (IaC) tool. I would have liked to cover many other topics while writing this article, but I'll leave them for the future.
@@ -329,3 +382,13 @@ We can even create other Kubernetes clusters within our Kubernetes cluster, but 
 ![Sparrow](../img/18/sparrow.png)
 
 If these were your first steps with Proxmox, I hope the article was comprehensive. In case you encounter any issues, feel free to reach out to me via email or LinkedIn. I'll be happy to help you! :smile:
+
+## 8 Useful Links
+
+- [Trusted certificates via Let’s Encrypt (ACME)](https://pve.proxmox.com/wiki/Certificate_Management)
+
+- [Create a template in Promox](https://www.youtube.com/watch?v=MJgIm03Jxdo]
+
+- [Mini PC Specs](https://support.hp.com/it-it/document/c06119996)
+
+- [Bootable USB Solution: Ventoy](https://www.ventoy.net/en/index.html)
