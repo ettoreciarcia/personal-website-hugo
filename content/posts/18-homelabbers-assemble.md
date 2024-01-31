@@ -1,11 +1,11 @@
 ---
-title: "Homelabbers Assemble: Proxmox and Terraform"
-date: 2024-01-01T21:57:02+01:00
+title: "Homelabbers Assemble: Proxmox and Terraform!"
+date: 2024-02-01T21:57:02+01:00
 summary: "IaC in your Homelab with Proxmox & Terraform!"
-draft: true
+draft: false
 weight: 885
-tags: ["How to", "Homelab", "Proxmox", "IaC"]
-categories: ["How to", "Homelab", "Proxmox", "IaC"]
+tags: ["How to", "Homelab", "Proxmox", "IaC", "Terraform"]
+categories: ["How to", "Homelab", "Proxmox", "IaC", "Terraform"]
 showToc: true
 cover:
   image: "../img/18/cover.png"
@@ -15,7 +15,7 @@ cover:
 
 A few days ago, the first component of my new homelab arrived. I already had a makeshift homelab set up with mostly old laptops that I no longer used.
 
-However, after spending countless hours on subreddits like [r/homelab](https://www.reddit.com/r/homelab/comments/198jn6q/to_those_asking_how_i_powered_the_tesla_p40_and/) or [r/homelabprn](https://www.reddit.com/r/HomeLabPorn/), among many others, the homelab bug got to me, and I decided to build a new one.
+However, after spending countless hours on subreddits like [r/homelab](https://www.reddit.com/r/homelab/) or [r/HomeLabPorn](https://www.reddit.com/r/HomeLabPorn/), among many others, the homelab bug got to me, and I decided to build a new one.
 
 For months, I searched for the perfect hardware on numerous websites, and it was genuinely challenging to choose from all those fantastic components. In the end, I realized that the perfect homelab for me should be modular, quiet, and not consume too much power.
 
@@ -65,7 +65,8 @@ Proxmox Virtual Environment (Proxmox VE) is an open-source virtualization soluti
 - Requires modest resources
 - Supports clustering
 - No CAPI provider (or at least not at the time of writing this article)
-- In the end, the choice fell on Proxmox, even though I was on the verge of scrapping everything and opting for ESXi just to have the option of creating clusters with CAPI.
+
+In the end, the choice fell on Proxmox, even though I was on the verge of scrapping everything and opting for ESXi just to have the option of creating clusters with CAPI.
 
 
 ## 2 How I install Proxmox on my mini server
@@ -74,7 +75,7 @@ I created a bootable USB stick for Proxmox using [Ventoy](https://www.ventoy.net
 
 A small tip that might save you a lot of time: in the end, I used a slightly older version of Proxmox due to a compatibility issue between the Proxmox provider for Terraform and the latest Proxmox versions.
 
-The problem is documented in the GitHub issues, which you can find here -> [Error: The terraform-provider-proxmox_v2.9.14 plugin crashed! (Proxmox 8.0.4 latest update) #863](https://github.com/Telmate/terraform-provider-proxmox/issues/863)
+The problem is documented in the GitHub issues, which you can find here -> [Error: The terraform-provider-proxmox_v2.9.14 plugin crashed! (Proxmox 8.0.4 latest update) #863](https://github.com/Telmate/terraform-provider-proxmox/issues/863) :cry:
 
 I attempted to resolve the issue using other providers recommended by the community, but I had no luck with any of them. In the end, I opted for Proxmox version 7.4, which doesn't present significant issues with the Terraform Telmate provider.
 
@@ -161,6 +162,8 @@ The first guest in my homelab will be a Kubernetes cluster, so I need virtual ma
 The architecture we aim to achieve looks like this
 
 ![architecture](../img/18/architecture.png)
+
+This configuration may change in the future. I would like to deprecate the creation of nodes done via Terraform for Kubernetes clusters in favor of Cluster API. However, at the moment, I have not been able to set up a fully functional cluster using the two Cluster API providers for Proxmox that I have found
 
 ### 5.2 Remote state on S3 and locking with DynamoDB
 
@@ -308,6 +311,8 @@ In Proxmox, we will have our beautiful virtual machines.
 
 ![proxmox-panel](../img/18/proxmox-panel.png)
 
+The creation of these resources will change in the future, and everything will be managed by a pipeline. I am following the philosophy of 'make it work, then make it beautiful' :heart:
+
 
 ## 6 Cost
 
@@ -345,7 +350,7 @@ To calculate daily consumption, we multiply the obtained value by the number of 
 
 In a month, we consume
 
-0,389 KWh * 30 giorni = 11,67 KWh
+0,389 KWh * 30 days = 11,67 KWh
 
 The cost of 1 KWh on my utility bill is 0.194 euros, so the monthly cost of the mini PC in terms of power consumption is approximately 2.26 euros.
 
@@ -385,9 +390,9 @@ If these were your first steps with Proxmox, I hope the article was comprehensiv
 
 ## 8 Useful Links
 
-- [Trusted certificates via Let’s Encrypt (ACME)](https://pve.proxmox.com/wiki/Certificate_Management)
+- [Proxmox: Trusted certificates via Let’s Encrypt (ACME)](https://pve.proxmox.com/wiki/Certificate_Management)
 
-- [Create a template in Promox](https://www.youtube.com/watch?v=MJgIm03Jxdo]
+- [Create a template in Promox](https://www.youtube.com/watch?v=MJgIm03Jxdo)
 
 - [Mini PC Specs](https://support.hp.com/it-it/document/c06119996)
 
