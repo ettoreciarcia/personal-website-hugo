@@ -165,6 +165,9 @@ The architecture we aim to achieve looks like this
 
 This configuration may change in the future. I would like to deprecate the creation of nodes done via Terraform for Kubernetes clusters in favor of Cluster API. However, at the moment, I have not been able to set up a fully functional cluster using the two Cluster API providers for Proxmox that I have found
 
+
+Once we have created our virtual machines, we can use an Ansible playbook (such as [Kubespray](https://github.com/kubernetes-sigs/kubespray)) to install our preferred Kubernetes distribution. As I mentioned, I am not a fan of this approach and Ansible in general. I will try to steer away from VM configuration via Ansible as soon as possible.
+
 ### 5.2 Remote state on S3 and locking with DynamoDB
 
 For this project, I will be working alone, but I still want to simulate an environment as close as possible to what I would set up if the infrastructure were critical, especially when the cost of doing so is very close to free.
