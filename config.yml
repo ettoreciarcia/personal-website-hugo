@@ -122,8 +122,8 @@ params:
       SiteVerificationTag: "XYZabc"
 
   cover:
-    hidden: true # hide everywhere but not in structured data
-    hiddenInList: false # hide on list pages and home
+    hidden: false # hide everywhere but not in structured data
+    hiddenInList: true # hide on list pages and home
     hiddenInSingle: false # hide on single page
 
   editPost:
@@ -143,17 +143,22 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-      - name: About
-        url: about
-        weight: 5
-      - name: Archive
-        url: archives
-        weight: 10
-      - name: Tags
-        url: tags/
-        weight: 10
       - name: Blog
         url: posts
+        weight: 1
+      - name: Certification&Talks
+        url: certification&talks
+        weight: 2
+      - name: About
+        url: about
+        weight: 3
+      - name: Archive
+        url: archives
+        weight: 4
+      - name: Tags
+        url: tags/
+        weight: 5
+
 
     
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
