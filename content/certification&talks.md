@@ -20,10 +20,10 @@ disableShare: true
 
 ## Talks
 
+## Talks
 
-| Event | Title | Links  | Date |
-|-----------|-----------|-----------|-----------|-----------|
-| Cyberhackademy Graduation    | Honeynet on AWS     | [here](https://www.youtube.com/watch?v=DDVL2ZiZcyg) | Jan 2022  |
-| AWS Immersion Webinar    | Elastic Kubernetes Service     | [here](https://www.youtube.com/watch?v=9oAn1c9I078&t=5543s)  | Mar 2023     |
-| Linux Day| Kubernetes, kubernauti e Kubeinvaders! | [here](https://youtu.be/1tHkEfbGjgE?t=655)   |  Oct 2023   |
-
+| Event | Title | Date  | Video |
+|-------|-------|-------|-------|
+| Linux Day | Kubernetes, kubernauti e Kubeinvaders! | Oct 2023 | [here](https://youtu.be/1tHkEfbGjgE?t=655) |
+| AWS Immersion Webinar | Elastic Kubernetes Service | Mar 2023 | [here](https://www.youtube.com/watch?v=9oAn1c9I078&t=5543s) |
+| Cyberhackademy Graduation | Honeynet on AWS | Jan 2022 | [here](https://www.youtube.com/watch?v=DDVL2ZiZcyg) |
