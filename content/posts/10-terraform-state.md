@@ -3,8 +3,8 @@ title: "Terraform: local state, remote state on s3 and Terraform Cloud!"
 date: 2023-07-29T13:19:03+02:00
 draft: false
 summary: "Three different ways to manage state in Terraform. A comparison of different strategies for managing Terraform state."
-tags: [Terraform, Infrastracture]
-categories: [Terraform, Infrastracture]
+tags: [Terraform, Infrastructure]
+categories: [Terraform, Infrastructure]
 weight: "993"
 showToc: true
 cover:
