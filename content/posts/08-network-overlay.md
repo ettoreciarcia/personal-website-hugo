@@ -271,7 +271,7 @@ This script takes the list of users of our github organization and for each user
 
 You can clone the repo and do something similar with your organization or just your account.
 
-### **3.6 Our infrastracture after "terraform apply"**
+### **3.6 Our infrastructure after "terraform apply"**
 
 ![architecture.png](../img/08/architecture.png)
 
