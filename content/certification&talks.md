@@ -8,7 +8,7 @@ ShowReadingTime: false
 disableShare: true 
 ---
 
-## Certification
+## Certifications
 
 | Organization | Certificate | Obtained  | Badge |
 |-----------|-----------|-----------|-----------|-----------|
@@ -19,9 +19,6 @@ disableShare: true
 | Amazon Web Services   | AWS Cloud Practitioner     | Oct 2020    | [here](https://www.credly.com/badges/1a5daf47-9214-489a-8616-87f1fdf0bb57)   |
 
 ## Talks
-
-## Talks
-
 | Event | Title | Date  | Video |
 |-------|-------|-------|-------|
 | Linux Day | Kubernetes, kubernauti e Kubeinvaders! | Oct 2023 | [here](https://youtu.be/1tHkEfbGjgE?t=655) |

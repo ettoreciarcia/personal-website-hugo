@@ -10,6 +10,7 @@ disableShare: true
 
 | Date           | Event Name                    | Location    | Status      |
 |----------------|-------------------------------|-------------|-------------|
+| March 2024     | Kubecon                       | Paris       | Attendee 🦻 |
 | March 2024     | Incontro DevOps Italia        | Bologna     | Attendee 🦻 |
 | October 2023   | Linux Day                     | Benevento   | Speaker 🎤  |
 | October 2023   | DevSecOps Day                 | Bologna     | Attendee 🦻 |
