@@ -1,5 +1,5 @@
 ---
-title: "How to Self Host Your Website"
+title: "How to expose your website with Docker and Traefik"
 date: 2024-03-24T09:39:16+01:00
 draft: false
 summary: "We self-host our website in a homelab using Traefik, enabling HTTPS, and exposing our website on the Internet.!"
