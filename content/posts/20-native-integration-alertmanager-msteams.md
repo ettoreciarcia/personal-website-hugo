@@ -4,8 +4,8 @@ date: 2024-04-26T15:18:25+02:00
 draft: false
 summary: "Prom2Teams is dead. Long live Prom2Teams. Native integration between Alert Manager and Microsoft Teams."
 weight: 882
-tags: ["How to", "Kubernetes", "Monitoring", "Alert Manager"]
-categories: ["How to", "Kubernetes", "Monitoring", "Alert Manager"]
+tags: ["How to", "Kubernetes", "Monitoring", "Alert Manager", "Microsoft Teams", "Integration"]
+categories: ["How to", "Kubernetes", "Monitoring", "Alert Manager", "Microsoft Teams", "Integration"]
 showToc: true
 cover:
   image: "../img/20/cover.png"
