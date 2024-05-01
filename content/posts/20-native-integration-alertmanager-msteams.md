@@ -1,5 +1,5 @@
 ---
-title: "The native integration between Alert Manager and Microsoft Teams."
+title: "The native integration between Alert Manager and Microsoft Teams"
 date: 2024-04-26T15:18:25+02:00
 draft: false
 summary: "Prom2Teams is dead. Long live Prom2Teams. Native integration between Alert Manager and Microsoft Teams."
