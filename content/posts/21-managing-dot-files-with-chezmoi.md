@@ -1,7 +1,7 @@
 ---
 title: "Managing dot files with Chezmoi"
 date: 2024-05-19T15:36:25+02:00
-draft: true
+draft: false
 summary: "How to manage and back up your dot files with Chezmoi"
 weight: 882
 tags: ["How to"]
