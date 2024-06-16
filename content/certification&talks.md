@@ -12,6 +12,8 @@ disableShare: true
 
 | Organization | Certificate | Obtained  | Badge |
 |-----------|-----------|-----------|-----------|-----------|
+| The Linux Foundation    | Kubernetes and Cloud Native Associate     | June 2024   | [here](https://www.credly.com/badges/6e2e9c08-716e-4dcf-a379-7260545db035)  |
+| The Linux Foundation    | Certified Kubernetes Application Developer     | June 2024   | [here](https://www.credly.com/badges/9cb99deb-5041-482c-baeb-eff2772f92ce)  |
 | Hashicorp    | Terraform Associate 003     | Aug 2023   | [here](https://www.credly.com/badges/cb0941b1-242e-4e56-9849-cad4679313a0)  |
 | The Linux Foundation    | Certified Kubernetes Administrator     | Apr 2023   | [here](https://www.credly.com/badges/224e9cf9-ced7-4baf-ad30-9414676d6ea9)   |
 | Amazon Web Services| AWS Solution Architect Associate  | Feb 2023    | [here](https://www.credly.com/badges/ab721d15-b684-44c4-8c5b-bd2a0049eb11)    |
