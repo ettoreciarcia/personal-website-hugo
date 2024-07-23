@@ -12,6 +12,7 @@ disableShare: true
 
 | Organization | Certificate | Obtained  | Badge |
 |-----------|-----------|-----------|-----------|-----------|
+| The Linux Foundation    | Certified Kubernetes Security Specialist     | July 2024   | [here](https://www.credly.com/badges/ef231542-888b-49de-9c9f-92ce46e9041a)  |
 | The Linux Foundation    | Kubernetes and Cloud Native Security Associate     | June 2024   | [here](https://www.credly.com/badges/ba02599c-4a63-4a80-8ce2-8493de5bf604)  |
 | The Linux Foundation    | Kubernetes and Cloud Native Associate     | June 2024   | [here](https://www.credly.com/badges/6e2e9c08-716e-4dcf-a379-7260545db035)  |
 | The Linux Foundation    | Certified Kubernetes Application Developer     | June 2024   | [here](https://www.credly.com/badges/9cb99deb-5041-482c-baeb-eff2772f92ce)  |
