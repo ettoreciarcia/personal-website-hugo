@@ -11,7 +11,7 @@ disableShare: true
 
 Hello, it's me. Ettore!
 
-![me](/aboutImg/me.png)
+![me](/aboutImg/me-resized.jpg)
 
 ## The Very Beginning
 
