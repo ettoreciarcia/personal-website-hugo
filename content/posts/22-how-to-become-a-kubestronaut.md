@@ -20,9 +20,11 @@ So, let me start with a premise: certifications do not make someone a guru. I kn
 
 ## 1 Kubestronaut? What the heck is that?
 
-It's a recognition from the CNCF for those who successfully obtain all Kubernetes-related certifications (CKA, CKAD, CKS, KCNA, KCSA).
+It's a recognition from the CNCF for those who successfully obtain all Kubernetes-related certifications ([CKA](https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/), [CKAD](https://training.linuxfoundation.org/certification/certified-kubernetes-application-developer-ckad/), [CKS](https://training.linuxfoundation.org/certification/certified-kubernetes-security-specialist/), [KCNA](https://training.linuxfoundation.org/certification/kubernetes-cloud-native-associate/), [KCSA](https://training.linuxfoundation.org/certification/kubernetes-and-cloud-native-security-associate-kcsa/)).
 
-In my case, I achieved it on July 16th. My face is even on the CNCF website now.
+In my case, I achieved it on July 16th. My face is even on the [CNCF website](https://www.cncf.io/training/kubestronaut/?_sft_lf-country=it&p=ettore-ciarcia) now
+
+![cncf-webiste](../img/22/cncf-website.png)
 
 ## 2 Benefits
 
