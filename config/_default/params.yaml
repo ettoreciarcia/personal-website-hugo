@@ -1,0 +1,60 @@
+# SITE SETUP
+# Guide: https://docs.hugoblox.com/tutorial/
+# Documentation: https://docs.hugoblox.com/
+# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
+
+# Appearance
+appearance:
+  mode: dark
+  color: blue
+
+# SEO
+marketing:
+  seo:
+    site_type: Person
+    local_business_type: 'Cloud Computing'
+    org_name: 'Ettore Ciarcia'
+    description: 'In this public space I ll talk about my Kubernetes and Cloud journey'
+    twitter: 'GetResearchDev'
+  analytics:
+    google_analytics: TRACKING_ID
+    baidu_tongji: ''
+    plausible: ''
+    fathom: ''
+    pirsch: ''
+  verification:
+    google: ''
+    baidu: ''
+
+# Site header
+header:
+  navbar:
+    enable: true
+    blox: "navbar"
+    fixed_to_top: true
+    show_search: false
+    show_theme_chooser: true
+    logo:
+      text: "Ettore Ciarcia ☸️"
+
+# Site footer
+footer:
+  copyright:
+    notice: '© {year} This website is built with Hugo, hosted on a S3 Bucket deployed with Terraform. CI/CD Automation via Github Actions.'
+    license:
+      enable: true
+      allow_derivatives: false
+      share_alike: true
+      allow_commercial: false
+
+# Localization
+locale:
+  date_format: 'Jan 2, 2006'
+  time_format: '3:04 PM'
+
+# Site features
+features:
+  math:
+    enable: false
+  privacy_pack:
+    enable: false
