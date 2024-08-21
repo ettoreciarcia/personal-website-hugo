@@ -31,7 +31,7 @@ jobs:
 
       - name: check output
         run: |
-          cat config.yml
+          cat config/_default/params.yaml
 
       - name: Build
         run: hugo --minify
