@@ -23,15 +23,15 @@ jobs:
           hugo-version: '0.132.0'
           extended: true
 
-      # - name: Replace Placeholder
-      #   env:
-      #     TRACKING_ID: ${{ secrets.TRACKING_ID }}
-      #   run: |
-      #     sed -i "s/TRACKING_ID/$TRACKING_ID/g" config.yml
+      - name: Replace Placeholder
+        env:
+          TRACKING_ID: ${{ secrets.TRACKING_ID }}
+        run: |
+          sed -i "s/TRACKING_ID/$TRACKING_ID/g" config/_default/params.yaml
 
-      # - name: check output
-      #   run: |
-      #     cat config.yml
+      - name: check output
+        run: |
+          cat config.yml
 
       - name: Build
         run: hugo --minify
