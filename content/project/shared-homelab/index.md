@@ -1,7 +1,7 @@
 ---
 title: Shared Homelab 
-date: 2023-10-26
-external_link: https://github.com/pytorch/pytorch
+date: 2023-05-10
+external_link: https://ettoreciarcia.com/publication/08-network-overlay/
 tags:
   - Networking
   - Homelab
