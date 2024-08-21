@@ -18,20 +18,20 @@ jobs:
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
 
       - name: Hugo setup
-        uses: peaceiris/actions-hugo@v2.6.0
+        uses: peaceiris/actions-hugo@v3.0.0
         with:
           hugo-version: '0.119.0'
           # extended: true
 
-      - name: Replace Placeholder
-        env:
-          TRACKING_ID: ${{ secrets.TRACKING_ID }}
-        run: |
-          sed -i "s/TRACKING_ID/$TRACKING_ID/g" config.yml
+      # - name: Replace Placeholder
+      #   env:
+      #     TRACKING_ID: ${{ secrets.TRACKING_ID }}
+      #   run: |
+      #     sed -i "s/TRACKING_ID/$TRACKING_ID/g" config.yml
 
-      - name: check output
-        run: |
-          cat config.yml
+      # - name: check output
+      #   run: |
+      #     cat config.yml
 
       - name: Build
         run: hugo --minify
