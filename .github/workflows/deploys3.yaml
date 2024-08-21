@@ -44,7 +44,7 @@ jobs:
           aws-region: eu-west-1
 
       - name: Deploy
-        run: aws s3 sync ./public s3://${{ secrets.BUCKET_NAME }}
+        run: aws s3 sync --delete ./public s3://${{ secrets.BUCKET_NAME }}
 
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
