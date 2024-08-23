@@ -13,6 +13,6 @@ hugo.linux
 /.hugo_build.lock
 
 index.html
-
+.envrc
 *.draft.*
 .DS_Store
