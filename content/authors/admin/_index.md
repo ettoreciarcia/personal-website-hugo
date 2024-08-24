@@ -126,7 +126,6 @@ work:
 
 ## About Me 👾
 
-I’m a **Cloud Engineer** with a deep passion for containers and container orchestration. My journey began as a system administrator, but it was when I transitioned to the cloud that I discovered **Kubernetes** and it was love at first sight.
-For the past few years, I've been deeply involved in the **CNCF ecosystem**, leveraging open-source tools in my daily work. I design and implement cloud architectures following the principles of **Infrastructure as Code**, always striving to deliver the highest levels of automation and reproducibility.
+I am a **Cloud Engineer** with a strong passion for containers and container orchestration. My career began as a system administrator, but transitioning to the cloud introduced me to **Kubernetes**, which quickly became a focal point of my expertise. For the past few years, I have been deeply engaged with the **CNCF ecosystem**, consistently integrating open-source tools into my work. I specialize in designing and implementing cloud architectures guided by **Infrastructure as Code principles**, always aiming for the highest levels of automation and reproducibility.
 
-**Give me a container image, and I’ll handle the rest!**
+**Push your code to Git, I'll take care of the rest**
