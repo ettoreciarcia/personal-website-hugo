@@ -1,7 +1,7 @@
 ---
 title: Azure Fundamentals
 date: 2020-11-06
-external_link: https://www.credly.com/badges/ab721d15-b684-44c4-8c5b-bd2a0049eb11
+external_link: https://www.credly.com/badges/413e77cc-ee64-434b-afd5-80146b7c19b6
 tags:
   - Azure
   - Cloud
