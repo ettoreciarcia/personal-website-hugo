@@ -2,7 +2,7 @@
 title: Guida Galattica per Cloud Engineer
 
 event: Linux Day Benevento 2024
-event_url: https://www.youtube.com/watch?v=O1SZYOaB9Kw&t=1669s
+event_url: https://youtu.be/O1SZYOaB9Kw?t=1656
 
 location: Benevento
 # address:
