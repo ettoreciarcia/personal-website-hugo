@@ -17,12 +17,13 @@ doi: ""
 publication: ""
 publication_short: ""
 
-abstract: "A summary of what happened in 2023 and my goals for 2024"
+abstract: "A summary of what happened in 2024 and my goals for 2025"
 
 # Summary. An optional shortened abstract.
 summary: Avere a che fare con Kubernetes tutti i giorni è una sofferenza, ma aggiornare dei cluster Kubernetes in ambiente di produzione è una sofferenza ancora più gramade. In questo articolo parlo della mia esperienza dopo aver aggiornato 30+ cluster per un totale di 120+ versioni, sia su EKS che on prem
 tags:
-- Kubernetes
+- Personal
+- Just Chatting
 
 
 featured: true
@@ -60,6 +61,8 @@ projects:
 slides: example
 ---
 
+## Intro
+
 This blog has been standing for two years and has never gone down.
 If I were a Site Reliability Engineer, this would definitely be one of those metrics I'd brag about to my colleagues. Maintaining 100% uptime on my site... well, it's not that hard considering the site runs on an S3 bucket!
 
@@ -67,7 +70,7 @@ A lot happened this year.
 
 In this post, I’ll review the goals I set for 2024 and publicly commit to my objectives for 2025.
 
-## 2024
+##  Overview of 2024 objectives
 
 ### Special Mention: I Joined SUSE
 
@@ -75,7 +78,13 @@ In November 2024, I left SIGHUP. It was a great company, but in March 2024, it w
 
 Meanwhile, things started to change within the company. New tools, new objectives, and a wave of resignations shaped the months that followed. Within six months of the acquisition announcement, SIGHUP was no longer the SIGHUP I knew, it had become a branch of a much larger organization.
 
-When I realized the direction SIGHUP was heading, I began responding to the LinkedIn recruiters who had been reaching out. I had a few conversations with Italian recruiters and even went through some technical interviews with Italian companies but ultimately declined their offers. I think it's safe to say I’m officially out of the Italian job market.
+When I realized where SIGHUP was going after the acquisition, I knew my time there was over
+
+![kung-fu-panda](My_Time_Has_Come.jpg)
+
+All kudos to SIGHUP and the amazing colleagues I found there, it was a fantastic company! 🚀
+
+I began responding to the LinkedIn recruiters who had been reaching out. I had a few conversations with Italian recruiters and even went through some technical interviews with Italian companies but ultimately declined their offers. I think it's safe to say I’m officially out of the Italian job market.
 
 I was also tired of working for small companies. While it was exciting to thrive in chaos and constantly chase emergencies, I now want something different.
 
@@ -117,11 +126,11 @@ Things took an unexpected turn. At the Paris KubeCon in March 2024, the CNCF ann
 - KCNA
 - KCSA
 
-Those who earned all the certifications would be recognized as Kubesonauts and receive several perks:
+Those who earned all the certifications would be recognized as Kubestronaut and receive several perks:
 
-- A Kubesonaut jacket
+- A Kubestronaut jacket
 - A Credly badge
-- Access to private Kubesonaut Slack channels and mailing lists
+- Access to private Kubestronaut Slack channels and mailing lists
 - Coupons for 50% off five certifications per year (for personal or shared use)
 - 20% off three CNCF events per year
 
@@ -132,7 +141,7 @@ So, between June and July, I sprinted to earn all the required certifications:
 - KCSA (June)
 - CKS (July)
 
-By mid-July, I officially became a Kubesonaut. If you don’t believe me, you can find my face on the CNCF website!
+By mid-July, I officially became a Kubestronaut. If you don’t believe me, you can find my face on the CNCF website!
 
 ![cncf-webiste](cncf-website.png)
 
@@ -157,7 +166,7 @@ Oh, and I’ve got plenty of new T-shirts to show for it!
 
 ### Blog Posts
 
-I fell off the wagon in August. I managed to stay consistent until July, with my last post being about becoming a Kubesonaut.
+I fell off the wagon in August. I managed to stay consistent until July, with my last post being about becoming a Kubestronaut.
 
 I had planned to write 12 posts but only managed 8. Shame on me. My goal for 2025 is to regain consistency in publishing articles.
 
@@ -203,7 +212,7 @@ This year, I think I’ll have fewer opportunities to attend tech events. I’d 
 
 ## Conclusions
 
-"2024 was a year of immense growth, both personally and professionally. From transitioning to a global role at SUSE, achieving the prestigious Kubesonaut certification, and deepening my Kubernetes expertise, to expanding my participation in tech events, it’s been a fulfilling journey. While there were a few missed goals, like consistent blogging and fitness targets, the year was marked by significant achievements and exciting new directions.
+2024 was a year of immense growth, both personally and professionally. From transitioning to a global role at SUSE, achieving the prestigious Kubestronaut certification, and deepening my Kubernetes expertise, to expanding my participation in tech events, it’s been a fulfilling journey. While there were a few missed goals, like consistent blogging and fitness targets, the year was marked by significant achievements and exciting new directions.
 
 Looking ahead to 2025, I’m excited to build on this momentum. Improving my English fluency, refining my technical fundamentals, completing SUSE certifications, and continuing my engagement with the tech community are at the top of my list.
 
