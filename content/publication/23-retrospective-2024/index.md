@@ -74,11 +74,13 @@ In this post, I’ll review the goals I set for 2024 and publicly commit to my o
 
 ### Special Mention: I Joined SUSE
 
-In November 2024, I left SIGHUP. It was a great company, but in March 2024, it was announced that the company had been acquired by Reevo, an Italian cloud provider. The acquisition was scheduled to be completed by January 2025.
+In November 2024, I left SIGHUP. It was a great company, but in March 2024, it was announced that the company had been acquired by Reevo, an Italian cloud provider.
 
-Meanwhile, things started to change within the company. New tools, new objectives, and a wave of resignations shaped the months that followed. Within six months of the acquisition announcement, SIGHUP was no longer the SIGHUP I knew, it had become a branch of a much larger organization.
+Meanwhile, things started to change within the company. 
 
-When I realized where SIGHUP was going after the acquisition, I knew my time there was over
+Within six months of the acquisition announcement, SIGHUP was no longer the SIGHUP I knew, it had become a branch of a much larger organization.
+
+When I realized where SIGHUP was going after the acquisition, I knew my time there was over.
 
 ![kung-fu-panda](My_Time_Has_Come.jpg)
 
@@ -209,6 +211,20 @@ After these, who knows? I might even consider completing the CNCF certification 
 ### Talk and Events
 
 This year, I think I’ll have fewer opportunities to attend tech events. I’d love to present something again at the Linux Day in Benevento and maybe at another event somewhere in Italy. I hope to have enough time to prepare something interesting!
+
+## My Cat Has Grown Up!
+
+In May 2023, a stray cat gave birth to a litter near my home, and I decided to adopt one of the kittens.
+
+I adopted him because he was the only one in the litter who didn't fight for food. He would wait until all the siblings had finished eating, and only then would he approach the bowl.
+He was the smallest and always kept to himself.
+
+That little kitten warms my heart every day. And in a few months, he’ll turn two years old.
+
+I used to think of myself as a "dog person," but I’ve had to reconsider—cats have their own unique way of showing affection.
+
+![fifi](fifi.gif)
+
 
 ## Conclusions
 
