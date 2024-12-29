@@ -20,7 +20,7 @@ publication_short: ""
 abstract: "A summary of what happened in 2024 and my goals for 2025"
 
 # Summary. An optional shortened abstract.
-summary: Avere a che fare con Kubernetes tutti i giorni è una sofferenza, ma aggiornare dei cluster Kubernetes in ambiente di produzione è una sofferenza ancora più gramade. In questo articolo parlo della mia esperienza dopo aver aggiornato 30+ cluster per un totale di 120+ versioni, sia su EKS che on prem
+summary: "A summary of what happened in 2024 and my goals for 2025"
 tags:
 - Personal
 - Just Chatting
@@ -96,7 +96,7 @@ This led me to interview at SUSE, and I accepted their offer. SUSE checks all th
 2. First international company
 3. First company with a globally recognized product
 
-One thing worth emphasizing: SUSE is not an Italian company.
+One thing worth emphasizing: SUSE **is not** an Italian company.
 
 ![stanis](boris-stanis-la-rochelle.gif)
 
@@ -172,13 +172,16 @@ I fell off the wagon in August. I managed to stay consistent until July, with my
 
 I had planned to write 12 posts but only managed 8. Shame on me. My goal for 2025 is to regain consistency in publishing articles.
 
-The blog has proven invaluable for networking (several people reached out after reading my posts) and job opportunities. Of the 100+ people who contacted me to discuss potential roles, 3 explicitly mentioned my blog. And let me tell you, those 3 were quality opportunities—big money offers. I turned them down because they weren’t full remote.
+
+The blog has proven invaluable for networking: several people reached out after reading my posts and I was contacted by companies for some of the articles I wrote. 
+
+Of the 100+ people who contacted me to discuss potential roles, 3 explicitly mentioned my blog. And let me tell you, those 3 were quality opportunities, big money offers. I turned them down because they weren’t full remote.
 
 This year, I even turned down a 100k offer that didn’t include full remote work. I think it’s official now: either they come with a ridiculous offer, or there’s no way I’ll accept anything less than full remote.
 
 ### Workout
 
-I also set fitness goals for 2024, only to injure myself for the third consecutive year—this time, my right knee.
+I also set fitness goals for 2024, only to injure myself for the third consecutive yea. This time, my right knee.
 
 Despite the injury, I managed to train regularly. However, I didn’t hit any of the targets I set for myself.
 
@@ -190,13 +193,14 @@ The pleasant surprise of 2024 was discovering running. Over the past few months,
 
 As mentioned earlier, I now work in a company that is no longer Italian. All communications are conducted in English, and all my colleagues are English speakers. While I can understand and make myself understood, my current level doesn’t allow me to joke around with colleagues.
 
-This gap needs to be closed—they deserve to know how funny I am in my native language!
+This gap needs to be closed, they deserve to know how funny I am in my native language!
 
 ### Yes, Kubernetes again
 
 In 2025, I’ll continue working in the world of Kubernetes and CNCF. I also plan to dedicate some time to revisiting the fundamentals: Linux and Networking. There’s so much I want to explore in greater depth.
 
 ### Complete SUSE’s Certification Track
+
 For 2025, I’ve set a certification goal similar to 2024:
 
 - SUSE Certified Deployment Specialist in Rancher Manager 2.7 & 2.8 for Rancher Prime (already completed)
@@ -221,9 +225,9 @@ He was the smallest and always kept to himself.
 
 That little kitten warms my heart every day. And in a few months, he’ll turn two years old.
 
-I used to think of myself as a "dog person," but I’ve had to reconsider—cats have their own unique way of showing affection.
+I used to think of myself as a "dog person," but I’ve had to reconsider. Cats have their own unique way of showing affection.
 
-![fifi](fifi.gif)
+![Fifì](fifi.gif)
 
 
 ## Conclusions
