@@ -17,7 +17,7 @@ sections:
       # Show a call-to-action button under your biography? (optional)
       button:
         text: Download CV
-        url: uploads/EttoreCiarcia.pdf
+        url: uploads/Ettore_Ciarcia_CloudEngineer.pdf
     design:
       css_class: dark
       background:
