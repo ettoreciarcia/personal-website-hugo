@@ -83,12 +83,23 @@ education:
   #     - lorem ipsum dolor sit amet, consectetur adipiscing elit
   #     - lorem ipsum dolor sit amet, consectetur adipiscing elit
 work:
+  - position: Premium Support Engineer
+    company_name: SUSE
+    company_url: 'https://www.suse.com/'
+    company_logo: ''
+    date_start: 2024-11-15
+    # date_end: '2023-04-01'
+    summary: |2-
+      Responsibilities include:
+      - I provide dedicated support to customers using Cloud Native technologies based on SUSE products, including Rancher Prime, NeuVector, Longhorn, monitoring stac
+
+      **Technologies involved**: Kubernetes, Rancher, NeuVector, Longhorn, Grafana, Prometheus, Velero, NGINX Ingress Controller, AWS, Azure, Terraform
   - position: Kubernetes & Cloud Engineer
     company_name: SIGHUP
     company_url: 'https://sighup.io/'
     company_logo: 'https://www.google.com/imgres?q=sighup&imgurl=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F29403644%3Fs%3D280%26v%3D4&imgrefurl=https%3A%2F%2Fgithub.com%2Fsighupio&docid=u5WP2AXiDhk-tM&tbnid=a3zWwAd8bqbVZM&vet=12ahUKEwjWhOWsm_eHAxWp1gIHHYwHEpMQM3oECGsQAA..i&w=280&h=280&hcb=2&ved=2ahUKEwjWhOWsm_eHAxWp1gIHHYwHEpMQM3oECGsQAA'
     date_start: 2023-04-01
-    # date_end: '2023-04-01'
+    date_end: '2024-11-14'
     summary: |2-
       Responsibilities include:
       - Implemented CNCF technologies for clients across various industries, managing the deployment of networking, storage, monitoring, and disaster recovery solutions within Kubernetes clusters
@@ -126,6 +137,6 @@ work:
 
 ## About Me 👾
 
-I am a **Cloud Engineer** with a strong passion for containers and container orchestration. My career began as a system administrator, but transitioning to the cloud introduced me to **Kubernetes**, which quickly became a focal point of my expertise. For the past few years, I have been deeply engaged with the **CNCF ecosystem**, consistently integrating open-source tools into my work. I specialize in designing and implementing cloud architectures guided by **Infrastructure as Code principles**, always aiming for the highest levels of automation and reproducibility.
+I am a **Cloud Engineer** with a strong passion for containers and container orchestration. My career began as a system administrator, transitioning to the cloud introduced me to **Kubernetes**, which quickly became a focal point of my expertise. For the past few years, I have been deeply engaged with the **CNCF ecosystem**, consistently integrating open-source tools into my work. I specialize in designing and implementing cloud architectures guided by **Infrastructure as Code principles**, always aiming for the highest levels of automation and reproducibility.
 
 **Push your code to Git, I'll take care of the rest**
