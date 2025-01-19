@@ -29,8 +29,6 @@ tags:
 featured: true
 
 links:
-- name: Kubestronaut Program
-  url: https://www.cncf.io/training/kubestronaut/
 url_pdf: ''
 url_code: ''
 url_dataset: ''
