@@ -44,7 +44,7 @@ image:
 # url_code: 'https://github.com/ettoreciarcia/talks/tree/main/linux-day-28-10-2023/demo'
 url_pdf: ''
 url_slides: 'https://github.com/ettoreciarcia/talks/blob/main/linux-day-26-10-2024/guida-galattica-per-cloud-engineer.pdf'
-url_video: 'https://youtu.be/O1SZYOaB9Kw?t=12438'
+url_video: 'https://youtu.be/O1SZYOaB9Kw?t=1646'
 
 # Markdown Slides (optional).
 #   Associate this talk with Markdown slides.
