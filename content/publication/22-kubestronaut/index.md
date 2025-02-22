@@ -66,6 +66,11 @@ slides: example
 {{% callout note %}}
 Talking about certifications in this field is always very divisive.
 So, let me start with a premise: certifications do not make someone a guru. I know highly skilled people who don’t have a single certification, and people who don’t even know how to write in a terminal who have many certifications.
+
+I wrote this article in July 2024, so please check if the certification study topics have changed in the meantime.
+
+If this article was helpful and you have already scheduled your exam, you can send me your killer.sh session so I can add it to the material in this article, it might be useful to someone.
+
 {{% /callout %}}
 
 
@@ -75,7 +80,7 @@ It's a recognition from the CNCF for those who successfully obtain all Kubernete
 
 In my case, I achieved it on July 16th. My face is even on the [CNCF website](https://www.cncf.io/training/kubestronaut/?_sft_lf-country=it&p=ettore-ciarcia) now
 
-![cncf-webiste](cncf-website.png)
+![cncf-website](cncf-website.png)
 
 ## 2 Benefits
 
@@ -186,7 +191,7 @@ In this case, I don’t have any simulations to recommend. Among the two quiz-ba
 
 For this certification, I had limited study material. I took it in June 2024, and there were no online courses available since the certification had been launched just a few months prior.
 
-Checking the [securiy](https://kubernetes.io/docs/concepts/security/) section of the official documentation can be helpful. Make sure to delve into all the topics on that list, and if you find references to external sources, be sure to read them.
+Checking the [security](https://kubernetes.io/docs/concepts/security/) section of the official documentation can be helpful. Make sure to delve into all the topics on that list, and if you find references to external sources, be sure to read them.
 
 I don’t have any simulations to share for this certification.
 
@@ -208,7 +213,7 @@ Here are the questions I received during the actual exam:
 3. Network policy that blocks all traffic
 4. Network policy to allow inbound traffic within a namespace only from pods in namespace A and from all pods with a certain label
 5. Improve the security of an API server by removing anonymous login and adding the NodeSelector plugin
-6. CIS benchmark for contrlplane and ETCD node
+6. CIS benchmark for control plane and ETCD node
 7. Launch a pod as user 30000 and with a read-only file system, deny privilege escalation
 8. Create a role and role binding + add permissions to a certain existing role
 9. Create a service account that does not automount a token
@@ -225,15 +230,20 @@ Here are the questions I received during the actual exam:
 Here’s a roundup of tips for the certifications:
 
 1. Learn to use vi, at least the basic commands.
-2. If the question asks you to create a pod, don’t navigate the documentation. Just use ```k run [pod_name] --image=[image_name] --dry-run=client -o yaml > pod.yml```
-3. In the terminal, you have the option to use kubectl autocomplete—make. Use it
-4. Aliases for kubectl are already set. Time is short, don’t type```kubectl``` but ```k```
-5. There will be questions where you'll need to work on static pods. Make sure to create a backup copy of those files before modifying them. Also, ensure that you remove them from the directory.```/etc/kubernetes/manifest```, You will put them back once the modifications are complete. This way, you ensure that the static pod comes up with the correct configuration.
-6. Make sure to switch the context you’re working on between questions. If you perform a task in the wrong context, you risk not only losing points for that question but also affecting subsequent questions that rely on the context now having an extra resource.
+2. If the question asks you to create a pod, don’t navigate the documentation. Just use 
+
+```shell
+k run [pod_name] --image=[image_name] --dry-run=client -o yaml > pod.yml
+```
+
+3. In the terminal, you have the option to use kubectl autocomplete, use it
+4. Aliases for kubectl are already set. Time is short, don’t type `kubectl` but `k`
+5. There will be questions where you'll need to work on static pods. Make sure to create a backup copy of those files before modifying them. Also, ensure that you remove them from the directory.`/etc/kubernetes/manifest`, You will put them back once the modifications are complete. This way, you ensure that the static pod comes up with the correct configuration.
+6. Make sure to switch the context you’re working on between questions. If you perform a task in the wrong context, you risk losing points for that question and affecting subsequent questions that depend on the correct context
 7. If you need to create a deployment, don’t navigate the documentation. Use ```k create deployment [deployment_name] --image=[image_name] --replicas=[replicas_number] --dry-run=client -o yaml > deployment.yml ```
 8. If you don’t remember which flags to pass to a certain command, use the kubectl helper with: ```kubectl <command> --help```
 9. If you absolutely must use the documentation, try not to read it in its entirety. Use "find" to search for keywords instead.
-10. If you’re testing the permissions of a service account or a role, use ]kubectl auth can-i](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/kubectl_auth_can-i/)
+10. If you’re testing the permissions of a service account or a role, use [kubectl auth can-i](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/kubectl_auth_can-i/)
 
 ## 7 Here’s the path I recommend for the certifications:
 
@@ -271,7 +281,7 @@ KCNA: 250$
 
 KCSA: 250$
 
-For a total cost of **$1,685**
+For a total cost of **$1685**
 
 Pursuing these certifications can be quite expensive if your company does not cover the costs.
 
@@ -298,7 +308,7 @@ Total Cost for the Bundle with All Certifications: **1495$**
 
 Cost for All Certifications After Applying the Coupon: **1196$**
 
-Want to save money? The way to go is bundles + coupons!
+The best way to save money is by using bundles and coupons!
 
 ## 9 Conclusions
 
