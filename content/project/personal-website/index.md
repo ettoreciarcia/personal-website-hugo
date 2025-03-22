@@ -1,7 +1,7 @@
 ---
 title: Personal Website
 date: 2022-12-01
-external_link: https://github.com/ettoreciarcia/personal-website-hugo
+external_link: https://ettoreciarcia.com/publication/01-how-to-deploy-your-website/
 tags:
   - Terraform
   - AWS
