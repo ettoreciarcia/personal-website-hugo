@@ -91,7 +91,7 @@ work:
     # date_end: '2023-04-01'
     summary: |2-
       Responsibilities include:
-      - I provide dedicated support to customers using Cloud Native technologies based on SUSE products, including Rancher Prime, NeuVector, Longhorn, monitoring stac
+      - I provide dedicated support to customers using Cloud Native technologies based on SUSE products, including Rancher Prime, NeuVector, Longhorn, monitoring stack
 
       **Technologies involved**: Kubernetes, Rancher, NeuVector, Longhorn, Grafana, Prometheus, Velero, NGINX Ingress Controller, AWS, Azure, Terraform
   - position: Kubernetes & Cloud Engineer
