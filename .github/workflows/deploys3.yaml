@@ -3,8 +3,7 @@ name: Deploy to S3
 on:
   push:
     branches:
-      - main # Set a branch to deploy
-  # pull_request:
+      - main
 
 jobs:
   deploy:
@@ -14,8 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: true # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+          submodules: true
+          fetch-depth: 0
 
       - name: Hugo setup
         uses: peaceiris/actions-hugo@v3.0.0
@@ -35,6 +34,15 @@ jobs:
 
       - name: Build
         run: hugo --minify
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '24'
+
+      - name: Run Pagefind
+        run: |
+          npx pagefind --site public
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1-node16
