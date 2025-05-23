@@ -24,9 +24,8 @@ summary: Too many endpoints? Don’t worry, Homepage has you covered.
 tags:
 - Homelab
 
-
-
 featured: true
+draft: true
 
 links:
 url_pdf: ''
