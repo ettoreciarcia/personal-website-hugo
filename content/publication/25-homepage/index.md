@@ -25,7 +25,7 @@ tags:
 - Homelab
 
 featured: true
-draft: true
+draft: false
 
 links:
 url_pdf: ''
@@ -66,9 +66,11 @@ I've started writing technical articles for an Italian YouTube channel with over
 
 Naturally, the channel focuses on the Open Source world, and I think I'll mainly be writing articles about homelabs and the Cloud Native Computing Foundation landscape.
 
-So here's the first video I contributed to!
+So here's the [first video](https://www.youtube.com/watch?v=eGqF1R4g7gQ&t=7s) I contributed to!
 
-## 0. How Hard Is It to Manage a Homelab With Too Many Endpoints?
+![cover.png](cover.png)
+
+## How Hard Is It to Manage a Homelab With Too Many Endpoints?
 
 Managing a homelab is more complex than it seems. Think about it: NAS, Plex Server, Portainer, Grafana, Home Assistant, Pi-hole… and every service has its own IP, port, and web interface!
 
