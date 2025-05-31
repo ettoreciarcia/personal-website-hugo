@@ -82,9 +82,9 @@ Moral of the story: the bigger your homelab gets, the more essential it becomes 
 
 What if I told you there's a tool built exactly to solve this problem?
 
-It's called Homepage: a minimal, open-source, fully customizable dashboard.
+It's called [Homepage](https://github.com/gethomepage/homepage): a minimal, open-source, fully customizable dashboard.
 
-But it's not just a list of links—Homepage can monitor container statuses, display real-time stats, categorize your apps, and integrate dynamic data.
+But it's not just a list of links. Homepage can monitor container statuses, display real-time stats, categorize your apps, and integrate dynamic data.
 
 The best part? It's all configured via a simple YAML file.
 
@@ -317,7 +317,7 @@ You might be thinking, “Yeah Morro, yet another dashboard that lets us click o
 
 But here's the coolest part: Widgets.
 
-We’re not just talking about colorful buttons—Homepage supports dynamic widgets that can:
+We’re not just talking about colorful buttons, Homepage supports dynamic widgets that can:
 
 - Give you an overview of your Proxmox cluster
 - Show how many queries Pi-hole is filtering
@@ -351,7 +351,7 @@ The final result looks like this:
 ## Setting Up Homepage with Kubernetes
 
 You already have a Kubernetes cluster and you're thinking:
-“Nice, but I don’t use Docker Compose anymore—it’s outdated! I use Kubernetes.”
+“Nice, but I don’t use Docker Compose anymore, it’s outdated! I use Kubernetes.”
 
 You’ll need the following:
 
@@ -377,7 +377,7 @@ Steps:
 7. Publish via Ingress
 
 
-We can now apply our manifest:
+We can now apply our [manifests](https://gethomepage.dev/installation/k8s/):
 
 ```shell
 k apply -f kubernetes/manifests.yaml
@@ -409,8 +409,6 @@ Per visualizzare la nostra dashboard
 
 Once again, we can use the autodiscovery feature, just like in Docker, this time using annotations on new Ingress resources.
 
-[Here I’ll use a demo service; you can replace it with the Postgres instance running inside your cluster.]
-
 This time I won’t share the configuration files as usual! You can find them on [MorroLinux's Patreon](https://www.patreon.com/Morrolinux)!
 
 
@@ -437,4 +435,3 @@ hello-world   nginx-ingress   nginx   hello-world.morrolinux.it   192.168.0.32  
 Thanks to the annotations configured on the Ingress, you should also see this endpoint show up in Homepage:
 
 ![autodiscovery-kubernetes](autodiscovery-kubernetes.png)
-
