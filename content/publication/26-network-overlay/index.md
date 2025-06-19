@@ -26,7 +26,7 @@ tags:
 - Networking
 
 featured: true
-draft: true
+draft: false
 
 links:
 url_pdf: ''
@@ -64,25 +64,27 @@ slides: example
 
 ## Intro
 
-This article is based on the technical script written for Morrolinux's YouTube channel. You can find the video here [LA VPN Open Source che buca le reti: letteralmente]()
+This article is based on the technical script written for Morrolinux's YouTube channel. You can find the video here [La VPN Open Source che buca le reti: letteralmente](https://www.youtube.com/watch?v=QMwHKCcOgGQ&t=583s)
 
-I had already written a similar article in the past about Tailscale and Headscale: [How to setup an Headscale server for free on AWS via Terraform and Ansible](https://ettoreciarcia.com/publication/08-network-overlay/). 
+![youtube-cover](cover.png)
+
+I previously wrote a similar article in the past about Tailscale and Headscale: [How to setup an Headscale server for free on AWS via Terraform and Ansible](https://ettoreciarcia.com/publication/08-network-overlay/). 
 
 You can think of this one as an updated and improved version of that (which, by the way, is still one of the most read posts on my blog).
 
 The main differences are:
 
-1. Using a containerized setup for Headscale. No more Ansible (which I never really liked)
+1. Dropped Ansible in favor of a simpler container setup
 2. Added a web UI to mimic the Tailscale experience as closely as possible
 3. No provisioning modules for AWS infrastructure this time (got lazy, sorry)
 
 ## 2. What is Tailscale (recap)
 
-I'm using Tailscale, a service built on top of WireGuard that automates the boring stuff: VPN setup, key management, and network configuration... but there's more!
+It's service built on top of WireGuard that automates the boring stuff: VPN setup, key management, and network configuration... but there's more!
 
-With Tailscale, there's no need for port forwarding. You install the client, log in (Google/Github/Microsoft supported), and boom, the device joins your private network.
+Tailscale eliminates the need for port forwarding. You install the client, log in (Google/Github/Microsoft supported), and boom, the device joins your private network.
 
-Let me quickly explain how it works and how it differs from a traditional VPN.
+Here's a quick explanation of how it works
 
 
 ## 3. Traditional VPN vs Mesh VPN
@@ -98,7 +100,7 @@ This is called a "Mesh VPN."
 ![tailnet](tailscale.webp)
 
 
-Technically, there is still a central server, but it doesn't carry traffic, it only coordinates connections using NAT traversal techniques like STUN and fallback relays via DERP.
+Technically, there is still a central server, but it doesn't carry traffic, it only coordinates connections using NAT traversal techniques like STUN and fallback relays via DERP ((Designated Encrypted Relay for Packets))
 
 The result is a VPN that behaves like a local LAN, most devices communicate peer-to-peer.
 
@@ -110,7 +112,7 @@ The traffic is peer-to-peer, but the coordination server? It's proprietary and h
 
 Also, free Tailscale accounts are limited  (up to 3 users per network, then you pay).
 
-![tailscale-subscription](tailscale-subsription.png)
+![tailscale-subscription](tailscale-subscription.png)
 
 This is where Headscale enters the scene: a self-hosted implementation of Tailscale's coordination server.
 
@@ -118,7 +120,7 @@ Same client (Tailscale), but the server is under your control.
 
 ## 5. Headscale Setup on Your VPS
 
-With open-source, there's no out-of-the-box solution. Time to get your hands dirty.
+With open-source, there's no out-of-the-box solution. Let’s walk through the setup
 
 
 ### Container Setup
@@ -138,7 +140,7 @@ server_url: http://0.0.0.0:8080 #REDACTED
 listen_addr: 0.0.0.0:8080 #REDACTED
 ```
 
-Your Docker Compose file: 
+Here is a minimal docker compose setup: 
 
 ```shell
 services:
@@ -193,7 +195,7 @@ sudo apt-get install tailscale
 ```
 
 
-How can we add hosts to out Headscale's network?
+How can we add hosts to our Headscale's network?
 
 ```shell
 tailscale up --login-server http://headscale.ettoreciarcia.com:8080
@@ -237,7 +239,7 @@ Which provides us with interesting information such as the hostname of the clien
 
 ## 6. Add a GUI to Headscale
 
-Managing from the CLI is fine, but... there's a UI!
+CLI is fine, but why not use a UI?
 
 Use [headscale-ui](https://github.com/gurucomputing/headscale-ui) + Caddy as reverse proxy
 
@@ -290,7 +292,7 @@ https://headscale.morrolinux.it {
 }
 ```
 
-We can start our containers
+Start the containers with: 
 
 ```shell
 docker compose up -d
@@ -316,13 +318,20 @@ docker exec -it headscale headscale apikeys create
 
 ### 7.1 Subnet router
 
-To reach devices that can't run Tailscale (like printers), enable routing via a Tailscale node:
+One of the limitations of mesh VPNs like Tailscale is that every device needs to have the client installed in order to join the network.
+
+But what if you want to access a device where you can't install a client?
+
+That’s where a 'subnet router' comes in: a device that bridges your Tailscale network with a local subnet, exposing other devices that can’t run the client.
+
+It’s basically saying:
+“Hey, if you want to talk to 192.168.42.10 (the printer), just ask me — I’ll take you there.”
 
 ```shell
 echo 1 > /proc/sys/net/ipv4/ip_forward
 ```
 
-Then we run tailscale with
+Then we run Tailscale with the following command:
 
 ```shell
 tailscale login --login-server http://headscale.morrolinux.it:8080 --advertise-routes=192.168.42.0/24
@@ -343,7 +352,7 @@ Here: this is the use case for an "exit node".
 
 Technically it is the same thing as a subnet router, but to reach the entire Internet.
 In practice, you surf, but all the traffic passes through that node, which acts as an exit door to the world.
-Like a classic Full Tunnel VPN, so to speak
+Effectively, it works like a classic full-tunnel VPN
 
 To configure it, just use this configuration on our exit node during registration
 
@@ -375,10 +384,6 @@ multiple devices scattered across different networks,
 
 networks where port forwarding isn’t an option (like CG-NAT or 4G/5G),
 
-or you just want something that works out of the box and keeps maintenance low,
-
-…then Tailscale + Headscale is a game changer.
+or you just want something that works out of the box and keeps maintenance low, then Headscale is a game changer.
 
 You get the performance and security of WireGuard, but with a modern, flexible, peer-to-peer overlay that’s easy to set up, easy to scale, and with Headscale, totally under your control.
-
-No solution is one-size-fits-all. It really comes down to your use case.
