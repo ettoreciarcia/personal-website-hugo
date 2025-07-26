@@ -67,6 +67,24 @@ projects:
 # slides: example
 ---
 
+{{% callout warning %}}
+This setup is no longer free as of February 1, 2024, due to changes in AWS's billing policy for Elastic Public IP addresses.
+From now on, if you use a public IP address attached to an instance, you will be charged $4 per month.
+
+You can find the official AWS blog post explaining the new pricing model here:
+<a href="https://aws.amazon.com/it/blogs/aws/new-aws-public-ipv4-address-charge-public-ip-insights/" target="_blank">New AWS Public IPv4 Address Charge – Public IP Insights</a>.
+{{% /callout %}}
+
+
+{{% callout note %}}
+Update (2025): A new and improved version of this setup is now available.
+In the latest guide, I’ve removed Ansible in favor of a cleaner, container-based approach to deploying the Headscale server. I’ve also added a web-based UI to make the user experience closer to that of Tailscale.
+
+You can find the updated article here:
+<a href="https://ettoreciarcia.com/publication/26-network-overlay/" target="_blank">How to setup a containerized Headscale Server with HTTPS and UI</a>.
+{{% /callout %}}
+
+
 ## **0 Updates on my homelab journey**
 
 
