@@ -27,7 +27,7 @@ tags:
 - Networking
 
 featured: true
-draft: true
+draft: false
 
 links:
 url_pdf: ''
