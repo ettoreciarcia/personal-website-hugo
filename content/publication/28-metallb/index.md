@@ -140,7 +140,7 @@ spec:
 Next, we expose these pods with a LoadBalancer-type service so that they can be accessed from outside the cluster on port 80:
 
 ```shell
-kubectl expose deployment hello-world --type=load-balancer --port=80 --target-port=80 --dry-run=client -oyaml
+kubectl expose deployment hello-world --type=LoadBalancer --port=80 --target-port=80 --dry-run=client -oyaml
 ```
 
 This command will generate a Kubernetes manifest:
