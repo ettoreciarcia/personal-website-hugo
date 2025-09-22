@@ -40,7 +40,7 @@ profiles:
   - icon: brands/github
     url: https://github.com/ettoreciarcia
   - icon: brands/linkedin
-    url: https://www.linkedin.com/ettoreciarcia
+    url: https://www.linkedin.com/in/ettoreciarcia/
   # - icon: academicons/google-scholar
   #   url: https://scholar.google.com/
   # - icon: academicons/orcid
