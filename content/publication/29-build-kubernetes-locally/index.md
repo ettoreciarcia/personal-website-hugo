@@ -71,7 +71,7 @@ The idea is simple but powerful:
 
 1. First, we’ll build a clean Kubernetes release straight from the official repository and create a Kind cluster using that freshly built image
 2. Then, we’ll reproduce a known issue affecting ValidatingAdmissionPolicyBinding when using a ConfigMap as parameters
-3. Finally, we’ll rebuild Kubernetes again — this time from the branch that contains the proposed fix and verify that the issue has been resolved
+3. Finally, we’ll rebuild Kubernetes again, this time from the branch that contains the proposed fix and verify that the issue has been resolved
 
 
 Before we start, make sure you have:
@@ -294,3 +294,5 @@ With a little setup, anyone can build, patch, and run Kubernetes from source, ga
 The fix from [Afshin Paydar](https://github.com/afshin-paydar) on the issue [ValidatingAdmissionPolicyBinding fails to resolve ConfigMap params when resources are recreated in batch \#133827](https://github.com/kubernetes/kubernetes/issues/133827) is a perfect example of how open collaboration keeps Kubernetes evolving one commit at a time.
 
 And the best part? Anyone with curiosity and a bit of patience can do the same
+
+Kubernetes is a community before it is a project. Building it from source is not just a technical act, but a way to take part in its ecosystem of shared knowledge. Every upstream bug fix is a small collective victory
