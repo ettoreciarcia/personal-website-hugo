@@ -2,7 +2,7 @@
 title: "CNCF: the largest collection of solutions to problems you didn’t know you had"
 
 event: Linux Day Benevento 2025
-event_url: https://youtu.be/tTRK-g_Y17I?t=2594
+event_url: https://youtu.be/tTRK-g_Y17I?t=2268
 
 location: Benevento
 # address:
