@@ -1,5 +1,5 @@
 ---
-title: "How to setup a containerized Headscale Server with HTTPS and UI"
+title: "How to Install Headscale with Docker (HTTPS + Web UI Setup Guide)"
 authors:
 - admin
 date: "2025-06-15T00:00:00Z"
@@ -20,7 +20,9 @@ publication_short: ""
 # abstract: "Boost Your Kubernetes Workflow: Aesthetic & Productivity Hacks"
 
 # Summary. An optional shortened abstract.
-summary: Mesh Network with Open Source Software with Headscale and Headscale UI
+summary: "Complete guide to installing Headscale with Docker, HTTPS and Web UI. A self-hosted Tailscale alternative for secure mesh VPN networks."
+
+
 tags:
 - Homelab
 - Networking
@@ -104,7 +106,7 @@ Technically, there is still a central server, but it doesn't carry traffic, it o
 
 The result is a VPN that behaves like a local LAN, most devices communicate peer-to-peer.
 
-## 4. Headscale: The Open Source Tailscale Server
+## 4. Headscale: Self-Hosted Tailscale Server (Open Source)
 
 But here's the catch:
 
@@ -118,7 +120,7 @@ This is where Headscale enters the scene: a self-hosted implementation of Tailsc
 
 Same client (Tailscale), but the server is under your control.
 
-## 5. Headscale Setup on Your VPS
+## 5. Install Headscale with Docker on Your VPS (Setup Guide)
 
 With open-source, there's no out-of-the-box solution. Let’s walk through the setup
 
@@ -237,7 +239,7 @@ ID | Hostname | Name | MachineKey | NodeKey | User       | IP addresses         
 
 Which provides us with interesting information such as the hostname of the client that connected, username used for login, date of last access, whether that node is currently connected to the network or not and whether its token has expired.
 
-## 6. Add a GUI to Headscale
+## 6. Headscale Web UI Setup (headscale-ui)
 
 CLI is fine, but why not use a UI?
 
