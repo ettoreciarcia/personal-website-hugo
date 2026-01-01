@@ -61,18 +61,17 @@ projects:
 slides: example
 ---
 
+## 0 Intro
 
-A note to the reader: I am writing this on January 1st, 2026, half an hour after watching the season finale of the last season of Stranger Things, a show that has been with me from 2016 until today.
+A note to the reader: I am writing this on January 1st, 2026, half an hour after watching the last episode of the last season of Stranger Things, a show that has been with me from 2016 until today.
 
 I remember clearly the moment I started watching Stranger Things.
 July 2016. I was preparing for my Computer Architecture I exam.
 I was in Venticano, my hometown, not in Naples, where my university was.
 
-It is strange how some memories stick with almost photographic precision. The place, the time, even the mood. As if my brain decided that this moment was important in some way.
+It is strange how some memories stick with almost photographic precision. The place, the time, even the mood. It is as if my brain decided that this moment was important.
 
-But I am getting carried away.
-
-Over the last few days, I have found myself thinking about how much my life has changed in the past ten years, since I watched the first episode of Stranger Things. From the outside, it might seem that I am the same person, sitting at the same desk, looking at the same monitor.
+Over the last few days, I have been thinking about how much my life has changed in the past ten years, since that first episode. From the outside, it might look like I am the same person, sitting at the same desk, looking at the same monitor.
 (Actually, there are more monitors now. I am becoming bourgeois.)
 
 But under the surface, everything has changed. I have changed.
@@ -81,7 +80,7 @@ Ten years ago, I felt lost and uncertain, with no real idea of what my future wo
 
 Today, that feeling is gone. Not because I have all the answers, because some bastard probably does, but because I have learned to live with the questions. I have stopped seeing uncertainty as a personal failure and started seeing it as a normal condition, almost a necessary one.
 
-This is probably where it makes sense to start when looking back at 2025.
+This is where it makes sense to start when looking back at 2025.
 
 I will remember 2025 as the year I fought the most, in every arena. Over the years, I have struggled to let go of many issues that remained in my personal Upside Down, the limbo of unresolved matters.
 
@@ -93,8 +92,9 @@ But I did not only fight. I also achieved many goals.
 
 First and foremost, I have not lost my mind, and that is the biggest achievement. One day, you might see me on the street wearing a tin foil hat shouting that the end of the world is near, but today is not that day.
 
-## For the first time, I do not want to change companies
+## 1 Contentment at Work
 
+For the first time, I do not want to change companies.
 Who would have thought it? I am simply happy where I am. I am calm.
 I never imagined I would reach this point. But here I am, and I feel good.
 
@@ -110,7 +110,7 @@ Some photos from my trip to the US
 
 ![Atlanta](atlanta.png)
 
-## I started investing
+## 2 I started investing
 
 At the end of 2023, I began learning a bit about personal finance: ETFs, bonds, savings accounts, pension funds. 
 
@@ -130,40 +130,40 @@ Things are going quite well. By taking advantage of the tax deductions from pens
 
 Taking Paolo Coletti’s course ["Educati e Finanziati"](https://www.youtube.com/watch?v=cSlr2I1GGiw&list=PLfuzpc-H8qcdetz_Zwc5ILnbiG6eek_T8) turned out to be an excellent investment.
 
-## I resumed my university studies
+## 3 This Website is Skyrocketing
 
-After leaving them on hold for years, I finally restarted my studies. I have not taken exams yet because the enrollment procedure is not fully completed, but I plan to resume soon. Maybe this will finally be the time I close this chapter of my life.
+When I bought the domain ettoreciarcia.com, I didn’t even have a blog. It was just a simple showcase website.
 
-## Road to Golden Kubestronaut
+Then I started writing articles about things I encountered at work or topics I was studying for one reason or another. The feedback I received was very positive, and the site turned out to be a small but effective way to meet people and access new professional opportunities.
+
+So far, the two best job offers I have received measured by total compensation came from people who discovered me through the site. I know this because they told me explicitly.
+
+Who knows how many others reached out after seeing the site but didn’t mention it?
+
+The numbers are growing. Some technical articles get a decent number of views, at least for me.
+
+Then there are personal articles like this one, which barely get noticed, but I guess that’s part of the game :)
+
+Looking at the numbers coldly, the site quadrupled its views from 2024 to 2025. Not bad.
+
+## 4 Road to Golden Kubestronaut
 
 At the moment, I am four certifications away from becoming a Golden Kubestronaut. 2025 was also a year full of certifications.
 
 ![certification](certification.png)
 
-<!-- - 19/02/2025: [SCA in Rancher Manager 2.7 & 2.8 for Rancher Prime](https://badges.suse.com/0614bd78-0f19-4abd-b45e-e6cdd6dd9965#acc.LpqszhYB)
-
-- 04/07/2025: [PCA Prometheus Certified Associate](https://www.credly.com/badges/c24b9226-cf38-404d-bd80-711187703afd/linked_in_profile)
-
-- 18/07/2025 [CGOA Certified GitOps Associate](https://www.credly.com/badges/ce518fae-35bf-46c7-ac03-d9b9cf75aaae)
-
-- 08/12/2025 [CNPA Certified Cloud Native Platform Engineering Associate](https://www.credly.com/badges/ae67874e-42b9-4cb5-b1e3-98bb6bd453a8)
-
-- 23/12/2025 [CAPA Certified Argo Project Associate](https://www.credly.com/badges/455a952c-f5b2-4b01-8f2f-fedbd06479a7)
-
-- 27/12/2025 [CCA Cilium Certified Associate](https://www.credly.com/badges/5cdeee6e-d4d3-4746-9c5d-d36eff6e2f38/linked_in_profile)
-
-- 30/12/2025 [CBA Certified Backstage Associate](https://www.credly.com/badges/5cdeee6e-d4d3-4746-9c5d-d36eff6e2f38/linked_in_profile)
-
-Honestly, I am a bit tired. I would much rather tinker in my homelab than sit Linux Foundation certification exams, but that’s life. -->
-
 I am doing this because the Golden Kubestronaut title never expires, which means I will not have to renew certifications once they expire.
 
+## 5 I resumed my university studies
 
-## Goals for 2026
+After leaving them on hold for years, I finally restarted my studies. I have not taken exams yet because the enrollment procedure is not fully completed, but I plan to resume soon. Maybe this will finally be the time I close this chapter of my life.
+
+
+## 6 Goals for 2026
 
 I will keep moving forward, studying the topics I am passionate about, and continuing to fight in every arena for what I believe is right.
 
-## Conclusions
+## 7 Conclusions
 
 I do not know exactly what 2026 will look like. There will be new questions, new battles, and probably a few new messes to clean up. But that no longer scares me.
 
