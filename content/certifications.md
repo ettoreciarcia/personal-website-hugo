@@ -14,12 +14,12 @@ sections:
     content:
       title: Certifications
       text:
-      count: 15
+      count: 25
       filters:
         folders:
           - certification
     design:
       view: article-grid
       fill_image: false
-      columns: 3
+      columns: 4
 ---
