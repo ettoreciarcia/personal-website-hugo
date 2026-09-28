@@ -7,6 +7,14 @@ My new portfolio/blog website with hugo
 
 ## Useful command
 
+### asdf
+
+```
+asdf plugin update hugo
+asdf list all hugo
+asdf install
+```
+
 ### Test it locally
 
 ```hugo serve```
