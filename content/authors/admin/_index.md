@@ -91,8 +91,10 @@ work:
     # date_end: '2023-04-01'
     summary: |2-
       Responsibilities include:
-      - I provide dedicated support to customers using Cloud Native technologies based on SUSE products, including Rancher Prime, NeuVector, Longhorn, monitoring stack
-
+      - Deliver dedicated, high-tier technical support and architecture guidance for mission-critical enterprise environments running SUSE Cloud Native solutions
+      - Troubleshoot, debug, and resolve complex issues across Kubernetes clusters, container runtimes, storage, and security layers to ensure minimal downtime and business continuity
+      - Conduct deep-dive Root Cause Analysis (RCA) for critical severity incidents (Severity 1/2) and collaborate directly with product engineering and open-source upstream mantainers
+      - Perform cluster health checks, version upgrade assessments, and proactive maintenance to optimize client performance and operational resilience
       **Technologies involved**: Kubernetes, Rancher, NeuVector, Longhorn, Grafana, Prometheus, Velero, NGINX Ingress Controller, AWS, Azure, Terraform
   - position: Kubernetes & Cloud Engineer
     company_name: SIGHUP
