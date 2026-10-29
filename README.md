@@ -34,3 +34,10 @@ or
 ## Example Features 
 
 Here you can find and example of all PaperMod's features [config.yml](https://github.com/adityatelange/hugo-PaperMod/wiki/Installation)
+
+## Tool versions
+
+```
+hugo extended_0.136.2
+golang 1.24.4
+```
