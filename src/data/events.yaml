@@ -1,13 +1,28 @@
+- id: "-3"
+  date: October 2026
+  name: Linux Day
+  location: Benevento
+  role: Speaker
+- id: "-2"
+  date: November 2025
+  name: KubeconNA
+  location: Atlanta
+  role: Attendee
+- id: "-1"
+  date: October 2025
+  name: Linux Day Day
+  location: Benevento
+  role: Speaker
 - id: "0"
   date: October 2024
   name: DevSecOps Day
   location: Bologna
-  role: Speaker
+  role: Attendee
 - id: "1"
   date: October 2024
   name: Container Day
   location: Bologna
-  role: Speaker
+  role: Attendee
 - id: "2"
   date: October 2024
   name: Kubernetes Workshop
@@ -67,7 +82,7 @@
   date: October 2022
   name: Linux Day
   location: Benevento
-  role: Speaker
+  role: Attendee
 - id: "14"
   date: September 2022
   name: MeetUp Kubernetes
