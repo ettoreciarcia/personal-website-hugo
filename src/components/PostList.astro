@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '../lib/site';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  showCategory?: boolean;
+}
+const { posts, showCategory = true } = Astro.props;
+---
+
+<ul class="divide-y divide-line/60">
+  {
+    posts.map((post) => (
+      <li>
+        <a href={`/publication/${post.id}/`} class="group flex gap-4 py-5 sm:grid sm:grid-cols-[7.5rem_1fr_auto] sm:gap-6">
+          <time datetime={post.data.date.toISOString()} class="label hidden sm:block sm:pt-1">
+            {formatDate(post.data.date)}
+          </time>
+          <div class="min-w-0 flex-1">
+            <time datetime={post.data.date.toISOString()} class="label block mb-1 sm:hidden">
+              {formatDate(post.data.date)}
+            </time>
+            <h3 class="font-medium leading-snug group-hover:text-accent transition-colors">{post.data.title}</h3>
+            <p class="mt-1 text-sm text-fg-muted leading-relaxed">{post.data.summary}</p>
+            {showCategory && <span class="label mt-2 inline-block">{post.data.category}</span>}
+          </div>
+          {post.data.image && (
+            <Image
+              src={post.data.image}
+              alt=""
+              width="336"
+              height="224"
+              class="w-20 h-14 sm:w-28 sm:h-[4.75rem] object-cover rounded-md border border-line shrink-0 mt-5 sm:mt-1"
+            />
+          )}
+        </a>
+      </li>
+    ))
+  }
+</ul>

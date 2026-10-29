@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import 'katex/dist/katex.min.css';
+import Base from '../../layouts/Base.astro';
+import TagList from '../../components/TagList.astro';
+import LinkButtons from '../../components/LinkButtons.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import ProseEnhancements from '../../components/ProseEnhancements.astro';
+import { getPosts, formatDate, readingTime, slugify } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: { post, newer: posts[i - 1], older: posts[i + 1] },
+  }));
+}
+
+const { post, newer, older } = Astro.props;
+const { Content, headings } = await render(post);
+const ogImage = post.data.image ? post.data.image.src : undefined;
+---
+
+<Base
+  title={post.data.title}
+  description={post.data.summary}
+  image={ogImage}
+  type="article"
+  mainClass="xl:max-w-[66rem] xl:grid xl:grid-cols-[minmax(0,48rem)_14rem] xl:gap-14"
+>
+  <div class="min-w-0">
+    <article data-pagefind-body>
+      <header class="mb-8">
+        <p class="label mb-3">
+          <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+          · {readingTime(post.body)} min read ·
+          <a href={`/category/${slugify(post.data.category)}/`} class="hover:text-accent" data-pagefind-filter="category">{post.data.category}</a>
+        </p>
+        <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight leading-tight">{post.data.title}</h1>
+        <p class="mt-4 text-lg text-fg-muted leading-relaxed">{post.data.summary}</p>
+        <div class="mt-5 flex flex-wrap items-center gap-4">
+          <TagList tags={post.data.tags} />
+          <LinkButtons links={post.data.links} />
+        </div>
+      </header>
+
+      {
+        post.data.image && (
+          <Image src={post.data.image} alt="" width="1280" class="w-full rounded-lg border border-line mb-10" loading="eager" />
+        )
+      }
+
+      <TableOfContents headings={headings} variant="inline" />
+
+      <div class="prose max-w-none">
+        <Content />
+      </div>
+    </article>
+
+    <nav class="mt-14 pt-8 border-t border-line/60 grid sm:grid-cols-2 gap-6 text-sm" aria-label="Adjacent articles">
+      <div>
+        {
+          older && (
+            <a href={`/publication/${older.id}/`} class="group block">
+              <span class="label">← Older</span>
+              <span class="block mt-1 font-medium group-hover:text-accent transition-colors">{older.data.title}</span>
+            </a>
+          )
+        }
+      </div>
+      <div class="sm:text-right">
+        {
+          newer && (
+            <a href={`/publication/${newer.id}/`} class="group block">
+              <span class="label">Newer →</span>
+              <span class="block mt-1 font-medium group-hover:text-accent transition-colors">{newer.data.title}</span>
+            </a>
+          )
+        }
+      </div>
+    </nav>
+  </div>
+
+  <TableOfContents headings={headings} variant="sidebar" />
+  <ProseEnhancements />
+</Base>

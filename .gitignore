@@ -1,18 +1,36 @@
-# Generated files by hugo
-/public/
-/resources/_gen/
-/assets/jsconfig.json
-hugo_stats.json
+# Build output
+dist/
+.astro/
 
-# Executable may be added to repository
-hugo.exe
-hugo.darwin
-hugo.linux
+# Pagefind writes here only if someone runs it against public/ by mistake
+public/pagefind/
 
-# Temporary lock file while building
-/.hugo_build.lock
+# Dependencies
+node_modules/
 
-index.html
+# Logs and package-manager noise
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+
+# Environment and local overrides (PUBLIC_GA_ID lives in CI secrets)
+.env
+.env.*
+!.env.example
 .envrc
-*.draft.*
+
+# Editors and tooling
+.idea/
+.vscode/*
+!.vscode/settings.json
+*.swp
+*.swo
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Drafts you don't want pushed
+*.draft.*

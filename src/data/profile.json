@@ -1,0 +1,79 @@
+{
+  "name": "Ettore Ciarcia",
+  "role": "Kubernetes & Cloud Engineer",
+  "organization": {
+    "name": "SUSE",
+    "url": "https://www.suse.com/"
+  },
+  "interests": [
+    "Containarized Workload",
+    "Container Orchestrator",
+    "CNCF Landscape",
+    "Developer Experience"
+  ],
+  "profiles": [
+    {
+      "label": "E-mail Me",
+      "url": "mailto:ettoreciarcia.tech@gmail.com"
+    },
+    {
+      "label": "github",
+      "url": "https://github.com/ettoreciarcia"
+    },
+    {
+      "label": "linkedin",
+      "url": "https://www.linkedin.com/in/ettoreciarcia/"
+    }
+  ],
+  "education": [
+    {
+      "area": "Cyber Security",
+      "institution": "University of Naples Federico II",
+      "start": "2021-05-01",
+      "end": "2025-01-22",
+      "summary": "Final Project: honey net on AWS to track malicious users",
+      "button": {
+        "text": "Check video",
+        "url": "https://youtu.be/OC6q_cSqdhY?t=4834"
+      }
+    },
+    {
+      "area": "BE Computer Engineering",
+      "institution": "University of Naples Federico II (on going)",
+      "start": "2015-09-01"
+    }
+  ],
+  "work": [
+    {
+      "position": "Premium Support Engineer",
+      "company": "SUSE",
+      "url": "https://www.suse.com/",
+      "start": "2024-11-15",
+      "summary": "Responsibilities include:\n- Deliver dedicated, high-tier technical support and architecture guidance for mission-critical enterprise environments running SUSE Cloud Native solutions\n- Troubleshoot, debug, and resolve complex issues across Kubernetes clusters, container runtimes, storage, and security layers to ensure minimal downtime and business continuity\n- Conduct deep-dive Root Cause Analysis (RCA) for critical severity incidents (Severity 1/2) and collaborate directly with product engineering and open-source upstream mantainers\n- Perform cluster health checks, version upgrade assessments, and proactive maintenance to optimize client performance and operational resilience\n\n**Technologies involved**: Kubernetes, Rancher, NeuVector, Longhorn, Grafana, Prometheus, Velero, NGINX Ingress Controller, AWS, Azure, Terraform"
+    },
+    {
+      "position": "Kubernetes & Cloud Engineer",
+      "company": "SIGHUP",
+      "url": "https://sighup.io/",
+      "start": "2023-04-01",
+      "end": "2024-11-14",
+      "summary": "Responsibilities include:\n- Implemented CNCF technologies for clients across various industries, managing the deployment of networking, storage, monitoring, and disaster recovery solutions within Kubernetes clusters\n- I actively participated in a major Kubernetes upgrade campaign (25+ clusters) aimed at upgrading client clusters to the latest available versions (100+ version upgrades achieved with minimal downtime and without exceeding the error budget). This initiative provided me with an opportunity to significantly enhance my expertise across a wide spectrum of internal cluster services. I executed these operations on leading cloud providers, as well as on-premise environments utilizing vSphere.\n- I took part in overnight rotations for the 24/7 on-call service for critical clients and actively monitored live streaming services that experienced heavy traffic during live broadcasts (>2000 requests per second)\n\n**Technologies involved**: Kubernetes, Grafana, Prometheus, Velero, NGINX Ingress Controller, AWS, Azure, Terraform, Ansible, Kong Gateway"
+    },
+    {
+      "position": "Cloud Engineer",
+      "company": "Epsilon",
+      "url": "https://www.epsilonline.com/",
+      "start": "2021-11-01",
+      "end": "2023-04-01",
+      "summary": "Responsibilities include:\n- Proficient in infrastructure provisioning utilizing Infrastructure as Code (IaC) policies across leading cloud providers via Terraform Cloud or with self managed state (25+ projects). Experience in designing and implementing pipelines for seamless container deployments on Kubernetes and Amazon Elastic Container Service (ECS)\n- Migrated an entire project and all its components from Docker Swarm (on premise) to Kubernetes (OKE) and created pipelines for each service to enable automatic build and deployment\n\n**Technologies involved**: Kubernetes, Docker, Terraform, Linux System, AWS Services (EKS, ECS, ECR, EC2, VPC, Lambda,S3, CDN, Pipeline Stack, IAM), Oracle Cloud"
+    },
+    {
+      "position": "System Administrator",
+      "company": "CSC Informatica",
+      "url": "https://www.csc-group.it/",
+      "start": "2019-05-01",
+      "end": "2021-02-18",
+      "summary": "Responsibilities include:\n- Set up cloud architecture with EC2 istances, AWS Lambda, Kafka, MongoDB, Nginx and ELK stack to map road accidents. Data collection using sensors on a RaspberryPi.\n- Managed the IT department of a clinic (140+ workstations) abd and the connections with the medical devices in the clinic’s laboratory. Migrated nearly all end-of-life devices to more supported versions. Network troubleshooting, experience Windows and Linux Server. User management and related privileges within Active Directory\n- Configured and managed firewalls for all company clients (15+ firewalls), including user profile management for approximately 150 users for VPN access. • Reorganized backup policies for many of the clients for whom I managed the storage aspect, implementing a 3-2-1 backup strategy from scratch\n\n**Technologies involved**: Linux, AWS (EC2, VPC, Lambda), Windows Server"
+    }
+  ]
+}

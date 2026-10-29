@@ -1,0 +1,77 @@
+---
+import { NAV, SITE } from '../lib/site';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => path === href || (href !== '/' && path.startsWith(href));
+---
+
+<header class="w-full border-b border-line/60">
+  <div class="max-w-3xl mx-auto px-5 sm:px-6 h-14 flex items-center justify-between gap-4">
+    <a href="/" class="font-semibold tracking-tight hover:text-accent transition-colors">{SITE.title}</a>
+
+    <nav class="hidden sm:flex items-center gap-5 text-sm">
+      {
+        NAV.map((item) => (
+          <a
+            href={item.href}
+            class:list={['transition-colors hover:text-fg', isActive(item.href) ? 'text-fg' : 'text-fg-muted']}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-1">
+      <a href="/search/" class="p-2 rounded-md text-fg-muted hover:text-fg hover:bg-bg-muted transition-colors" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path>
+        </svg>
+      </a>
+      <button id="theme-toggle" type="button" class="p-2 rounded-md text-fg-muted hover:text-fg hover:bg-bg-muted transition-colors" aria-label="Toggle theme">
+        <svg class="hidden dark:block" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+        <svg class="block dark:hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      </button>
+      <button id="menu-toggle" type="button" class="sm:hidden p-2 rounded-md text-fg-muted hover:text-fg hover:bg-bg-muted transition-colors" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobile-nav" class="sm:hidden hidden border-t border-line/60">
+    <div class="max-w-3xl mx-auto px-5 py-3 flex flex-col gap-1 text-sm">
+      {
+        NAV.map((item) => (
+          <a href={item.href} class:list={['py-2', isActive(item.href) ? 'text-fg' : 'text-fg-muted']}>
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+</header>
+
+<script>
+  const root = document.documentElement;
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {}
+  });
+
+  const menuBtn = document.getElementById('menu-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  menuBtn?.addEventListener('click', () => {
+    const open = mobileNav?.classList.toggle('hidden') === false;
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+</script>

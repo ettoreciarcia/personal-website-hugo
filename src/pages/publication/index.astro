@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import PostList from '../../components/PostList.astro';
+import { CATEGORIES } from '../../content.config';
+import { getPosts, slugify } from '../../lib/site';
+
+const posts = await getPosts();
+const counts = new Map<string, number>();
+for (const p of posts) counts.set(p.data.category, (counts.get(p.data.category) ?? 0) + 1);
+---
+
+<Base title="Writing" description="Articles on Kubernetes, cloud infrastructure, homelab and AI.">
+  <PageTitle eyebrow={`${posts.length} articles`} title="Writing">
+    <ul class="mt-5 flex flex-wrap gap-2">
+      {
+        CATEGORIES.map((c) => (
+          <li>
+            <a
+              href={`/category/${slugify(c)}/`}
+              class:list={[
+                'label inline-block px-2.5 py-1 rounded-full border border-line transition-colors',
+                counts.get(c) ? 'hover:border-accent hover:text-accent' : 'opacity-50',
+              ]}
+            >
+              {c} <span class="text-fg-faint">{counts.get(c) ?? 0}</span>
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a href="/tags/" class="label inline-block px-2.5 py-1 rounded-full border border-line hover:border-accent hover:text-accent transition-colors">
+          All tags →
+        </a>
+      </li>
+    </ul>
+  </PageTitle>
+  <PostList posts={posts} />
+</Base>

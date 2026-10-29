@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import TagList from '../../components/TagList.astro';
+import LinkButtons from '../../components/LinkButtons.astro';
+import { getCertifications, formatDate } from '../../lib/site';
+
+export async function getStaticPaths() {
+  return (await getCertifications()).map((cert) => ({ params: { slug: cert.id }, props: { cert } }));
+}
+
+const { cert } = Astro.props;
+const { Content } = await render(cert);
+---
+
+<Base title={cert.data.title} image={cert.data.image?.src}>
+  <article class="text-center">
+    {cert.data.image && <Image src={cert.data.image} alt="" width="480" class="mx-auto w-48 h-48 object-contain" loading="eager" />}
+    <p class="label mt-8 mb-3">Certification · {formatDate(cert.data.date)}</p>
+    <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight">{cert.data.title}</h1>
+    <div class="mt-5 flex flex-col items-center gap-4">
+      <LinkButtons links={{}} extra={[{ label: 'Verify on Credly', href: cert.data.link }]} />
+      <TagList tags={cert.data.tags} class="justify-center" />
+    </div>
+    {
+      cert.body?.trim() && (
+        <div class="prose max-w-none mt-8 text-left">
+          <Content />
+        </div>
+      )
+    }
+  </article>
+
+  <p class="mt-14 pt-8 border-t border-line/60 text-sm text-center"><a href="/certifications/" class="underline-link text-fg-muted">← All certifications</a></p>
+</Base>

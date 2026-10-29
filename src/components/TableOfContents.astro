@@ -1,0 +1,84 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+  /** `inline`: collapsible list for narrow screens. `sidebar`: sticky list, must sit in the page grid's second column. */
+  variant: 'inline' | 'sidebar';
+}
+const { variant } = Astro.props;
+const headings = Astro.props.headings.filter((h) => h.depth === 2 || h.depth === 3);
+const enough = headings.length >= 3;
+---
+
+{
+  enough && variant === 'inline' && (
+    <details class="toc-mobile xl:hidden mb-8 rounded-lg border border-line bg-bg-muted">
+      <summary class="label cursor-pointer px-4 py-3 select-none">On this page</summary>
+      <ol class="px-4 pb-3 text-sm">
+        {headings.map((h) => (
+          <li class:list={[h.depth === 3 && 'pl-4']}>
+            <a href={`#${h.slug}`} class="block py-1 text-fg-muted hover:text-fg">
+              {h.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </details>
+  )
+}
+
+{
+  enough && variant === 'sidebar' && (
+    <aside class="toc hidden xl:block self-start sticky top-20 text-sm" aria-label="Table of contents">
+      <p class="label mb-3">On this page</p>
+      <ol class="border-l border-line">
+        {headings.map((h) => (
+          <li>
+            <a
+              href={`#${h.slug}`}
+              data-toc-link={h.slug}
+              class:list={[
+                'block py-1 -ml-px border-l border-transparent text-fg-muted hover:text-fg transition-colors leading-snug',
+                h.depth === 3 ? 'pl-7' : 'pl-4',
+              ]}
+            >
+              {h.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </aside>
+  )
+}
+
+<script>
+  // Highlight the section currently in view.
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
+  if (links.length) {
+    const byId = new Map(links.map((l) => [l.dataset.tocLink!, l]));
+    const headings = Array.from(byId.keys())
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    let active: HTMLAnchorElement | undefined;
+    const setActive = (id: string) => {
+      const next = byId.get(id);
+      if (!next || next === active) return;
+      active?.classList.remove('is-active');
+      next.classList.add('is-active');
+      active = next;
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Pick the top-most heading that has crossed the trigger line.
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: '-80px 0px -70% 0px', threshold: 0 },
+    );
+    headings.forEach((h) => observer.observe(h));
+    if (headings[0]) setActive(headings[0].id);
+  }
+</script>

@@ -1,0 +1,72 @@
+---
+/**
+ * Progressive enhancements for rendered Markdown (`.prose`):
+ * - "Copy" button on every code block
+ * - click-to-zoom lightbox on images
+ * Include once per page, after the prose.
+ */
+---
+
+<dialog id="lightbox" class="lightbox" aria-label="Image preview">
+  <button type="button" class="lightbox-close" aria-label="Close">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+      <path d="M18 6 6 18M6 6l12 12" />
+    </svg>
+  </button>
+  <img alt="" />
+</dialog>
+
+<script>
+  // ---- Copy buttons ----
+  const COPY_ICON =
+    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  const DONE_ICON =
+    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+
+  document.querySelectorAll<HTMLPreElement>('.prose pre').forEach((pre) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-block';
+    pre.parentNode?.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'code-copy';
+    btn.setAttribute('aria-label', 'Copy code');
+    btn.innerHTML = COPY_ICON;
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(pre.innerText.replace(/\n$/, ''));
+        btn.innerHTML = DONE_ICON;
+        btn.classList.add('is-done');
+        setTimeout(() => {
+          btn.innerHTML = COPY_ICON;
+          btn.classList.remove('is-done');
+        }, 1500);
+      } catch {
+        btn.setAttribute('aria-label', 'Copy failed');
+      }
+    });
+    wrapper.appendChild(btn);
+  });
+
+  // ---- Lightbox ----
+  const dialog = document.getElementById('lightbox') as HTMLDialogElement | null;
+  const dialogImg = dialog?.querySelector('img');
+  if (dialog && dialogImg) {
+    document.querySelectorAll<HTMLImageElement>('.prose img').forEach((img) => {
+      // Tiny inline images (badges, icons) are not worth zooming.
+      if (img.naturalWidth && img.naturalWidth < 400) return;
+      img.classList.add('zoomable');
+      img.addEventListener('click', () => {
+        dialogImg.src = img.currentSrc || img.src;
+        dialogImg.alt = img.alt;
+        dialog.showModal();
+      });
+    });
+    dialog.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close', () => {
+      dialogImg.removeAttribute('src');
+    });
+  }
+</script>

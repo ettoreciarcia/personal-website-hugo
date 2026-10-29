@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageTitle from '../components/PageTitle.astro';
+
+const events = (await getCollection('events')).sort((a, b) => Number(a.id) - Number(b.id));
+---
+
+<Base title="Events" description="Conferences and meetups I spoke at or attended.">
+  <PageTitle eyebrow={`${events.length} events`} title="Events" intro="Conferences, meetups and community days — as speaker or in the audience.">
+    <p class="mt-4 text-sm"><a href="/event/" class="underline-link text-fg-muted">← Back to talks</a></p>
+  </PageTitle>
+
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="label text-left border-b border-line">
+        <th class="py-2 pr-4 font-normal">Date</th>
+        <th class="py-2 pr-4 font-normal">Event</th>
+        <th class="py-2 pr-4 font-normal hidden sm:table-cell">Location</th>
+        <th class="py-2 font-normal">Role</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-line/60">
+      {
+        events.map((e) => (
+          <tr>
+            <td class="py-3 pr-4 whitespace-nowrap text-fg-muted">{e.data.date}</td>
+            <td class="py-3 pr-4">
+              {e.data.name}
+              <span class="sm:hidden text-fg-faint"> · {e.data.location}</span>
+            </td>
+            <td class="py-3 pr-4 hidden sm:table-cell text-fg-muted">{e.data.location}</td>
+            <td class="py-3">
+              <span class:list={['label', e.data.role === 'Speaker' && 'text-accent']}>{e.data.role}</span>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</Base>

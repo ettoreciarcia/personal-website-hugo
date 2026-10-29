@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import PostList from '../../components/PostList.astro';
+import { CATEGORIES } from '../../content.config';
+import { getPosts, slugify } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return CATEGORIES.map((category) => ({
+    params: { slug: slugify(category) },
+    props: { category, posts: posts.filter((p) => p.data.category === category) },
+  }));
+}
+
+const { category, posts } = Astro.props;
+---
+
+<Base title={category} description={`Articles about ${category}.`}>
+  <PageTitle eyebrow={`Category · ${posts.length} ${posts.length === 1 ? 'article' : 'articles'}`} title={category} />
+  {posts.length > 0 ? <PostList posts={posts} showCategory={false} /> : <p class="text-fg-muted">Nothing here yet — stay tuned.</p>}
+  <p class="mt-10 text-sm"><a href="/publication/" class="underline-link text-fg-muted">← All articles</a></p>
+</Base>

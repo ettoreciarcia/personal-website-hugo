@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageTitle from '../components/PageTitle.astro';
+import TagList from '../components/TagList.astro';
+import { getProjects, formatMonthYear } from '../lib/site';
+
+const projects = await Promise.all(
+  (await getProjects()).map(async (p) => ({ ...p, Content: (await render(p)).Content })),
+);
+---
+
+<Base title="Projects" description="Personal infrastructure projects: homelab, IaC and automation.">
+  <PageTitle title="Projects" intro="I enjoy making things. A selection of personal projects I've worked on over the years." />
+
+  <ul class="grid sm:grid-cols-2 gap-6">
+    {
+      projects.map((p) => (
+        <li class="flex flex-col rounded-lg border border-line overflow-hidden">
+          <a href={`/project/${p.id}/`} class="block">
+            {p.data.image && <Image src={p.data.image} alt="" width="800" class="w-full aspect-[16/9] object-cover border-b border-line" />}
+          </a>
+          <div class="p-5 flex-1 flex flex-col">
+            <p class="label">{formatMonthYear(p.data.date)}</p>
+            <h2 class="mt-1 font-medium">
+              <a href={`/project/${p.id}/`} class="hover:text-accent transition-colors">{p.data.title}</a>
+            </h2>
+            <div class="prose prose-sm mt-2 text-fg-muted max-w-none">
+              <p.Content />
+            </div>
+            <TagList tags={p.data.tags} class="mt-auto pt-4" />
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</Base>

@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import { getTalks, formatDate } from '../../lib/site';
+
+const talks = await getTalks();
+---
+
+<Base title="Talks" description="Talks and workshops on Kubernetes, CNCF and cloud engineering.">
+  <PageTitle eyebrow={`${talks.length} talks`} title="Talks" intro="Conference talks, meetups and workshops. Slides and recordings are linked when available.">
+    <p class="mt-4 text-sm"><a href="/events/" class="underline-link text-fg-muted">See every event I attended →</a></p>
+  </PageTitle>
+
+  <ul class="divide-y divide-line/60">
+    {
+      talks.map((t) => (
+        <li>
+          <a href={`/event/${t.id}/`} class="group flex gap-5 py-6">
+            {t.data.image && (
+              <Image src={t.data.image} alt="" width="384" height="256" class="w-24 h-16 sm:w-32 sm:h-[5.33rem] object-cover rounded-md border border-line shrink-0" />
+            )}
+            <div class="min-w-0">
+              <time datetime={t.data.date.toISOString()} class="label">
+                {formatDate(t.data.date)}
+                {t.data.location && ` · ${t.data.location}`}
+              </time>
+              <h2 class="mt-1 font-medium leading-snug group-hover:text-accent transition-colors">{t.data.title}</h2>
+              <p class="mt-1 text-sm text-fg-muted">{t.data.event}</p>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Base>

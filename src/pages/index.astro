@@ -1,0 +1,100 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SocialIcon from '../components/SocialIcon.astro';
+import { Content as Bio } from '../data/bio.md';
+import profile from '../data/profile.json';
+import avatar from '../data/avatar.jpg';
+import { getPosts, getTalks, formatDate } from '../lib/site';
+
+const posts = (await getPosts()).slice(0, 6);
+const talks = (await getTalks()).slice(0, 3);
+---
+
+<Base>
+  <section class="flex flex-col-reverse sm:flex-row sm:items-start gap-8 sm:gap-10">
+    <div class="flex-1">
+      <p class="label mb-3">{profile.role} · <a href={profile.organization.url} class="hover:text-accent">{profile.organization.name}</a></p>
+      <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight">{profile.name}</h1>
+      <div class="prose prose-sm sm:prose-base mt-5 max-w-none text-fg-muted">
+        <Bio />
+      </div>
+      <ul class="mt-6 flex flex-wrap items-center gap-2 text-sm">
+        {
+          profile.profiles.map((p) => {
+            const label = p.label.replace('E-mail Me', 'Email').replace(/^\w/, (c) => c.toUpperCase());
+            return (
+              <li>
+                <a
+                  href={p.url}
+                  class="inline-flex items-center justify-center size-9 rounded-md border border-line text-fg-muted hover:text-accent hover:border-accent transition-colors"
+                  rel="me noopener"
+                  target={p.url.startsWith('mailto:') ? undefined : '_blank'}
+                  aria-label={label}
+                  title={label}
+                >
+                  <SocialIcon url={p.url} />
+                </a>
+              </li>
+            );
+          })
+        }
+        <li class="ml-2">
+          <a
+            href="/uploads/Ettore_Ciarcia_CloudEngineer.pdf"
+            class="inline-flex items-center gap-1.5 h-9 px-3 rounded-md border border-line text-fg-muted hover:text-accent hover:border-accent transition-colors"
+            target="_blank"
+            rel="noopener"
+          >
+            <SocialIcon url="/uploads/Ettore_Ciarcia_CloudEngineer.pdf" class="size-4" />
+            CV (PDF)
+          </a>
+        </li>
+      </ul>
+    </div>
+    <Image src={avatar} alt="Ettore Ciarcia" width="288" height="288" class="size-24 sm:size-36 rounded-full border border-line object-cover shrink-0" loading="eager" />
+  </section>
+
+  <section class="mt-16">
+    <SectionHeading eyebrow="Writing" title="Latest articles" more={{ label: 'All articles', href: '/publication/' }} />
+    <PostList posts={posts} />
+  </section>
+
+  <section class="mt-16">
+    <SectionHeading eyebrow="Speaking" title="Recent talks" more={{ label: 'All talks', href: '/event/' }} />
+    <ul class="divide-y divide-line/60">
+      {
+        talks.map((t) => (
+          <li>
+            <a href={`/event/${t.id}/`} class="group flex gap-4 py-5 sm:grid sm:grid-cols-[7.5rem_1fr_auto] sm:gap-6">
+              <time datetime={t.data.date.toISOString()} class="label hidden sm:block sm:pt-1">
+                {formatDate(t.data.date)}
+              </time>
+              <div class="min-w-0 flex-1">
+                <time datetime={t.data.date.toISOString()} class="label block mb-1 sm:hidden">
+                  {formatDate(t.data.date)}
+                </time>
+                <h3 class="font-medium leading-snug group-hover:text-accent transition-colors">{t.data.title}</h3>
+                <p class="mt-1 text-sm text-fg-muted">
+                  {t.data.event}
+                  {t.data.location && ` · ${t.data.location}`}
+                </p>
+              </div>
+              {t.data.image && (
+                <Image
+                  src={t.data.image}
+                  alt=""
+                  width="336"
+                  height="224"
+                  class="w-20 h-14 sm:w-28 sm:h-[4.75rem] object-cover rounded-md border border-line shrink-0 mt-5 sm:mt-1"
+                />
+              )}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>

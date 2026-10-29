@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import { getTagIndex, entryHref, formatDate } from '../../lib/site';
+
+export async function getStaticPaths() {
+  return [...(await getTagIndex()).entries()].map(([slug, { name, entries }]) => ({
+    params: { tag: slug },
+    props: { name, entries },
+  }));
+}
+
+const { name, entries } = Astro.props;
+const kind = { blog: 'Article', projects: 'Project', certifications: 'Certification' } as const;
+---
+
+<Base title={`#${name}`} description={`Everything tagged ${name}.`}>
+  <PageTitle eyebrow={`Tag · ${entries.length} ${entries.length === 1 ? 'entry' : 'entries'}`} title={name} />
+  <ul class="divide-y divide-line/60">
+    {
+      entries.map((e) => (
+        <li>
+          <a href={entryHref(e)} class="group flex gap-4 py-5 sm:grid sm:grid-cols-[7.5rem_1fr_auto] sm:gap-6">
+            <time datetime={e.data.date.toISOString()} class="label hidden sm:block sm:pt-1">
+              {formatDate(e.data.date)}
+            </time>
+            <div class="min-w-0 flex-1">
+              <time datetime={e.data.date.toISOString()} class="label block mb-1 sm:hidden">
+                {formatDate(e.data.date)}
+              </time>
+              <h3 class="font-medium leading-snug group-hover:text-accent transition-colors">{e.data.title}</h3>
+              <p class="label mt-1">{kind[e.collection]}</p>
+            </div>
+            {e.data.image && (
+              <Image
+                src={e.data.image}
+                alt=""
+                width="336"
+                height="224"
+                class:list={[
+                  'w-20 h-14 sm:w-28 sm:h-[4.75rem] rounded-md border border-line shrink-0 mt-5 sm:mt-1',
+                  e.collection === 'certifications' ? 'object-contain p-1' : 'object-cover',
+                ]}
+              />
+            )}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="mt-10 text-sm"><a href="/tags/" class="underline-link text-fg-muted">← All tags</a></p>
+</Base>

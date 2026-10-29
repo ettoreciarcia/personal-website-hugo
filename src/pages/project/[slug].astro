@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import TagList from '../../components/TagList.astro';
+import LinkButtons from '../../components/LinkButtons.astro';
+import { getProjects, formatMonthYear } from '../../lib/site';
+
+export async function getStaticPaths() {
+  return (await getProjects()).map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const extra = project.data.link ? [{ label: project.data.link.startsWith('/') ? 'Read the article' : 'Open', href: project.data.link }] : [];
+---
+
+<Base title={project.data.title} image={project.data.image?.src} type="article">
+  <article data-pagefind-body>
+    <header class="mb-8">
+      <p class="label mb-3">Project · {formatMonthYear(project.data.date)}</p>
+      <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight leading-tight">{project.data.title}</h1>
+      <div class="mt-5 flex flex-wrap items-center gap-4">
+        <TagList tags={project.data.tags} />
+        <LinkButtons links={{}} extra={extra} />
+      </div>
+    </header>
+
+    {project.data.image && <Image src={project.data.image} alt="" width="1280" class="w-full rounded-lg border border-line mb-10" loading="eager" />}
+
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+  </article>
+
+  <p class="mt-14 pt-8 border-t border-line/60 text-sm"><a href="/projects/" class="underline-link text-fg-muted">← All projects</a></p>
+</Base>

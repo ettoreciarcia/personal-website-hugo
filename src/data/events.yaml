@@ -1,0 +1,85 @@
+- id: "0"
+  date: October 2024
+  name: DevSecOps Day
+  location: Bologna
+  role: Speaker
+- id: "1"
+  date: October 2024
+  name: Container Day
+  location: Bologna
+  role: Speaker
+- id: "2"
+  date: October 2024
+  name: Kubernetes Workshop
+  location: Bologna
+  role: Speaker
+- id: "3"
+  date: June 2024
+  name: KCD Italy
+  location: Bologna
+  role: Attendee
+- id: "4"
+  date: April 2024
+  name: Un confronto tra il passato e il futuro dell'IaC
+  location: Naples
+  role: Attendee
+- id: "5"
+  date: March 2024
+  name: KubeCon
+  location: Paris
+  role: Attendee
+- id: "6"
+  date: March 2024
+  name: Incontro DevOps Italia
+  location: Bologna
+  role: Attendee
+- id: "7"
+  date: October 2023
+  name: Linux Day
+  location: Benevento
+  role: Speaker
+- id: "8"
+  date: October 2023
+  name: DevSecOps Day
+  location: Bologna
+  role: Attendee
+- id: "9"
+  date: October 2023
+  name: Container Day
+  location: Bologna
+  role: Attendee
+- id: "10"
+  date: June 2023
+  name: KCD Italy
+  location: Milan
+  role: Attendee
+- id: "11"
+  date: March 2023
+  name: AWS Webinar
+  location: Naples
+  role: Speaker
+- id: "12"
+  date: November 2022
+  name: MeetUp Golang
+  location: Naples
+  role: Attendee
+- id: "13"
+  date: October 2022
+  name: Linux Day
+  location: Benevento
+  role: Speaker
+- id: "14"
+  date: September 2022
+  name: MeetUp Kubernetes
+  location: Naples
+  role: Attendee
+- id: "15"
+  date: June 2022
+  name: AWS Summit
+  location: Milan
+  role: Attendee
+- id: "16"
+  date: January 2022
+  name: CyberHackademy Graduation
+  location: Naples
+  role: Speaker

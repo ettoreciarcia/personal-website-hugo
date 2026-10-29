@@ -1,8 +1,10 @@
-FROM peaceiris/hugo:v0.133.0-full as build-step
-WORKDIR /app
+FROM node:22-alpine AS build
+WORKDIR /site
+COPY package.json package-lock.json ./
+RUN npm ci
 COPY . .
-RUN hugo --gc --minify && npx pagefind --source 'public'
+RUN npm run build
 
-FROM nginx:alpine-slim
-COPY --from=build-step /app/public /usr/share/nginx/html
+FROM nginx:alpine
+COPY --from=build /site/dist /usr/share/nginx/html
 EXPOSE 80

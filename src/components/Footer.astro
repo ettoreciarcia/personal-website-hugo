@@ -1,0 +1,25 @@
+---
+import profile from '../data/profile.json';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="w-full border-t border-line/60 mt-10">
+  <div class="max-w-3xl mx-auto px-5 sm:px-6 py-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-sm text-fg-muted">
+    <p>
+      © {year} Ettore Ciarcia · Built with Astro, hosted on S3 + CloudFront, deployed by GitHub Actions ·
+      <a href="/index.xml" class="underline-link">RSS</a>
+    </p>
+    <ul class="flex items-center gap-4">
+      {
+        profile.profiles.map((p) => (
+          <li>
+            <a href={p.url} class="underline-link capitalize" rel="me noopener" target={p.url.startsWith('mailto:') ? undefined : '_blank'}>
+              {p.label.replace('E-mail Me', 'Email')}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</footer>

@@ -1,0 +1,77 @@
+---
+import { marked } from 'marked';
+import Base from '../layouts/Base.astro';
+import PageTitle from '../components/PageTitle.astro';
+import profile from '../data/profile.json';
+import { Content as About } from '../data/about.md';
+
+const fmt = (iso?: string) =>
+  iso ? new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', year: 'numeric', month: 'short' }).format(new Date(iso)) : 'Present';
+---
+
+<Base title="Experience" description="Work experience and education of Ettore Ciarcia.">
+  <PageTitle title="Experience">
+    <p class="mt-4 text-sm flex flex-wrap gap-x-5 gap-y-1">
+      <a href="/uploads/Ettore_Ciarcia_CloudEngineer.pdf" class="underline-link text-fg-muted" target="_blank" rel="noopener">Download CV (PDF)</a>
+      <a href="/history-of-my-career/" class="underline-link text-fg-muted">The long version: history of my career →</a>
+    </p>
+  </PageTitle>
+
+  <section class="mb-16">
+    <h2 class="label mb-4">About</h2>
+    <div class="prose max-w-none text-fg-muted">
+      <About />
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label mb-6">Work</h2>
+    <ol class="relative border-l border-line ml-1.5">
+      {
+        profile.work.map((w) => (
+          <li class="pl-7 pb-10 last:pb-0 relative">
+            <span class="absolute -left-[5px] top-1.5 size-2.5 rounded-full bg-line ring-4 ring-bg" />
+            <p class="label">
+              {fmt(w.start)} — {fmt(w.end)}
+            </p>
+            <h3 class="mt-1 font-medium">
+              {w.position} · <a href={w.url} class="underline-link" target="_blank" rel="noopener">{w.company}</a>
+            </h3>
+            <div class="prose prose-sm max-w-none mt-2 text-fg-muted" set:html={marked.parse(w.summary)} />
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="label mb-6">Education</h2>
+    <ol class="relative border-l border-line ml-1.5">
+      {
+        profile.education.map((e) => (
+          <li class="pl-7 pb-10 last:pb-0 relative">
+            <span class="absolute -left-[5px] top-1.5 size-2.5 rounded-full bg-line ring-4 ring-bg" />
+            <p class="label">
+              {fmt(e.start)} — {fmt(e.end)}
+            </p>
+            <h3 class="mt-1 font-medium">{e.area}</h3>
+            <p class="text-sm text-fg-muted">{e.institution}</p>
+            {e.summary && <p class="mt-2 text-sm text-fg-muted">{e.summary}</p>}
+            {e.button && (
+              <a href={e.button.url} class="mt-2 inline-block text-sm underline-link" target="_blank" rel="noopener">
+                {e.button.text} →
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="label mb-4">Interests</h2>
+    <ul class="flex flex-wrap gap-2">
+      {profile.interests.map((i) => <li class="text-sm px-3 py-1 rounded-full border border-line">{i}</li>)}
+    </ul>
+  </section>
+</Base>

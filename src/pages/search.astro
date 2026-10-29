@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTitle from '../components/PageTitle.astro';
+---
+
+<Base title="Search" description="Search articles, talks and projects.">
+  <PageTitle title="Search" />
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css" slot="head" />
+  <div id="search"></div>
+  <noscript><p class="text-fg-muted">Search needs JavaScript.</p></noscript>
+  <script is:inline src="/pagefind/pagefind-ui.js" onerror="document.getElementById('search').textContent='Search index not built. Run `npm run build` and preview the dist folder.'"></script>
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.PagefindUI) new window.PagefindUI({ element: '#search', showSubResults: true, showImages: false, autofocus: true });
+    });
+  </script>
+</Base>

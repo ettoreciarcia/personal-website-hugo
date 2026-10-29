@@ -1,0 +1,35 @@
+---
+interface Props {
+  links: { code?: string; slides?: string; video?: string };
+  extra?: { label: string; href: string }[];
+}
+const { links, extra = [] } = Astro.props;
+const items = [
+  links.video && { label: 'Video', href: links.video },
+  links.slides && { label: 'Slides', href: links.slides },
+  links.code && { label: 'Code', href: links.code },
+  ...extra,
+].filter((x): x is { label: string; href: string } => Boolean(x));
+---
+
+{
+  items.length > 0 && (
+    <ul class="flex flex-wrap gap-2">
+      {items.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-md border border-line hover:border-accent hover:text-accent transition-colors"
+          >
+            {l.label}
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7M8 7h9v9" />
+            </svg>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}

@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTitle from '../components/PageTitle.astro';
+import ProseEnhancements from '../components/ProseEnhancements.astro';
+import { Content } from '../data/history-of-my-career.md';
+---
+
+<Base title="History of my career" description="How I went from tinkering with computers to Kubernetes and cloud engineering.">
+  <PageTitle eyebrow="Personal" title="History of my career" />
+  <div class="prose max-w-none" data-pagefind-body>
+    <Content />
+  </div>
+  <p class="mt-14 pt-8 border-t border-line/60 text-sm"><a href="/experience/" class="underline-link text-fg-muted">← Back to experience</a></p>
+  <ProseEnhancements />
+</Base>
