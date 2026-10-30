@@ -9,7 +9,7 @@ const { title, eyebrow, more } = Astro.props;
 
 <div class="flex items-end justify-between gap-4 mb-2">
   <div>
-    {eyebrow && <p class="label mb-1">{eyebrow}</p>}
+    {eyebrow && <p class="label eyebrow mb-1">{eyebrow}</p>}
     <h2 class="text-xl font-semibold tracking-tight">{title}</h2>
   </div>
   {more && <a href={more.href} class="text-sm text-fg-muted underline-link shrink-0">{more.label} →</a>}

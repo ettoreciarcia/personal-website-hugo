@@ -20,26 +20,28 @@
 }
 
 :root {
-  --c-bg: #fcfcfc;
-  --c-bg-muted: #f3f3f2;
-  --c-fg: #1a1a1a;
-  --c-fg-muted: #5c5c5c;
-  --c-fg-faint: #8a8a8a;
-  --c-line: #e4e4e2;
-  --c-accent: #0f6fde;
+  /* Warm ivory paper with a burnt-orange accent (darker than the dark-mode orange to keep AA contrast) */
+  --c-bg: #faf7f2;
+  --c-bg-muted: #f1ece4;
+  --c-fg: #1b1916;
+  --c-fg-muted: #5e5a54;
+  --c-fg-faint: #8a857d;
+  --c-line: #e5ded3;
+  --c-accent: #b8460f;
   --c-accent-fg: #ffffff;
   color-scheme: light;
 }
 
 :root[data-theme='dark'] {
-  --c-bg: #0e0f11;
-  --c-bg-muted: #16181b;
-  --c-fg: #e8e8e6;
-  --c-fg-muted: #a0a19f;
-  --c-fg-faint: #6b6c6a;
-  --c-line: #26282c;
-  --c-accent: #6fb1ff;
-  --c-accent-fg: #0e0f11;
+  /* Near-black with warm greys; Hermès-style orange as the only colour */
+  --c-bg: #0b0b0a;
+  --c-bg-muted: #151412;
+  --c-fg: #ede9e3;
+  --c-fg-muted: #a3a09a;
+  --c-fg-faint: #6e6a64;
+  --c-line: #262421;
+  --c-accent: #f37021;
+  --c-accent-fg: #0b0b0a;
   color-scheme: dark;
 }
 
@@ -68,6 +70,11 @@ body {
   color: var(--c-fg-faint);
 }
 
+/* Section eyebrows carry the accent */
+.label.eyebrow {
+  color: var(--c-accent);
+}
+
 a.underline-link {
   text-decoration: underline;
   text-decoration-color: var(--c-line);
@@ -85,14 +92,14 @@ a.underline-link:hover {
   --tw-prose-links: var(--c-fg);
   --tw-prose-bold: var(--c-fg);
   --tw-prose-quotes: var(--c-fg-muted);
-  --tw-prose-quote-borders: var(--c-line);
+  --tw-prose-quote-borders: var(--c-accent);
   --tw-prose-code: var(--c-fg);
   --tw-prose-hr: var(--c-line);
   --tw-prose-th-borders: var(--c-line);
   --tw-prose-td-borders: var(--c-line);
   --tw-prose-captions: var(--c-fg-faint);
-  --tw-prose-counters: var(--c-fg-faint);
-  --tw-prose-bullets: var(--c-line);
+  --tw-prose-counters: var(--c-accent);
+  --tw-prose-bullets: var(--c-accent);
   --tw-prose-pre-bg: var(--c-bg-muted);
   --tw-prose-pre-code: var(--c-fg);
   font-size: 1.0625rem;
@@ -100,11 +107,17 @@ a.underline-link:hover {
 }
 .prose a {
   font-weight: inherit;
-  text-decoration-color: var(--c-line);
+  text-decoration-color: color-mix(in oklab, var(--c-accent) 55%, transparent);
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
+  transition: color 150ms, text-decoration-color 150ms;
 }
 .prose a:hover {
+  color: var(--c-accent);
   text-decoration-color: var(--c-accent);
+}
+.prose :where(ul > li)::marker {
+  color: var(--c-accent);
 }
 .prose h2,
 .prose h3,

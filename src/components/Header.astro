@@ -5,16 +5,19 @@ const path = Astro.url.pathname;
 const isActive = (href: string) => path === href || (href !== '/' && path.startsWith(href));
 ---
 
-<header class="w-full border-b border-line/60">
+<header class="w-full border-t-2 border-t-accent border-b border-b-line/60">
   <div class="max-w-3xl mx-auto px-5 sm:px-6 h-14 flex items-center justify-between gap-4">
-    <a href="/" class="font-semibold tracking-tight hover:text-accent transition-colors">{SITE.title}</a>
+    <a href="/" class="font-semibold tracking-tight hover:text-accent transition-colors">{SITE.title}<span class="text-accent">.</span></a>
 
     <nav class="hidden sm:flex items-center gap-5 text-sm">
       {
         NAV.map((item) => (
           <a
             href={item.href}
-            class:list={['transition-colors hover:text-fg', isActive(item.href) ? 'text-fg' : 'text-fg-muted']}
+            class:list={[
+              'transition-colors hover:text-fg underline-offset-[6px] decoration-2 decoration-accent',
+              isActive(item.href) ? 'text-fg underline' : 'text-fg-muted',
+            ]}
             aria-current={isActive(item.href) ? 'page' : undefined}
           >
             {item.label}
@@ -49,7 +52,7 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
     <div class="max-w-3xl mx-auto px-5 py-3 flex flex-col gap-1 text-sm">
       {
         NAV.map((item) => (
-          <a href={item.href} class:list={['py-2', isActive(item.href) ? 'text-fg' : 'text-fg-muted']}>
+          <a href={item.href} class:list={['py-2 border-l-2 pl-3', isActive(item.href) ? 'text-fg border-accent' : 'text-fg-muted border-transparent']}>
             {item.label}
           </a>
         ))

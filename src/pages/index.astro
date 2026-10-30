@@ -31,7 +31,7 @@ const jsonLd = [
   <section class="flex flex-col-reverse sm:flex-row sm:items-start gap-8 sm:gap-10">
     <div class="flex-1">
       <p class="label mb-3">{profile.role} · <a href={profile.organization.url} class="hover:text-accent">{profile.organization.name}</a></p>
-      <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight">{profile.name}</h1>
+      <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight">{profile.name}<span class="text-accent">.</span></h1>
       <div class="prose prose-sm sm:prose-base mt-5 max-w-none text-fg-muted">
         <Bio />
       </div>
@@ -58,7 +58,7 @@ const jsonLd = [
         <li class="ml-2">
           <a
             href="/uploads/Ettore_Ciarcia_CloudEngineer.pdf"
-            class="inline-flex items-center gap-1.5 h-9 px-3 rounded-md border border-line text-fg-muted hover:text-accent hover:border-accent transition-colors"
+            class="inline-flex items-center gap-1.5 h-9 px-3 rounded-md bg-accent text-accent-fg font-medium hover:opacity-90 transition-opacity"
             target="_blank"
             rel="noopener"
           >
@@ -68,7 +68,7 @@ const jsonLd = [
         </li>
       </ul>
     </div>
-    <Image src={avatar} alt="Ettore Ciarcia" width="288" height="288" class="size-24 sm:size-36 rounded-full border border-line object-cover shrink-0" loading="eager" />
+    <Image src={avatar} alt="Ettore Ciarcia" width="288" height="288" class="size-24 sm:size-36 rounded-full ring-2 ring-accent ring-offset-4 ring-offset-bg object-cover shrink-0" loading="eager" />
   </section>
 
   <section class="mt-16">
