@@ -81,7 +81,7 @@ We can launch a simple web server with this command ```python3 -m http.server 80
 
 ![curl.png](curl.png)
 
-Everything ok until now we can reach because our web server because we are in the root network namesapce
+Everything ok until now we can reach because our web server because we are in the root network namespace
 
 ## 2. What is a network namespace
 
@@ -121,7 +121,7 @@ and check that our Python web server is up & running
 
 ![curl-webserver-ns](curl-webserver-ns.png)
 
-But how could we reach our new network namesapce from the root namespace of our virtual machine?
+But how could we reach our new network namespace from the root namespace of our virtual machine?
 The answer is **Virtual Ethernet devices!**
 
 ## 3. What is a Virtual Ethernet device (veth) and why we need it

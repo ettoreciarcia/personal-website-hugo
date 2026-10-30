@@ -459,7 +459,7 @@ ZEROCALCARE_PORT_80_TCP=tcp://10.104.214.95:80
 
 We can also use environment variable to achieve the same goal we achieved with DNS mode.
 
-We can use the wget command on the Secco's Services using the environmnet variable that the kubelet has set up for us.
+We can use the wget command on the Secco's Services using the environment variable that the kubelet has set up for us.
 
 ## **5. Pod-wise solution: managing /etc/hosts file**
 

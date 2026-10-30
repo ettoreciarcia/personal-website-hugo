@@ -85,9 +85,9 @@ After logging on to the API server it will validate the manifest we sent him. Th
 
 ### Step 3: Controller manager, it's show time!
 
-The controller manager has a series of loops (one for each resource that can be created in the cluster) and the one used to control the deployments notes that the state desired by the user who has just added a deployment does not match the current state of the cluster. In this specific case, the deployment control manager will create a Replica Set resource. To do this, it will communicate with the server API and the latter will update the etcd status by adding what is requested by the controll manager. The state of ectd has been updated again and the Replica Sets controller notices that the state of ectd does not match the current one of the cluster. It will then tell the server API to add the pods required by the replica set and the server api will update the etcd status again with the 3 pods.
+The controller manager has a series of loops (one for each resource that can be created in the cluster) and the one used to control the deployments notes that the state desired by the user who has just added a deployment does not match the current state of the cluster. In this specific case, the deployment control manager will create a Replica Set resource. To do this, it will communicate with the server API and the latter will update the etcd status by adding what is requested by the controller manager. The state of etcd has been updated again and the Replica Sets controller notices that the state of etcd does not match the current one of the cluster. It will then tell the server API to add the pods required by the replica set and the server api will update the etcd status again with the 3 pods.
 
-Have you ever seen “Pending” in the state when you were looking for pods? Here, when a pod is pending it is because the status of ectd has been updated so the cluster knows it has to create that pod.
+Have you ever seen “Pending” in the state when you were looking for pods? Here, when a pod is pending it is because the status of etcd has been updated so the cluster knows it has to create that pod.
 
 ### Step 4: Scheduler
 

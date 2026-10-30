@@ -238,4 +238,4 @@ Here are some examples of what could go wrong:
 
 - [Traefik annotations for Docker](https://doc.traefik.io/traefik/providers/docker/)
 
-- [Challegens Type](https://letsencrypt.org/docs/challenge-types/)
+- [Challenge Types](https://letsencrypt.org/docs/challenge-types/)

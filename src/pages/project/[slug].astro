@@ -12,10 +12,17 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+// First paragraph of the body, stripped of Markdown, as meta description.
+const description = (project.body ?? '')
+  .split(/\n\s*\n/)[0]
+  .replace(/[*_`#>]/g, '')
+  .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+  .trim()
+  .slice(0, 200);
 const extra = project.data.link ? [{ label: project.data.link.startsWith('/') ? 'Read the article' : 'Open', href: project.data.link }] : [];
 ---
 
-<Base title={project.data.title} image={project.data.image?.src} type="article">
+<Base title={project.data.title} description={description || undefined} image={project.data.image}>
   <article data-pagefind-body>
     <header class="mb-8">
       <p class="label mb-3">Project · {formatMonthYear(project.data.date)}</p>

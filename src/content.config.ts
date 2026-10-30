@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob, file } from 'astro/loaders';
 
 // Keep the folder name verbatim as the entry id so URLs match the old Hugo site exactly
@@ -20,9 +21,9 @@ const blog = defineCollection({
       draft: z.boolean().default(false),
       links: z
         .object({
-          code: z.string().url().optional(),
+          code: z.url().optional(),
           slides: z.string().optional(),
-          video: z.string().url().optional(),
+          video: z.url().optional(),
         })
         .default({}),
     }),
@@ -34,16 +35,16 @@ const talks = defineCollection({
     z.object({
       title: z.string(),
       event: z.string(),
-      eventUrl: z.string().url().optional(),
+      eventUrl: z.url().optional(),
       location: z.string().optional(),
       date: z.coerce.date(),
       summary: z.string(),
       image: image().optional(),
       links: z
         .object({
-          code: z.string().url().optional(),
+          code: z.url().optional(),
           slides: z.string().optional(),
-          video: z.string().url().optional(),
+          video: z.url().optional(),
         })
         .default({}),
     }),
@@ -67,7 +68,7 @@ const certifications = defineCollection({
     z.object({
       title: z.string(),
       date: z.coerce.date(),
-      link: z.string().url(),
+      link: z.url(),
       tags: z.array(z.string()).default([]),
       image: image().optional(),
     }),

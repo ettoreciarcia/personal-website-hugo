@@ -6,6 +6,37 @@ export const SITE = {
   url: 'https://ettoreciarcia.com',
 };
 
+/** schema.org Person for the site owner; referenced by id from other JSON-LD blocks. */
+export const PERSON_ID = `${SITE.url}/#person`;
+export function personLd(p: {
+  name: string;
+  role: string;
+  organization: { name: string; url: string };
+  profiles: { url: string }[];
+  interests: string[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': PERSON_ID,
+    name: p.name,
+    url: SITE.url,
+    image: `${SITE.url}/og-default.png`,
+    jobTitle: p.role,
+    worksFor: { '@type': 'Organization', name: p.organization.name, url: p.organization.url },
+    sameAs: p.profiles.map((x) => x.url).filter((u) => u.startsWith('http')),
+    knowsAbout: ['Kubernetes', 'Cloud Native', 'CNCF', 'Infrastructure as Code', 'Terraform', 'Linux', ...p.interests],
+  };
+}
+
+export function breadcrumbLd(items: { name: string; path: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((it, i) => ({ '@type': 'ListItem', position: i + 1, name: it.name, item: new URL(it.path, SITE.url).href })),
+  };
+}
+
 export const NAV = [
   { label: 'Writing', href: '/publication/' },
   { label: 'Talks', href: '/event/' },
@@ -79,6 +110,27 @@ export function entryHref(e: Tagged): string {
     case 'certifications':
       return `/certification/${e.id}/`;
   }
+}
+
+/** Extracts id and start second from youtu.be / youtube.com URLs; undefined for anything else. */
+export function parseYouTube(url: string | undefined): { id: string; start: number } | undefined {
+  if (!url) return undefined;
+  let u: URL;
+  try {
+    u = new URL(url);
+  } catch {
+    return undefined;
+  }
+  const host = u.hostname.replace(/^www\.|^m\./, '');
+  let id: string | null = null;
+  if (host === 'youtu.be') id = u.pathname.slice(1);
+  else if (host === 'youtube.com') id = u.searchParams.get('v') ?? u.pathname.match(/^\/(?:embed|live|shorts)\/([^/]+)/)?.[1] ?? null;
+  if (!id || !/^[\w-]{11}$/.test(id)) return undefined;
+  const t = u.searchParams.get('t') ?? u.searchParams.get('start') ?? '0';
+  const start = /^\d+$/.test(t)
+    ? Number(t)
+    : [...t.matchAll(/(\d+)([hms])/g)].reduce((s, [, n, unit]) => s + Number(n) * ({ h: 3600, m: 60, s: 1 } as const)[unit as 'h' | 'm' | 's'], 0);
+  return { id, start };
 }
 
 export function readingTime(body: string | undefined): number {

@@ -7,13 +7,27 @@ import SocialIcon from '../components/SocialIcon.astro';
 import { Content as Bio } from '../data/bio.md';
 import profile from '../data/profile.json';
 import avatar from '../data/avatar.jpg';
-import { getPosts, getTalks, formatDate } from '../lib/site';
+import { getPosts, getTalks, formatDate, parseYouTube, personLd, SITE, PERSON_ID } from '../lib/site';
+import VideoBadge from '../components/VideoBadge.astro';
 
-const posts = (await getPosts()).slice(0, 6);
-const talks = (await getTalks()).slice(0, 3);
+const posts = (await getPosts()).slice(0, 4);
+const talks = (await getTalks()).slice(0, 4);
+
+const jsonLd = [
+  personLd(profile),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE.title,
+    url: SITE.url,
+    description: SITE.description,
+    inLanguage: 'en',
+    author: { '@id': PERSON_ID },
+  },
+];
 ---
 
-<Base>
+<Base jsonLd={jsonLd}>
   <section class="flex flex-col-reverse sm:flex-row sm:items-start gap-8 sm:gap-10">
     <div class="flex-1">
       <p class="label mb-3">{profile.role} · <a href={profile.organization.url} class="hover:text-accent">{profile.organization.name}</a></p>
@@ -83,13 +97,16 @@ const talks = (await getTalks()).slice(0, 3);
                 </p>
               </div>
               {t.data.image && (
-                <Image
-                  src={t.data.image}
-                  alt=""
-                  width="336"
-                  height="224"
-                  class="w-20 h-14 sm:w-28 sm:h-[4.75rem] object-cover rounded-md border border-line shrink-0 mt-5 sm:mt-1"
-                />
+                <span class="relative shrink-0 mt-5 sm:mt-1 self-start">
+                  <Image
+                    src={t.data.image}
+                    alt=""
+                    width="336"
+                    height="224"
+                    class="w-20 h-14 sm:w-28 sm:h-[4.75rem] object-cover rounded-md border border-line"
+                  />
+                  {parseYouTube(t.data.links.video) && <VideoBadge compact />}
+                </span>
               )}
             </a>
           </li>

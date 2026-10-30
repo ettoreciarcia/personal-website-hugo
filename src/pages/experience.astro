@@ -1,9 +1,19 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 import { marked } from 'marked';
 import Base from '../layouts/Base.astro';
 import PageTitle from '../components/PageTitle.astro';
 import profile from '../data/profile.json';
 import { Content as About } from '../data/about.md';
+
+// Company logos live in src/data/logos/; `work[].logo` in profile.json is the file name.
+const logos = Object.fromEntries(
+  Object.entries(import.meta.glob<{ default: ImageMetadata }>('../data/logos/*', { eager: true })).map(([p, m]) => [
+    p.split('/').pop()!,
+    m.default,
+  ]),
+) as Record<string, ImageMetadata>;
 
 const fmt = (iso?: string) =>
   iso ? new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', year: 'numeric', month: 'short' }).format(new Date(iso)) : 'Present';
@@ -29,8 +39,20 @@ const fmt = (iso?: string) =>
     <ol class="relative border-l border-line ml-1.5">
       {
         profile.work.map((w) => (
-          <li class="pl-7 pb-10 last:pb-0 relative">
-            <span class="absolute -left-[5px] top-1.5 size-2.5 rounded-full bg-line ring-4 ring-bg" />
+          <li class="pl-10 pb-10 last:pb-0 relative">
+            {logos[w.logo] ? (
+              <a href={w.url} target="_blank" rel="noopener" class="absolute -left-5 top-0 block" aria-label={w.company}>
+                <Image
+                  src={logos[w.logo]}
+                  alt=""
+                  width="80"
+                  height="80"
+                  class="size-10 rounded-lg bg-white object-contain p-1 border border-line ring-4 ring-bg"
+                />
+              </a>
+            ) : (
+              <span class="absolute -left-[5px] top-1.5 size-2.5 rounded-full bg-line ring-4 ring-bg" />
+            )}
             <p class="label">
               {fmt(w.start)} — {fmt(w.end)}
             </p>

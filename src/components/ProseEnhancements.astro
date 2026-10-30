@@ -3,6 +3,7 @@
  * Progressive enhancements for rendered Markdown (`.prose`):
  * - "Copy" button on every code block
  * - click-to-zoom lightbox on images
+ * - GIF-like videos (`video.gif-video`) that play only while on screen
  * Include once per page, after the prose.
  */
 ---
@@ -49,6 +50,29 @@
     });
     wrapper.appendChild(btn);
   });
+
+  // ---- GIF-like videos ----
+  // Converted from heavy GIFs: preload="none" so nothing downloads until the video scrolls into view.
+  // With reduced motion the video stays on its poster and gets controls instead of autoplaying.
+  const gifVideos = Array.from(document.querySelectorAll<HTMLVideoElement>('video.gif-video'));
+  if (gifVideos.length) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      gifVideos.forEach((v) => (v.controls = true));
+    } else {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            const v = e.target as HTMLVideoElement;
+            if (e.isIntersecting) v.play().catch(() => (v.controls = true));
+            else v.pause();
+          }
+        },
+        { rootMargin: '200px 0px', threshold: 0.01 },
+      );
+      gifVideos.forEach((v) => io.observe(v));
+    }
+  }
 
   // ---- Lightbox ----
   const dialog = document.getElementById('lightbox') as HTMLDialogElement | null;

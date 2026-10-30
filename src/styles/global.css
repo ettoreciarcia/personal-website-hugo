@@ -285,3 +285,12 @@ a.underline-link:hover {
 .lightbox-close:hover {
   color: var(--c-fg);
 }
+
+/* GIF-like videos converted from heavy GIFs */
+.prose video.gif-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  background: var(--c-bg-muted);
+}

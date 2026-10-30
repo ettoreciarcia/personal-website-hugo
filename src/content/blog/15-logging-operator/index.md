@@ -238,7 +238,7 @@ spec:
 
 And let's analyze the ```.spec``` field that we are passing to this configuration:
 
-- .opensearch si riferisce alla congigurazione del nostro cluster Opensearch su cui andremo a pushare
+- .opensearch si riferisce alla configurazione del nostro cluster Opensearch su cui andremo a pushare
 
 As for the buffer, I believe it's worth spending a few more words because it's something that I had initially underestimated
 

@@ -1,13 +1,12 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { render } from 'astro:content';
-import 'katex/dist/katex.min.css';
 import Base from '../../layouts/Base.astro';
 import TagList from '../../components/TagList.astro';
 import LinkButtons from '../../components/LinkButtons.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import ProseEnhancements from '../../components/ProseEnhancements.astro';
-import { getPosts, formatDate, readingTime, slugify } from '../../lib/site';
+import { getPosts, formatDate, readingTime, slugify, SITE, PERSON_ID, breadcrumbLd } from '../../lib/site';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -19,14 +18,41 @@ export async function getStaticPaths() {
 
 const { post, newer, older } = Astro.props;
 const { Content, headings } = await render(post);
-const ogImage = post.data.image ? post.data.image.src : undefined;
+const url = new URL(`/publication/${post.id}/`, SITE.url).href;
+const cover = post.data.image ? await getImage({ src: post.data.image, width: Math.min(1200, post.data.image.width), format: 'jpg' }) : undefined;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    mainEntityOfPage: url,
+    url,
+    headline: post.data.title,
+    description: post.data.summary,
+    datePublished: post.data.date.toISOString(),
+    inLanguage: 'en',
+    articleSection: post.data.category,
+    keywords: post.data.tags.join(', '),
+    wordCount: (post.body ?? '').split(/\s+/).filter(Boolean).length,
+    image: cover ? new URL(cover.src, SITE.url).href : `${SITE.url}/og-default.png`,
+    author: { '@type': 'Person', '@id': PERSON_ID, name: SITE.title, url: SITE.url },
+    publisher: { '@type': 'Person', '@id': PERSON_ID, name: SITE.title },
+  },
+  breadcrumbLd([
+    { name: 'Home', path: '/' },
+    { name: 'Writing', path: '/publication/' },
+    { name: post.data.title, path: `/publication/${post.id}/` },
+  ]),
+];
 ---
 
 <Base
   title={post.data.title}
   description={post.data.summary}
-  image={ogImage}
+  image={post.data.image}
   type="article"
+  article={{ published: post.data.date, section: post.data.category, tags: post.data.tags }}
+  jsonLd={jsonLd}
   mainClass="xl:max-w-[66rem] xl:grid xl:grid-cols-[minmax(0,48rem)_14rem] xl:gap-14"
 >
   <div class="min-w-0">

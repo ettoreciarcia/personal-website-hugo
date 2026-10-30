@@ -1,7 +1,7 @@
 ---
 title: AWS Immersion Webinar
 event: AWS Immersion Webinar
-eventUrl: https://example.org
+eventUrl: https://lp.epsilonline.com/aws-immersion-webinar/
 location: Naples
 date: 2023-03-30
 summary: An overview of EKS, AWS's managed Kubernetes solution

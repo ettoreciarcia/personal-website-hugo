@@ -1,0 +1,19 @@
+---
+/** Play overlay for a talk thumbnail; place inside a `relative` wrapper around the image. */
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+
+<span class="pointer-events-none absolute inset-0 flex items-center justify-center rounded-md bg-black/25 group-hover:bg-black/10 transition-colors">
+  <span class="flex items-center justify-center size-7 rounded-full bg-black/70 text-white ring-1 ring-white/25 group-hover:bg-[#ff0033] transition-colors">
+    <svg class="size-3.5 translate-x-px" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+  </span>
+  {
+    !compact && (
+      <span class="absolute bottom-1 right-1 rounded bg-black/75 px-1.5 py-px font-mono text-[10px] uppercase tracking-wide text-white">Video</span>
+    )
+  }
+</span>
+<span class="sr-only">(includes video)</span>

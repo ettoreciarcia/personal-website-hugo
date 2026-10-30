@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import PageTitle from '../components/PageTitle.astro';
+
+const analytics = Boolean(import.meta.env.PUBLIC_GA_ID);
+---
+
+<Base title="Privacy" description="What this site collects, why, and how to change your cookie choice.">
+  <PageTitle title="Privacy" intro="Short version: this is a static site with no accounts, no forms and no ads." />
+
+  <div class="prose max-w-none">
+    <h2>What is collected</h2>
+    {
+      analytics ? (
+        <>
+          <p>
+            Only if you click <strong>Accept</strong> in the cookie banner, the site loads <strong>Google Analytics 4</strong>. It
+            sets first-party cookies (<code>_ga</code>, <code>_ga_*</code>) and sends usage data to Google: pages viewed, time on page,
+            referrer, approximate location derived from your IP address, device and browser type. GA4 does not log or store full IP
+            addresses. I use these numbers only to understand which articles are read.
+          </p>
+          <p>
+            If you click <strong>Reject</strong>, or never answer, no Google script is loaded and no analytics cookie is set. Your
+            choice is remembered in your browser's local storage under the key <code>cookie-consent</code>; it is not a cookie and it
+            never leaves your device.
+          </p>
+        </>
+      ) : (
+        <p>This build of the site does not use any analytics and sets no cookies.</p>
+      )
+    }
+
+    <h2>Hosting</h2>
+    <p>
+      The site is served by Amazon Web Services (S3 and CloudFront). Like any web server, CloudFront may keep standard access logs
+      (IP address, requested URL, user agent) for operational and security purposes.
+    </p>
+
+    <h2>Embedded videos</h2>
+    <p>
+      Talk pages show a preview of the YouTube recording. Nothing is requested from YouTube until you press play; the player then
+      loads from <code>youtube-nocookie.com</code>, and Google's own policies apply from that point.
+    </p>
+
+    {
+      analytics && (
+        <>
+          <h2 id="cookie-settings">Change your choice</h2>
+          <p>
+            You can accept or withdraw consent at any time. Withdrawing deletes the analytics cookies from this site.
+          </p>
+          <p>
+            <button
+              type="button"
+              data-cookie-settings
+              class="not-prose inline-flex items-center px-4 py-2 text-sm rounded-md border border-line hover:border-accent hover:text-accent transition-colors"
+            >
+              Open cookie settings
+            </button>
+          </p>
+        </>
+      )
+    }
+
+    <h2>Contact</h2>
+    <p>Questions about this page: <a href="mailto:ettoreciarcia.tech@gmail.com">ettoreciarcia.tech@gmail.com</a>.</p>
+  </div>
+</Base>

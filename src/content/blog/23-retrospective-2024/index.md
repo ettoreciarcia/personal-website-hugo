@@ -46,7 +46,7 @@ This led me to interview at SUSE, and I accepted their offer. SUSE checks all th
 
 One thing worth emphasizing: SUSE **is not** an Italian company.
 
-![stanis](boris-stanis-la-rochelle.gif)
+<video class="gif-video" src="/media/23-retrospective-2024/boris-stanis-la-rochelle.mp4" poster="/media/23-retrospective-2024/boris-stanis-la-rochelle.jpg" width="498" height="458" muted loop playsinline preload="none" aria-label="stanis"></video>
 
 I’m part of a team of incredibly skilled individuals. Some of them have been doing this job since before I was born, others have written books. Every conversation leaves me feeling like I know a fraction of what they do.
 
@@ -93,7 +93,7 @@ So, between June and July, I sprinted to earn all the required certifications:
 
 By mid-July, I officially became a Kubestronaut. If you don’t believe me, you can find my face on the CNCF website!
 
-![cncf-webiste](cncf-website.png)
+![cncf-website](cncf-website.png)
 
 ### Talks and Events
 
@@ -175,7 +175,7 @@ That little kitten warms my heart every day. And in a few months, he’ll turn t
 
 I used to think of myself as a "dog person," but I’ve had to reconsider. Cats have their own unique way of showing affection.
 
-![Fifì](fifi.gif)
+<video class="gif-video" src="/media/23-retrospective-2024/fifi.mp4" poster="/media/23-retrospective-2024/fifi.jpg" width="800" height="450" muted loop playsinline preload="none" aria-label="Fifì"></video>
 
 
 ## Conclusions

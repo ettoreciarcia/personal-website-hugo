@@ -2,7 +2,8 @@
 import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import PageTitle from '../../components/PageTitle.astro';
-import { getTalks, formatDate } from '../../lib/site';
+import VideoBadge from '../../components/VideoBadge.astro';
+import { getTalks, formatDate, parseYouTube } from '../../lib/site';
 
 const talks = await getTalks();
 ---
@@ -18,7 +19,10 @@ const talks = await getTalks();
         <li>
           <a href={`/event/${t.id}/`} class="group flex gap-5 py-6">
             {t.data.image && (
-              <Image src={t.data.image} alt="" width="384" height="256" class="w-24 h-16 sm:w-32 sm:h-[5.33rem] object-cover rounded-md border border-line shrink-0" />
+              <span class="relative shrink-0">
+                <Image src={t.data.image} alt="" width="384" height="256" class="w-24 h-16 sm:w-32 sm:h-[5.33rem] object-cover rounded-md border border-line" />
+                {parseYouTube(t.data.links.video) && <VideoBadge />}
+              </span>
             )}
             <div class="min-w-0">
               <time datetime={t.data.date.toISOString()} class="label">

@@ -86,7 +86,7 @@ beadcccb8d75   ghcr.io/gethomepage/homepage:latest   "docker-entrypoint.s…"   
 
 Now access Homepage at port 3000
 
-![homepage-dashbboard](homepage.png)
+![homepage-dashboard](homepage.png)
 
 
 ### Customizations
@@ -231,7 +231,7 @@ my-docker:
 
 ### Let's add this label to our container
 
-For testing porpose I'm using a container running Grafana
+For testing purposes I'm using a container running Grafana
 
 ```shell
 docker compose -f grafana-compose.yaml up -d

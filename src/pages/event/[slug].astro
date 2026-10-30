@@ -3,7 +3,8 @@ import { Image } from 'astro:assets';
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import LinkButtons from '../../components/LinkButtons.astro';
-import { getTalks, formatDate } from '../../lib/site';
+import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
+import { getTalks, formatDate, parseYouTube, SITE, PERSON_ID, breadcrumbLd } from '../../lib/site';
 
 export async function getStaticPaths() {
   return (await getTalks()).map((talk) => ({ params: { slug: talk.id }, props: { talk } }));
@@ -11,9 +12,32 @@ export async function getStaticPaths() {
 
 const { talk } = Astro.props;
 const { Content } = await render(talk);
+// A YouTube recording replaces the cover photo; the photo stays as og:image.
+const yt = parseYouTube(talk.data.links.video);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: `${talk.data.title} — ${talk.data.event}`,
+    description: talk.data.summary,
+    startDate: talk.data.date.toISOString().slice(0, 10),
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    ...(talk.data.location && { location: { '@type': 'Place', name: talk.data.location, address: talk.data.location } }),
+    performer: { '@type': 'Person', '@id': PERSON_ID, name: SITE.title },
+    url: new URL(`/event/${talk.id}/`, SITE.url).href,
+    ...(talk.data.image && { image: new URL(talk.data.image.src, SITE.url).href }),
+  },
+  breadcrumbLd([
+    { name: 'Home', path: '/' },
+    { name: 'Talks', path: '/event/' },
+    { name: talk.data.title, path: `/event/${talk.id}/` },
+  ]),
+];
 ---
 
-<Base title={talk.data.title} description={talk.data.summary} image={talk.data.image?.src} type="article">
+<Base title={talk.data.title} description={talk.data.summary} image={talk.data.image} jsonLd={jsonLd}>
   <article data-pagefind-body>
     <header class="mb-8">
       <p class="label mb-3">
@@ -28,7 +52,13 @@ const { Content } = await render(talk);
       <div class="mt-5"><LinkButtons links={talk.data.links} /></div>
     </header>
 
-    {talk.data.image && <Image src={talk.data.image} alt="" width="1280" class="w-full rounded-lg border border-line mb-10" loading="eager" />}
+    {
+      yt ? (
+        <YouTubeEmbed id={yt.id} start={yt.start} title={talk.data.title} poster={talk.data.image} />
+      ) : (
+        talk.data.image && <Image src={talk.data.image} alt="" width="1280" class="w-full rounded-lg border border-line mb-10" loading="eager" />
+      )
+    }
 
     <div class="prose max-w-none">
       <Content />

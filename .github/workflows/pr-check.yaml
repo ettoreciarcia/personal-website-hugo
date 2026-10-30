@@ -1,0 +1,47 @@
+name: PR check
+
+# Builds the site on every pull request so broken front matter, type errors or a failing
+# build are caught before merge. Nothing is deployed and no secrets are used.
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check pages and content schemas
+        run: npm run check
+
+      - name: Build (Astro + Pagefind index)
+        run: npm run build
+
+      - name: Report build size
+        run: |
+          echo "### Build output" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Pages: $(find dist -name '*.html' | wc -l)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Total size: $(du -sh dist | cut -f1)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Files over 5 MB:" >> "$GITHUB_STEP_SUMMARY"
+          find dist -type f -size +5M -exec du -h {} \; | sed 's/^/  - /' >> "$GITHUB_STEP_SUMMARY" || true

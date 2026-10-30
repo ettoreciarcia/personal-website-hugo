@@ -22,7 +22,7 @@ Here’s a list of tools I recommend to enhance your Kubernetes workflow and mak
 
 ## Starship configuration for Kubernetes
 
-[Starship](https://starship.rs/) is an awesome and highly customizable prompt written in Rust. I started using it after uninstalling Powerlevel10k, which was making my terminal too slow. Among the many customizations Starship offers, there’s a Kubernetes module that I find particularly usefu
+[Starship](https://starship.rs/) is an awesome and highly customizable prompt written in Rust. I started using it after uninstalling Powerlevel10k, which was making my terminal too slow. Among the many customizations Starship offers, there’s a Kubernetes module that I find particularly useful.
 
 Here’s my configuration (also available in the official documentation):
 

@@ -1,0 +1,122 @@
+---
+/**
+ * Consent gate for Google Analytics. Nothing from Google is requested until the visitor accepts;
+ * the choice is stored in localStorage and can be changed from the footer ("Cookie settings").
+ * Rendered only when PUBLIC_GA_ID is set at build time.
+ */
+interface Props {
+  gaId: string;
+}
+const { gaId } = Astro.props;
+---
+
+<div
+  id="cookie-banner"
+  class="cookie-banner hidden fixed inset-x-0 bottom-0 z-50 p-4 sm:p-6"
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="cookie-banner-title"
+  aria-describedby="cookie-banner-text"
+>
+  <div class="max-w-3xl mx-auto rounded-lg border border-line bg-bg shadow-lg p-5 sm:flex sm:items-center sm:gap-6">
+    <div class="flex-1 text-sm">
+      <p id="cookie-banner-title" class="font-medium">Cookies & analytics</p>
+      <p id="cookie-banner-text" class="mt-1 text-fg-muted leading-relaxed">
+        With your permission I use Google Analytics to count visits and see which articles are read. It sets cookies and sends
+        anonymised usage data to Google. Nothing is loaded unless you accept. <a href="/privacy/" class="underline-link">Details</a>
+      </p>
+    </div>
+    <div class="mt-4 sm:mt-0 flex gap-2 shrink-0">
+      <button type="button" data-consent="denied" class="flex-1 sm:flex-none px-4 py-2 text-sm rounded-md border border-line hover:border-fg-faint transition-colors">
+        Reject
+      </button>
+      <button type="button" data-consent="granted" class="flex-1 sm:flex-none px-4 py-2 text-sm rounded-md border border-line hover:border-fg-faint transition-colors">
+        Accept
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ gaId }}>
+  (function () {
+    var KEY = 'cookie-consent';
+    var banner = document.getElementById('cookie-banner');
+    var memory = null; // fallback when storage is blocked: the choice lasts for this page view
+
+    function read() {
+      try {
+        return localStorage.getItem(KEY) || memory;
+      } catch (e) {
+        return memory;
+      }
+    }
+    function write(v) {
+      memory = v;
+      try {
+        localStorage.setItem(KEY, v);
+      } catch (e) {}
+    }
+
+    var loaded = false;
+    function loadAnalytics() {
+      if (loaded) return;
+      loaded = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag('js', new Date());
+      window.gtag('config', gaId);
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(gaId);
+      document.head.appendChild(s);
+    }
+
+    // Remove GA cookies on withdrawal (they are set on the registrable domain, so try both forms).
+    function clearAnalyticsCookies() {
+      var host = location.hostname;
+      var domains = ['', host, '.' + host, '.' + host.split('.').slice(-2).join('.')];
+      document.cookie.split(';').forEach(function (c) {
+        var name = c.split('=')[0].trim();
+        if (!/^_ga|^_gid$|^_gat/.test(name)) return;
+        domains.forEach(function (d) {
+          document.cookie = name + '=; Max-Age=0; path=/' + (d ? '; domain=' + d : '');
+        });
+      });
+    }
+
+    function show() {
+      banner.classList.remove('hidden');
+    }
+    function hide() {
+      banner.classList.add('hidden');
+    }
+
+    banner.addEventListener('click', function (e) {
+      var choice = e.target.closest && e.target.closest('[data-consent]');
+      if (!choice) return;
+      var value = choice.getAttribute('data-consent');
+      var previous = read();
+      write(value);
+      hide();
+      if (value === 'granted') loadAnalytics();
+      else if (previous === 'granted') {
+        clearAnalyticsCookies();
+        // gtag.js is already running in this page; a reload guarantees it stops.
+        location.reload();
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      var open = e.target.closest && e.target.closest('[data-cookie-settings]');
+      if (!open) return;
+      e.preventDefault();
+      show();
+    });
+
+    var current = read();
+    if (current === 'granted') loadAnalytics();
+    else if (current !== 'denied') show();
+  })();
+</script>

@@ -4,7 +4,7 @@ import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import TagList from '../../components/TagList.astro';
 import LinkButtons from '../../components/LinkButtons.astro';
-import { getCertifications, formatDate } from '../../lib/site';
+import { getCertifications, formatDate, formatMonthYear } from '../../lib/site';
 
 export async function getStaticPaths() {
   return (await getCertifications()).map((cert) => ({ params: { slug: cert.id }, props: { cert } }));
@@ -14,7 +14,11 @@ const { cert } = Astro.props;
 const { Content } = await render(cert);
 ---
 
-<Base title={cert.data.title} image={cert.data.image?.src}>
+<Base
+  title={cert.data.title}
+  description={`${cert.data.title}, earned by Ettore Ciarcia in ${formatMonthYear(cert.data.date)}. Verifiable on Credly.`}
+  image={cert.data.image}
+>
   <article class="text-center">
     {cert.data.image && <Image src={cert.data.image} alt="" width="480" class="mx-auto w-48 h-48 object-contain" loading="eager" />}
     <p class="label mt-8 mb-3">Certification · {formatDate(cert.data.date)}</p>

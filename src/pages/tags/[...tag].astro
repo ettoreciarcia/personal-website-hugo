@@ -15,7 +15,7 @@ const { name, entries } = Astro.props;
 const kind = { blog: 'Article', projects: 'Project', certifications: 'Certification' } as const;
 ---
 
-<Base title={`#${name}`} description={`Everything tagged ${name}.`}>
+<Base title={`#${name}`} description={`Everything tagged ${name}.`} noindex>
   <PageTitle eyebrow={`Tag · ${entries.length} ${entries.length === 1 ? 'entry' : 'entries'}`} title={name} />
   <ul class="divide-y divide-line/60">
     {

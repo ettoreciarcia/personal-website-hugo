@@ -141,7 +141,7 @@ So, I created a new user with this policy associated, then generated credentials
 
 Having done this, the next step is to move to our Proxmox server and select the ACME option to create a user and configure the right plugin from the DNS API list (there are many; if your domain is registered with a different registrar, ensure that the plugin is available).
 
-Once the plugin is configured, go to the node you want to access via HTTPS and navigate to System -> Certificates. Choose DNS as the Challenge and enter the domain for which you are obtaining the certificate (in my case, proxmox.internal.ettoreciarccia.com).
+Once the plugin is configured, go to the node you want to access via HTTPS and navigate to System -> Certificates. Choose DNS as the Challenge and enter the domain for which you are obtaining the certificate (in my case, proxmox.internal.ettoreciarcia.com).
 
 That's it!
 
@@ -395,7 +395,7 @@ If these were your first steps with Proxmox, I hope the article was comprehensiv
 
 - [Proxmox: Trusted certificates via Let’s Encrypt (ACME)](https://pve.proxmox.com/wiki/Certificate_Management)
 
-- [Create a template in Promox](https://www.youtube.com/watch?v=MJgIm03Jxdo)
+- [Create a template in Proxmox](https://www.youtube.com/watch?v=MJgIm03Jxdo)
 
 - [Mini PC Specs](https://support.hp.com/it-it/document/c06119996)
 

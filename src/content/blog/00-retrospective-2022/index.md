@@ -19,7 +19,7 @@ Wait, let's take a step back. First let's try to do a retrospective of my 2022 a
 Wait wait, let's take another step back, let's go back to the situation I was in when I set those goals.
 
 
-A year ago I was about to finish my studies at the cyberhackdemy, a cybersecurity academy I was selected for in May 2021. Such a great time those months!
+A year ago I was about to finish my studies at the CyberHackademy, a cybersecurity academy I was selected for in May 2021. Such a great time those months!
 I was almost quitting the IT world after my very bad experience at Evil Corp (Maybe I'll look into this topic in the future), then came the CyberHackademy.
 There I rediscovered the pleasure of sitting in front of a terminal looking at the shell. I had amazing mentors and met really good people.
 

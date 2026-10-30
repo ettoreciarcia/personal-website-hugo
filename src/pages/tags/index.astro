@@ -6,7 +6,7 @@ import { getTagIndex } from '../../lib/site';
 const tags = [...(await getTagIndex()).entries()].sort((a, b) => b[1].entries.length - a[1].entries.length || a[1].name.localeCompare(b[1].name));
 ---
 
-<Base title="Tags" description="Browse content by tag.">
+<Base title="Tags" description="Browse content by tag." noindex>
   <PageTitle eyebrow={`${tags.length} tags`} title="Tags" />
   <ul class="flex flex-wrap gap-2">
     {

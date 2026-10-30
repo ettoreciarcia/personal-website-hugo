@@ -1,0 +1,58 @@
+---
+/**
+ * Click-to-load YouTube player: shows the poster and a play button, and only swaps in the
+ * youtube-nocookie iframe when clicked, so no third-party requests happen until the visitor asks.
+ */
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+  id: string;
+  start?: number;
+  title: string;
+  /** Local cover; long event streams have a YouTube thumbnail that doesn't show this talk. */
+  poster?: ImageMetadata;
+}
+const { id, start = 0, title, poster } = Astro.props;
+const ytPoster = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+const posterClass = 'absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity';
+const src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0${start ? `&start=${start}` : ''}`;
+const fmt = (s: number) => {
+  const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
+  return (h ? `${h}:${String(m).padStart(2, '0')}` : `${m}`) + `:${String(sec).padStart(2, '0')}`;
+};
+---
+
+<div class="yt-embed relative aspect-video w-full overflow-hidden rounded-lg border border-line bg-black mb-10" data-src={src} data-title={title}>
+  <button type="button" class="yt-play group absolute inset-0 w-full h-full cursor-pointer" aria-label={`Play video: ${title}`}>
+    {
+      poster ? (
+        <Image src={poster} alt="" width="1280" loading="eager" class={posterClass} />
+      ) : (
+        <img src={ytPoster} alt="" width="480" height="360" loading="eager" class={posterClass} />
+      )
+    }
+    <span class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></span>
+    <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center size-16 sm:size-20 rounded-full bg-black/70 text-white ring-1 ring-white/20 backdrop-blur-sm group-hover:bg-[#ff0033] group-hover:scale-105 transition">
+      <svg class="size-7 sm:size-8 translate-x-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    </span>
+    <span class="absolute left-4 bottom-3 text-left text-white text-sm font-medium drop-shadow">
+      Watch the talk{start > 0 && <span class="ml-2 font-mono text-xs text-white/75">from {fmt(start)}</span>}
+    </span>
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.yt-embed').forEach((box) => {
+    box.querySelector('.yt-play')?.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = box.dataset.src!;
+      iframe.title = box.dataset.title ?? 'YouTube video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.className = 'absolute inset-0 w-full h-full';
+      box.replaceChildren(iframe);
+    });
+  });
+</script>

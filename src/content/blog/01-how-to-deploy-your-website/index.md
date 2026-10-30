@@ -1,5 +1,5 @@
 ---
-title: How to deploy your own website on AWS with Terraform and Git Hub Actions!
+title: How to deploy your own website on AWS with Terraform and GitHub Actions!
 date: 2023-01-01
 summary: In this article we will build the infrastructure that our site needs by managing site releases with CI/CD pipelines
 category: Cloud & Kubernetes
@@ -16,19 +16,19 @@ What better topic than what is behind this site?
 
 In this article we will cover the following topics:
 
-1. Setup the infrastructrue of our website using Terraform, Terraform Cloud and Git Hub Actions 
+1. Setup the infrastructure of our website using Terraform, Terraform Cloud and GitHub Actions 
 2. Setup our website using HUGO and configuring GitHub Actions for CI/CD
 ---
 ## 1. Prerequisites
 
-- A [Git Hub Account](https://github.com/)
+- A [GitHub Account](https://github.com/)
 - An [AWS Account](https://aws.amazon.com/it/account/)
 - A [Terraform Cloud Account](https://app.terraform.io/session)
 
 Let's begin!
 
 ---
-## 2. Setup the infrastructrue of our website using Terraform, Terraform Cloud and Git Hub Actions
+## 2. Setup the infrastructure of our website using Terraform, Terraform Cloud and GitHub Actions
 
 
 Why should we use all these tools? Couldn't we just do some *Click Ops* and build what we needed directly from the AWS interface?
@@ -50,7 +50,7 @@ Terraform is a tool for building, changing, and versioning infrastructure safely
 
 With Terraform, you can define infrastructure as code (IaC) and use configuration files to create and manage infrastructure resources. This makes it easier to version control your infrastructure and collaborate with others. Terraform also provides a number of helpful features, such as dependency management, resource targeting, and the ability to roll back changes.
 
-Here you will find the repository that contains the Terraform code for this project: [perosonal-website-iac](https://github.com/ettoreciarcia/personal-website-iac.git)
+Here you will find the repository that contains the Terraform code for this project: [personal-website-iac](https://github.com/ettoreciarcia/personal-website-iac.git)
 
 ### 2.2 Infrastructure Overview
 
@@ -117,7 +117,7 @@ If you don't have a Terraform Cloud account yet, you can sign up [here](https://
 
 Then you can create your first workspace! 
 
-![workspace-creation](assets.gif)
+<video class="gif-video" src="/media/01-how-to-deploy-your-website/assets.mp4" poster="/media/01-how-to-deploy-your-website/assets.jpg" width="1020" height="764" muted loop playsinline preload="none" aria-label="workspace-creation"></video>
 
 Next, add the following as Environment Variables for your workspace with their respective values from the access credentials file you downloaded from AWS.
 
@@ -130,19 +130,19 @@ Finally, go to the [Tokens page](https://app.terraform.io/app/settings/tokens?ut
 
 We're done on Terraform Cloud!
 
-### 2.4 Continuos Integration/Continous Deployment  CI/CD) -> Git Hub Actions
+### 2.4 Continuous Integration/Continuous Deployment (CI/CD) -> GitHub Actions
 
-Here the choice was almost forced as my IaC repository is on Git Hub and I have a Premium account which gives me access to free minutes of calculation using GH Actions.
+Here the choice was almost forced as my IaC repository is on GitHub and I have a Premium account which gives me access to free minutes of calculation using GH Actions.
 Automating Terraform with CI/CD enforces configuration best practices, promotes collaboration and automates the Terraform workflow.
 
 
-Maybe the benefits of using Terraform Cloud and Git Hub Actions at the same time aren't apparent in this project because I'm the only one working on it, or if you try to replicate my infrastructure you'll be the only one working on it.
+Maybe the benefits of using Terraform Cloud and GitHub Actions at the same time aren't apparent in this project because I'm the only one working on it, or if you try to replicate my infrastructure you'll be the only one working on it.
 
 But trust me, in case multiple people from the same team or even different teams are working on the same Terraform project, these additions are almost a must have
 
 At this point you can fork my [repository](https://github.com/ettoreciarcia/personal-website-iac) and import the token created in the previous step
 
-![import-token](import-token.gif)
+<video class="gif-video" src="/media/01-how-to-deploy-your-website/import-token.mp4" poster="/media/01-how-to-deploy-your-website/import-token.jpg" width="1600" height="1196" muted loop playsinline preload="none" aria-label="import-token"></video>
 
 
 This is what happens when your freshly baked code arrives on this repository
@@ -150,7 +150,7 @@ This is what happens when your freshly baked code arrives on this repository
 ![flow-terraform](flow.png)
 
 
-Now you can try working on a new branch and then make a Pull Request and see the flow of Git Hub Actions!
+Now you can try working on a new branch and then make a Pull Request and see the flow of GitHub Actions!
 
 Start by creating a new branch in *personal-website-iac* running
 
@@ -168,7 +168,7 @@ resource "aws_s3_bucket" "bucket_gh_actions" {
 
 You can push your code to the newly created branch and open a Pull Request!
 
-![PR](PR.gif)
+<video class="gif-video" src="/media/01-how-to-deploy-your-website/PR.mp4" poster="/media/01-how-to-deploy-your-website/PR.jpg" width="1200" height="778" muted loop playsinline preload="none" aria-label="PR"></video>
 
 As you can see the GitHub Actions were activated when we created the PR and a preliminary check was performed on the code involved in the PR
 
@@ -184,18 +184,18 @@ They performed the following operations
 
 At this point we want to check the output of the ```terraform plan``` command, to verify that the test bucket we requested is created as we expect.
 
-![check-plan](check-plan.gif)
+<video class="gif-video" src="/media/01-how-to-deploy-your-website/check-plan.mp4" poster="/media/01-how-to-deploy-your-website/check-plan.jpg" width="1200" height="1080" muted loop playsinline preload="none" aria-label="check-plan"></video>
 
 These changes will become effective when we merge our PR within the main branch.
 
 The output of the plan is in line with what we expected, so we can proceed with the merge!
 
-![apply](apply.gif)
+<video class="gif-video" src="/media/01-how-to-deploy-your-website/apply.mp4" poster="/media/01-how-to-deploy-your-website/apply.jpg" width="1200" height="1080" muted loop playsinline preload="none" aria-label="apply"></video>
 
 Here we are! Our changes have finally arrived on AWS, our bucket has been created!
 
 ---
-## 3 Setup our website using HUGO and configuring Git Hub Actions for CI/CD
+## 3 Setup our website using HUGO and configuring GitHub Actions for CI/CD
 
 ### 3.1 Application Code Repository
 
@@ -262,7 +262,7 @@ We also need to configure *BUCKET_NAME* and *DISTRIBUTION*
 
 ### 3.3 GitHub Actions Configuration
 
-This is the file that will create our Git Hub Acction:
+This is the file that will create our GitHub Action:
 
 ```yaml
 name: GitHub Pages
@@ -324,7 +324,7 @@ As you can see our pipeline will perform 3 main operations when some code reache
 
 Let's see our pipeline at work, let's push something to the main branch!
 
-![website-pipeline](website-pipeline.gif)
+<video class="gif-video" src="/media/01-how-to-deploy-your-website/website-pipeline.mp4" poster="/media/01-how-to-deploy-your-website/website-pipeline.jpg" width="1600" height="956" muted loop playsinline preload="none" aria-label="website-pipeline"></video>
 
 Less than 30 seconds after pushing the code our changes are already "in production"!
 

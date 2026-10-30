@@ -102,11 +102,11 @@ Tailscale is different from a traditional VPN as it operates on a mesh network a
 
 At this point we felt like we were done. Tailscale gave us everything we needed. We could have considered the case closed. But then...
 
-![pricing-tailscale](pricing.gif)
+<video class="gif-video" src="/media/08-network-overlay/pricing.mp4" poster="/media/08-network-overlay/pricing.jpg" width="600" height="490" muted loop playsinline preload="none" aria-label="pricing-tailscale"></video>
 
-We realized we can't use Taiscale for free. At the moment there are 7 of us, almost all with our own homelab. Panic mode [ON]
+We realized we can't use Tailscale for free. At the moment there are 7 of us, almost all with our own homelab. Panic mode [ON]
 
-![barbero](si-fa-cosi-alessandro.gif)
+<video class="gif-video" src="/media/08-network-overlay/si-fa-cosi-alessandro.mp4" poster="/media/08-network-overlay/si-fa-cosi-alessandro.jpg" width="498" height="280" muted loop playsinline preload="none" aria-label="barbero"></video>
 
 ## **2 The revelation: Headscale**
 
@@ -242,7 +242,7 @@ terraform plan
 terraform apply
 ```
 
-### **3.5 Bonus point: script to copy ssh key of my teammates directly in ec2 during instance's boostrap (user_data)**
+### **3.5 Bonus point: script to copy ssh key of my teammates directly in ec2 during instance's bootstrap (user_data)**
 
 Within the terraform project, at the path ```cloud/aws/headscacale/server```
 
