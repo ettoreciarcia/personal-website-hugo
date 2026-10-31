@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { parse } from 'yaml';
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
@@ -17,7 +18,7 @@ const legacyRedirects = {
   ...Object.fromEntries([1, 2, 3].map((n) => [`/certification/page/${n}/`, '/certifications/'])),
 };
 
-// Sitemap <lastmod> for articles and talks, read from each entry's front matter date.
+// Sitemap <lastmod> uses the editorial update date, falling back to publication.
 const SITE_URL = 'https://ettoreciarcia.com';
 const lastmod = new Map();
 for (const [dir, prefix] of [['blog', 'publication'], ['talks', 'event']]) {
@@ -25,7 +26,9 @@ for (const [dir, prefix] of [['blog', 'publication'], ['talks', 'event']]) {
   for (const slug of fs.readdirSync(base)) {
     const file = `${base}/${slug}/index.md`;
     if (!fs.existsSync(file)) continue;
-    const date = fs.readFileSync(file, 'utf8').match(/^date:\s*['"]?([\d-]+)/m)?.[1];
+    const frontmatter = fs.readFileSync(file, 'utf8').match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/)?.[1];
+    const data = frontmatter ? parse(frontmatter) : undefined;
+    const date = (dir === 'blog' ? data?.updated : undefined) ?? data?.date;
     if (date) lastmod.set(`${SITE_URL}/${prefix}/${slug}/`, new Date(date).toISOString());
   }
 }

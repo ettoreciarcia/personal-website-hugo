@@ -71,6 +71,22 @@ export async function getPosts(): Promise<CollectionEntry<'blog'>[]> {
   return posts.sort(byDateDesc);
 }
 
+/** Shared tags first, then category, then publication date. Never suggest unrelated posts. */
+export function relatedPosts(post: CollectionEntry<'blog'>, posts: CollectionEntry<'blog'>[]) {
+  const tags = new Set(post.data.tags.map(slugify));
+  return posts
+    .filter((candidate) => candidate.id !== post.id)
+    .map((candidate) => ({
+      post: candidate,
+      sharedTags: [...new Set(candidate.data.tags.map(slugify))].filter((tag) => tags.has(tag)).length,
+      sameCategory: Number(candidate.data.category === post.data.category),
+    }))
+    .filter((candidate) => candidate.sharedTags > 0 || candidate.sameCategory > 0)
+    .sort((a, b) => b.sharedTags - a.sharedTags || b.sameCategory - a.sameCategory || byDateDesc(a.post, b.post) || a.post.id.localeCompare(b.post.id))
+    .slice(0, 3)
+    .map((candidate) => candidate.post);
+}
+
 export async function getTalks() {
   return (await getCollection('talks')).sort(byDateDesc);
 }

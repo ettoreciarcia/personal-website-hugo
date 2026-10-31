@@ -57,6 +57,15 @@ Body in Markdown. Images are referenced relatively: ![](./diagram.png)
 ```
 
 Front matter is validated by the schema in `src/content.config.ts`; the build fails on a typo.
+After a substantive revision to an article, add `updated: YYYY-MM-DD` to its front matter.
+Use the actual revision date, on or after `date`. It appears below the publication details
+and is included in social metadata, structured data and the sitemap. Without `updated`,
+no revision date is displayed; article lists and RSS keep their publication order.
+
+Article pages also suggest up to three related articles, ranked by shared tags, then matching
+category, then newest publication date. The current article and unrelated entries are excluded;
+production suggestions use published articles only.
+
 Animated GIFs over ~1 MB should be converted to video, which is 10–20× smaller:
 
 ```sh

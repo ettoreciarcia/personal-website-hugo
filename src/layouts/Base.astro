@@ -15,7 +15,7 @@ interface Props {
   imageAlt?: string;
   type?: 'website' | 'article';
   /** Only for type="article". */
-  article?: { published: Date; section?: string; tags?: string[] };
+  article?: { published: Date; updated?: Date; section?: string; tags?: string[] };
   /** Keep thin or utility pages (search, tag lists, 404) out of search results. */
   noindex?: boolean;
   /** One or more schema.org objects, emitted as JSON-LD. */
@@ -85,6 +85,7 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
       article && (
         <>
           <meta property="article:published_time" content={article.published.toISOString()} />
+          {article.updated && <meta property="article:modified_time" content={article.updated.toISOString()} />}
           <meta property="article:author" content={SITE.url} />
           {article.section && <meta property="article:section" content={article.section} />}
           {article.tags?.map((t) => <meta property="article:tag" content={t} />)}

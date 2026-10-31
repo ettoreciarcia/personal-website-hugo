@@ -2,7 +2,6 @@
 dist/
 .astro/
 resources/
-public/
 
 # Pagefind writes here only if someone runs it against public/ by mistake
 public/pagefind/
