@@ -6,17 +6,18 @@ import TagList from '../../components/TagList.astro';
 import LinkButtons from '../../components/LinkButtons.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import ProseEnhancements from '../../components/ProseEnhancements.astro';
-import { getPosts, formatDate, readingTime, slugify, SITE, PERSON_ID, breadcrumbLd } from '../../lib/site';
+import PostList from '../../components/PostList.astro';
+import { getPosts, relatedPosts, formatDate, readingTime, slugify, SITE, PERSON_ID, breadcrumbLd } from '../../lib/site';
 
 export async function getStaticPaths() {
   const posts = await getPosts();
   return posts.map((post, i) => ({
     params: { slug: post.id },
-    props: { post, newer: posts[i - 1], older: posts[i + 1] },
+    props: { post, newer: posts[i - 1], older: posts[i + 1], related: relatedPosts(post, posts) },
   }));
 }
 
-const { post, newer, older } = Astro.props;
+const { post, newer, older, related } = Astro.props;
 const { Content, headings } = await render(post);
 const url = new URL(`/publication/${post.id}/`, SITE.url).href;
 const cover = post.data.image ? await getImage({ src: post.data.image, width: Math.min(1200, post.data.image.width), format: 'jpg' }) : undefined;
@@ -30,6 +31,7 @@ const jsonLd = [
     headline: post.data.title,
     description: post.data.summary,
     datePublished: post.data.date.toISOString(),
+    dateModified: post.data.updated?.toISOString(),
     inLanguage: 'en',
     articleSection: post.data.category,
     keywords: post.data.tags.join(', '),
@@ -51,7 +53,7 @@ const jsonLd = [
   description={post.data.summary}
   image={post.data.image}
   type="article"
-  article={{ published: post.data.date, section: post.data.category, tags: post.data.tags }}
+  article={{ published: post.data.date, updated: post.data.updated, section: post.data.category, tags: post.data.tags }}
   jsonLd={jsonLd}
   mainClass="xl:max-w-[66rem] xl:grid xl:grid-cols-[minmax(0,48rem)_14rem] xl:gap-14"
 >
@@ -63,6 +65,11 @@ const jsonLd = [
           · {readingTime(post.body)} min read ·
           <a href={`/category/${slugify(post.data.category)}/`} class="hover:text-accent" data-pagefind-filter="category">{post.data.category}</a>
         </p>
+        {post.data.updated && (
+          <p class="mb-3 text-sm text-fg-muted">
+            Updated <time datetime={post.data.updated.toISOString()}>{formatDate(post.data.updated)}</time>
+          </p>
+        )}
         <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight leading-tight">{post.data.title}</h1>
         <p class="mt-4 text-lg text-fg-muted leading-relaxed">{post.data.summary}</p>
         <div class="mt-5 flex flex-wrap items-center gap-4">
@@ -83,6 +90,13 @@ const jsonLd = [
         <Content />
       </div>
     </article>
+
+    {related.length > 0 && (
+      <section class="mt-14 pt-8 border-t border-line/60" aria-labelledby="related-articles">
+        <h2 id="related-articles" class="text-xl font-semibold tracking-tight">Related articles</h2>
+        <PostList posts={related} />
+      </section>
+    )}
 
     <nav class="mt-14 pt-8 border-t border-line/60 grid sm:grid-cols-2 gap-6 text-sm" aria-label="Adjacent articles">
       <div>

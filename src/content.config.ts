@@ -14,6 +14,7 @@ const blog = defineCollection({
     z.object({
       title: z.string(),
       date: z.coerce.date(),
+      updated: z.coerce.date().optional(),
       summary: z.string(),
       category: z.enum(CATEGORIES),
       tags: z.array(z.string()).default([]),
@@ -26,6 +27,9 @@ const blog = defineCollection({
           video: z.url().optional(),
         })
         .default({}),
+    }).refine((post) => !post.updated || post.updated >= post.date, {
+      message: 'updated must be on or after the publication date',
+      path: ['updated'],
     }),
 });
 
@@ -59,6 +63,12 @@ const projects = defineCollection({
       link: z.string().optional(),
       tags: z.array(z.string()).default([]),
       image: image().optional(),
+      featured: z.object({
+        order: z.number().int().nonnegative(),
+        challenge: z.string().min(1),
+        solution: z.string().min(1),
+        outcome: z.string().min(1),
+      }).optional(),
     }),
 });
 

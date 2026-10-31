@@ -7,11 +7,15 @@ import SocialIcon from '../components/SocialIcon.astro';
 import { Content as Bio } from '../data/bio.md';
 import profile from '../data/profile.json';
 import avatar from '../data/avatar.jpg';
-import { getPosts, getTalks, formatDate, parseYouTube, personLd, SITE, PERSON_ID } from '../lib/site';
+import { getPosts, getTalks, getProjects, formatDate, parseYouTube, personLd, SITE, PERSON_ID } from '../lib/site';
 import VideoBadge from '../components/VideoBadge.astro';
 
 const posts = (await getPosts()).slice(0, 4);
 const talks = (await getTalks()).slice(0, 4);
+const featuredProjects = (await getProjects())
+  .flatMap((project) => project.data.featured ? [{ project, featured: project.data.featured }] : [])
+  .sort((a, b) => a.featured.order - b.featured.order)
+  .slice(0, 2);
 
 const jsonLd = [
   personLd(profile),
@@ -75,6 +79,41 @@ const jsonLd = [
     <SectionHeading eyebrow="Writing" title="Latest articles" more={{ label: 'All articles', href: '/publication/' }} />
     <PostList posts={posts} />
   </section>
+
+  {featuredProjects.length > 0 && (
+    <section class="mt-16">
+      <SectionHeading eyebrow="Building" title="Selected projects" more={{ label: 'All projects', href: '/projects/' }} />
+      <p class="mt-3 text-sm text-fg-muted leading-relaxed">Hands-on projects behind the notes: what I wanted to build, how it works, and what came out of it.</p>
+      <ul class="mt-6 grid sm:grid-cols-2 gap-5">
+        {featuredProjects.map(({ project, featured }) => (
+          <li class="flex flex-col rounded-lg border border-line p-5 sm:p-6">
+            <h3 class="text-lg font-semibold tracking-tight">
+              <a href={`/project/${project.id}/`} class="hover:text-accent transition-colors">{project.data.title}</a>
+            </h3>
+            <dl class="mt-5 space-y-4 text-sm leading-relaxed">
+              <div>
+                <dt class="font-medium">The challenge</dt>
+                <dd class="mt-1 text-fg-muted">{featured.challenge}</dd>
+              </div>
+              <div>
+                <dt class="font-medium">The approach</dt>
+                <dd class="mt-1 text-fg-muted">{featured.solution}</dd>
+              </div>
+              <div>
+                <dt class="font-medium">The result</dt>
+                <dd class="mt-1 text-fg-muted">{featured.outcome}</dd>
+              </div>
+            </dl>
+            <div class="mt-auto pt-6">
+              <a href={`/project/${project.id}/`} class="text-sm underline-link text-accent" aria-label={`Explore ${project.data.title}`}>
+                Explore the project →
+              </a>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
 
   <section class="mt-16">
     <SectionHeading eyebrow="Speaking" title="Recent talks" more={{ label: 'All talks', href: '/event/' }} />
